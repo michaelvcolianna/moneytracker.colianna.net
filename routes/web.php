@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 
 Route::redirect('/', '/dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/dashboard', [Controller::class, 'dashboard'])
-    ->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+    Route::get('/dashboard', [Controller::class, 'dashboard'])->name('dashboard');
+    Route::get('/pay-periods', [Controller::class, 'payPeriods'])->name('pay_periods');
+});
