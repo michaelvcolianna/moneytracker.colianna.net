@@ -1,4 +1,4 @@
-<svg enable-background="new 0 0 64 64" height="512" viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg enable-background="new 0 0 64 64" height="512" viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" {{ $attributes }}>
     <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="32" x2="32" y1="63" y2=".333">
         <stop offset="0" stop-color="#9f2fff" />
         <stop offset="1" stop-color="#0bb1d3" />
