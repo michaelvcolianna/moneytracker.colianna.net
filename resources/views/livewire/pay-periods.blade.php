@@ -21,11 +21,13 @@
                         @foreach($pay_periods as $pay_period)
                             <div class="w-1/4 my-4">
                                 <p>
-                                    {{ $pay_period->date->format('n/j/Y') }}
+                                    Date:
+                                    <em>{{ $pay_period->date->format('n/j/Y') }}</em>
                                 </p>
 
                                 <p>
-                                    <strong>{{ $pay_period->current }}</strong>
+                                    Amount:
+                                    <em>{{ $pay_period->current }}</em>
                                 </p>
 
                                 <p>
@@ -59,25 +61,31 @@
                         <x-jet-input id="start" class="block mt-1 w-full" type="number" name="start" :value="old('start')" required />
                     </div>
 
-                    <div class="mt-4 flex flex-row flex-wrap justify-between">
-                        <p class="mb-1 w-full font-medium text-sm text-gray-700">
-                            Include payees
-                        </p>
-
-                        <div class="mb-2 w-1/2">
-                            <label for="test1" class="flex items-start">
-                                <x-jet-checkbox id="test1" name="test1" />
-                                <span class="ml-2 text-sm text-gray-600">Test 1 <strong class="block">$10</strong></span>
-                            </label>
+                    @if($payees->count() < 1)
+                        <div class="mt-4">
+                            <p>
+                                <em>There are no payees. Please add some.</em>
+                            </p>
                         </div>
+                    @else
+                        <div class="mt-4 flex flex-row flex-wrap justify-between">
+                            <p class="mb-1 w-full font-medium text-sm text-gray-700">
+                                Include payees
+                            </p>
 
-                        <div class="mb-2 w-1/2">
-                            <label for="test2" class="flex items-start">
-                                <x-jet-checkbox id="test2" name="test2" />
-                                <span class="ml-2 text-sm text-gray-600">Test 2 <strong class="block">$25</strong></span>
-                            </label>
+                            @foreach($payees as $payee)
+                                <div class="mb-2 w-1/2">
+                                    <label for="payee-{{ $payee->id }}" class="flex items-start">
+                                        <x-jet-checkbox id="payee-{{ $payee->id }}" name="payees[{{ $payee->id }}]" />
+                                        <span class="ml-2 text-sm text-gray-600">
+                                            {{ $payee->name }}
+                                            <strong class="block">{{ $payee->amount }}</strong>
+                                        </span>
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
-                    </div>
+                    @endif
 
                     <div class="flex items-center justify-end mt-4">
                         <x-jet-button>
