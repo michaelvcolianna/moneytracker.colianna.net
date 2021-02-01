@@ -30,6 +30,16 @@ class PayPeriod extends Model
     ];
 
     /**
+     * Get the pay period's raw date.
+     *
+     * @return string
+     */
+    public function getRawDate()
+    {
+        return $this->attributes['date'];
+    }
+
+    /**
      * Get the pay period's starting amount.
      *
      * @param  string  $value
@@ -38,6 +48,16 @@ class PayPeriod extends Model
     public function getStartAttribute($value)
     {
         return '$' . number_format($value);
+    }
+
+    /**
+     * Get the pay period's raw starting amount.
+     *
+     * @return string
+     */
+    public function getRawStart()
+    {
+        return $this->attributes['start'];
     }
 
     /**

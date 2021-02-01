@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('pay_periods') }}" :active="request()->routeIs('pay_periods')">
+                    <x-jet-nav-link href="{{ route('pay-periods') }}" :active="request()->routeIs('pay-periods')">
                         {{ __('Pay Periods') }}
                     </x-jet-nav-link>
 
@@ -150,7 +150,7 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
 
-            <x-jet-responsive-nav-link href="{{ route('pay_periods') }}" :active="request()->routeIs('pay_periods')">
+            <x-jet-responsive-nav-link href="{{ route('pay-periods') }}" :active="request()->routeIs('pay-periods')">
                 {{ __('Pay Periods') }}
             </x-jet-responsive-nav-link>
 

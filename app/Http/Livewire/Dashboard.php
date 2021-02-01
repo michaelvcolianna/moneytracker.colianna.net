@@ -11,7 +11,7 @@ class Dashboard extends Component
     {
         if(PayPeriod::all()->count() < 1)
         {
-            return redirect()->route('pay_periods');
+            return redirect()->route('pay-periods');
         }
     }
 

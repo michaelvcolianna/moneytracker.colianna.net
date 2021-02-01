@@ -49,8 +49,7 @@ class PayPeriods extends Component
 
     public function editPayPeriod($id)
     {
-        // @todo Redirect to edit page
-        return redirect()->route('dashboard');
+        return redirect()->route('pay-period', ['id' => $id]);
     }
 
     public function deletePayPeriod($id)

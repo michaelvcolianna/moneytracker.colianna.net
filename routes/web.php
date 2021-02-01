@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\EditPayPeriod;
 use App\Http\Livewire\PayPeriods;
 use App\Http\Livewire\Payees;
 
@@ -20,6 +21,7 @@ Route::redirect('/', '/dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/pay-periods', PayPeriods::class)->name('pay_periods');
+    Route::get('/pay-periods', PayPeriods::class)->name('pay-periods');
+    Route::get('/pay-period/{id}', EditPayPeriod::class)->name('pay-period');
     Route::get('/payees', Payees::class)->name('payees');
 });
