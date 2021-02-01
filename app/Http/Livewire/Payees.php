@@ -51,8 +51,7 @@ class Payees extends Component
 
     public function editPayee($id)
     {
-        // @todo Redirect to edit page
-        return redirect()->route('dashboard');
+        return redirect()->route('payee', ['id' => $id]);
     }
 
     public function deletePayee($id)

@@ -13,7 +13,7 @@
 
                     <x-jet-input type="hidden" wire:model="pay_period_id" :value="old('pay_period_id')" />
 
-                    <div class="mt-4">
+                    <div>
                         <x-jet-label for="start" value="Starting amount" />
                         <x-jet-input id="start" class="block mt-1 w-full" type="number" step="0.01" wire:model="start" :value="old('start')" required />
                         <x-jet-input-error for="start" class="mt-2" />

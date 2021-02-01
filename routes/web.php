@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\EditPayee;
 use App\Http\Livewire\EditPayPeriod;
-use App\Http\Livewire\PayPeriods;
 use App\Http\Livewire\Payees;
+use App\Http\Livewire\PayPeriods;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/pay-periods', PayPeriods::class)->name('pay-periods');
     Route::get('/pay-period/{id}', EditPayPeriod::class)->name('pay-period');
     Route::get('/payees', Payees::class)->name('payees');
+    Route::get('/payee/{id}', EditPayee::class)->name('payee');
 });

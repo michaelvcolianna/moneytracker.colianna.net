@@ -32,4 +32,14 @@ class Payee extends Model
             ? '$' . number_format($value)
             : false;
     }
+
+    /**
+     * Get the payee's raw amount.
+     *
+     * @return string
+     */
+    public function getRawAmount()
+    {
+        return $this->attributes['amount'];
+    }
 }
