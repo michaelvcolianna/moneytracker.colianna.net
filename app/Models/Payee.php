@@ -21,25 +21,12 @@ class Payee extends Model
     ];
 
     /**
-     * Get the payee's amount.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getAmountAttribute($value)
-    {
-        return $value
-            ? '$' . number_format($value)
-            : false;
-    }
-
-    /**
-     * Get the payee's raw amount.
+     * Get the payee's amount, formatted.
      *
      * @return string
      */
-    public function getRawAmount()
+    public function getPrettyAmount()
     {
-        return $this->attributes['amount'];
+        return '$' . number_format($this->amount, 2);
     }
 }

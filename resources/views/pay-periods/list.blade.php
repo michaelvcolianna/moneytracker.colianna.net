@@ -52,7 +52,7 @@
                     <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="openPayPeriod({{ $pay_period->id }})">
                         <div class="p-4">
                             <p class="font-thin text-3xl">
-                                {{ $pay_period->current }}
+                                {{ $pay_period->getPrettyCurrent() }}
                             </p>
 
                             <p class="text-gray-500 font-bold text-sm">
