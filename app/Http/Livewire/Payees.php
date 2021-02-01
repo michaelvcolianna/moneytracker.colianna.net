@@ -25,7 +25,7 @@ class Payees extends Component
 
     public function render()
     {
-        $payees = Payee::orderBy('name')->paginate(16);
+        $payees = Payee::orderBy('name')->paginate(8);
 
         return view('livewire.payees', [
             'payees' => $payees,
