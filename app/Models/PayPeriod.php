@@ -10,6 +10,17 @@ class PayPeriod extends Model
     use SoftDeletes;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'date',
+        'start',
+        'current',
+    ];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array

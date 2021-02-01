@@ -13,30 +13,36 @@
                 </h3>
 
                 @if($pay_periods->count() < 1)
-                    <p>
-                        <em>There are no pay periods. Please add one.</em>
+                    <p class="mt-4 italic">
+                        There are no pay periods. Please add some.
                     </p>
                 @else
-                    <div class="flex flex-row flex-wrap justify-between">
+                    <div>
+                        {{ $pay_periods->links() }}
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-4 mt-4">
                         @foreach($pay_periods as $pay_period)
-                            <div class="w-1/4 my-4">
-                                <p>
-                                    Date:
-                                    <em>{{ $pay_period->date->format('n/j/Y') }}</em>
-                                </p>
+                            <div class="bg-white rounded shadow">
+                                <div class="p-4">
+                                    <p class="text-gray-500 font-bold text-sm">
+                                        {{ $pay_period->date->format('n/j/Y') }}
+                                    </p>
 
-                                <p>
-                                    Amount:
-                                    <em>{{ $pay_period->current }}</em>
-                                </p>
+                                    <p class="font-thin text-3xl">
+                                        {{ $pay_period->current }}
+                                    </p>
+                                </div>
 
-                                <p>
-                                    edit link
-                                </p>
+                                <div class="flex flex-row flex-wrap justify-between border-t border-gray-200">
+                                    <button class="w-1/2 py-2 bg-gray-100 text-blue-600 rounded-bl" wire:click="editPayPeriod({{ $pay_period->id }})">
+                                        Edit
+                                    </button>
 
-                                <p>
-                                    delete button
-                                </p>
+                                    <button class="w-1/2 py-2 bg-gray-100 text-red-600 rounded-br" onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="deletePayPeriod({{ $pay_period->id }})">
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -48,44 +54,20 @@
                     Add New
                 </h3>
 
-                <form method="post" action="#">
+                <form wire:submit.prevent="addPayPeriod" class="mt-4">
                     @csrf
 
                     <div>
                         <x-jet-label for="date" value="Date" />
-                        <x-jet-input id="date" class="block mt-1 w-full" type="date" name="date" :value="old('date')" required />
+                        <x-jet-input id="date" class="block mt-1 w-full" type="date" wire:model="date" :value="old('date')" required />
+                        <x-jet-input-error for="date" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <x-jet-label for="start" value="Starting amount" />
-                        <x-jet-input id="start" class="block mt-1 w-full" type="number" name="start" :value="old('start')" required />
+                        <x-jet-input id="start" class="block mt-1 w-full" type="number" step="0.01" wire:model="start" :value="old('start')" required />
+                        <x-jet-input-error for="start" class="mt-2" />
                     </div>
-
-                    @if($payees->count() < 1)
-                        <div class="mt-4">
-                            <p>
-                                <em>There are no payees. Please add some.</em>
-                            </p>
-                        </div>
-                    @else
-                        <div class="mt-4 flex flex-row flex-wrap justify-between">
-                            <p class="mb-1 w-full font-medium text-sm text-gray-700">
-                                Include payees
-                            </p>
-
-                            @foreach($payees as $payee)
-                                <div class="mb-2 w-1/2">
-                                    <label for="payee-{{ $payee->id }}" class="flex items-start">
-                                        <x-jet-checkbox id="payee-{{ $payee->id }}" name="payees[{{ $payee->id }}]" />
-                                        <span class="ml-2 text-sm text-gray-600">
-                                            {{ $payee->name }}
-                                            <strong class="block">{{ $payee->amount }}</strong>
-                                        </span>
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif
 
                     <div class="flex items-center justify-end mt-4">
                         <x-jet-button>
