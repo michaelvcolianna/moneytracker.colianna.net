@@ -10,6 +10,17 @@ class Payee extends Model
     use SoftDeletes;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'amount',
+        'schedule',
+    ];
+
+    /**
      * Get the payee's amount.
      *
      * @param  string  $value

@@ -48,11 +48,8 @@ class PayPeriod extends Model
      */
     public function getCurrentAttribute($value)
     {
-        if(!$value)
-        {
-            return $this->start;
-        }
-
-        return '$' . number_format($value, 2);
+        return $value
+            ? '$' . number_format($value, 2)
+            : $this->start;
     }
 }

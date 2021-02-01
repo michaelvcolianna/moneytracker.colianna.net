@@ -13,36 +13,48 @@
                 </h3>
 
                 @if($payees->count() < 1)
-                    <p>
-                        <em>There are no payees. Please add some.</em>
+                    <p class="mt-4 italic">
+                        There are no payees. Please add some.
                     </p>
                 @else
-                    <div class="flex flex-row flex-wrap justify-between">
+                    <div>
+                        {{ $payees->links() }}
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-4 mt-4 auto-cols-fr">
                         @foreach($payees as $payee)
-                            <div class="w-1/4 my-4">
-                                <p>
-                                    <strong>{{ $payee->name }}</strong>
-                                </p>
-
-                                @if($payee->amount)
-                                    <p>
-                                        Standard amount:
-                                        <em>{{ $payee->amount }}</em>
+                            <div class="bg-white rounded shadow">
+                                <div class="p-4">
+                                    <p class="text-3xl font-thin mb-2">
+                                        {{ $payee->name }}
                                     </p>
-                                @endif
 
-                                <p>
-                                    Auto-schedule:
-                                    <em>{{ $payee->schedule ? 'Yes' : 'No' }}</em>
-                                </p>
+                                    <p class="text-gray-500 text-sm">
+                                        @if($payee->amount)
+                                            {{ $payee->amount }} standard
+                                        @else
+                                            No standard amount
+                                        @endif
+                                    </p>
 
-                                <p>
-                                    edit link
-                                </p>
+                                    <p class="text-gray-500 text-sm">
+                                        @if($payee->schedule)
+                                            Scheduled automatically
+                                        @else
+                                            Not scheduled automatically
+                                        @endif
+                                    </p>
+                                </div>
 
-                                <p>
-                                    delete button
-                                </p>
+                                <div class="flex flex-row flex-wrap justify-between border-t border-gray-200">
+                                    <button class="w-1/2 py-2 bg-gray-100 text-blue-600 rounded-bl" wire:click="editPayee({{ $payee->id }})">
+                                        Edit
+                                    </button>
+
+                                    <button class="w-1/2 py-2 bg-gray-100 text-red-600 rounded-br" onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="deletePayee({{ $payee->id }})">
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -54,22 +66,24 @@
                     Add New
                 </h3>
 
-                <form method="post" action="#">
+                <form wire:submit.prevent="addPayee" class="mt-4">
                     @csrf
 
                     <div>
                         <x-jet-label for="name" value="Name" />
-                        <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required />
+                        <x-jet-input id="name" class="block mt-1 w-full" type="text" wire:model="name" :value="old('name')" required />
+                        <x-jet-input-error for="name" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <x-jet-label for="amount" value="Standard amount" />
-                        <x-jet-input id="amount" class="block mt-1 w-full" type="number" name="amount" :value="old('amount')" />
+                        <x-jet-input id="amount" class="block mt-1 w-full" type="number" wire:model="amount" :value="old('amount')" />
+                        <x-jet-input-error for="amount" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
                         <label for="schedule" class="flex items-start">
-                            <x-jet-checkbox id="schedule" name="schedule" />
+                            <x-jet-checkbox id="schedule" wire:model="schedule" />
                             <span class="ml-2 text-sm text-gray-600">Auto-schedule</span>
                         </label>
                     </div>
