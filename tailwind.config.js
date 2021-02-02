@@ -10,7 +10,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Fira Sans', ...defaultTheme.fontFamily.sans],
+                sans: ['Commissioner', ...defaultTheme.fontFamily.sans],
             },
         },
     },

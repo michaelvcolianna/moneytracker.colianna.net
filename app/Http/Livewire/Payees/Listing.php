@@ -29,7 +29,7 @@ class Listing extends Component
     {
         $payees = Payee::orderBy('name')->paginate(8);
 
-        return view('payees.list', [
+        return view('payees.listing', [
             'payees' => $payees,
         ]);
     }
@@ -66,4 +66,5 @@ class Listing extends Component
         Payee::find($this->edit_id)->delete();
 
         $this->closePayee();
-    }}
+    }
+}

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Entry;
 
 class PayPeriod extends Model
 {
@@ -58,5 +59,13 @@ class PayPeriod extends Model
     public function getPrettyCurrent()
     {
         return '$' . number_format($this->current, 2);
+    }
+
+    /**
+     * Get the entries for the pay period.
+     */
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
     }
 }

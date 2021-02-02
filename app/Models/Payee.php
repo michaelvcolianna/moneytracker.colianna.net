@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Entry;
 
 class Payee extends Model
 {
@@ -28,5 +29,13 @@ class Payee extends Model
     public function getPrettyAmount()
     {
         return '$' . number_format($this->amount, 2);
+    }
+
+    /**
+     * Get the entries for the payee.
+     */
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
     }
 }
