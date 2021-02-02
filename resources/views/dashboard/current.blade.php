@@ -30,21 +30,25 @@
                     <x-jet-input-error for="amount" class="mt-2" />
                 </div>
 
-                <div class="mt-4">
-                    <x-jet-label for="payee" value="Payee" />
-                    <select id="payee" wire:model="payee_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">
-                        <option value>-- Choose --</option>
-                        @foreach($payees as $payee)
-                            <option value="{{ $payee->id }}">{{ $payee->name }}</option>
-                        @endforeach
-                    </select>
-                    <x-jet-input-error for="payee_id" class="mt-2" />
-                </div>
+                @if($payees->count() > 0)
+                    <div class="mt-4">
+                        <x-jet-label for="payee" value="Payee" />
+                        <select id="payee" wire:model="payee_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">
+                            <option value>-- Choose --</option>
+                            @foreach($payees as $payee)
+                                <option value="{{ $payee->id }}">{{ $payee->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-jet-input-error for="payee_id" class="mt-2" />
+                    </div>
+                @endif
 
                 <div class="mt-4">
                     <x-jet-label for="name">
                         Name
-                        <span class="ml-4 text-xs text-gray-400">(Only used if payee isn't selected)</span>
+                        @if($payees->count() > 0)
+                            <span class="ml-4 text-xs text-gray-400">(Only used if payee isn't selected)</span>
+                        @endif
                     </x-jet-label>
                     <x-jet-input id="name" class="block mt-1 w-full" type="text" wire:model="name" :value="old('amount')" />
                     <x-jet-input-error for="name" class="mt-2" />

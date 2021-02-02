@@ -34,10 +34,6 @@
             List
         </h3>
 
-        <p>
-            Tap to edit.
-        </p>
-
         @if($pay_periods->count() < 1)
             <p class="mt-4 italic">
                 There are no pay periods. Please add some.

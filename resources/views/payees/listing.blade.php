@@ -47,10 +47,6 @@
             List
         </h3>
 
-        <p>
-            Tap to edit.
-        </p>
-
         @if($payees->count() < 1)
             <p class="mt-4 italic">
                 There are no payees. Please add some.

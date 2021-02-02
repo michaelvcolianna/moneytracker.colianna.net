@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 */
 
 Route::redirect('/', '/dashboard');
+Route::redirect('/register', '/');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/dashboard', [Controller::class, 'showDashboard'])->name('dashboard');

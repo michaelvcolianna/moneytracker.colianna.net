@@ -68,10 +68,6 @@
             Entries
         </h3>
 
-        <p>
-            Tap to edit.
-        </p>
-
         @if($current->entries->count() < 1)
             <p class="mt-4 italic">
                 There are no entries. Please add some.
