@@ -1,13 +1,9 @@
-<div class="my-8">
+<div>
     <h3 class="font-semibold text-gray-800 leading-tight">
-        Pay Periods
+        Upcoming Pay Periods
     </h3>
 
-    <div>
-        {{ $pay_periods->links() }}
-    </div>
-
-    <div class="grid grid-cols-4 gap-4 mt-4">
+    <div class="grid grid-cols-2 gap-4 mt-4">
         @foreach($pay_periods as $pay_period)
             <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="switchPayPeriod({{ $pay_period->id }})">
                 <div class="p-4">

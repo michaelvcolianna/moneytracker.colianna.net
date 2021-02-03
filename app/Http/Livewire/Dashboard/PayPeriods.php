@@ -12,8 +12,28 @@ class PayPeriods extends Component
 
     public function render()
     {
-        // 36 bi-weekly = 52 weeks
-        $pay_periods = PayPeriod::orderByDesc('date')->paginate(8);
+        $date = new \DateTime;
+
+        if($date->format('w') != 5)
+        {
+            $date->modify('last friday');
+        }
+
+        $limit = 0;
+        while(PayPeriod::where('date', $date->format('Y-m-d'))->count() == 0)
+        {
+            $date->modify('-1 week');
+
+            // Don't look back further than 8 weeks
+            if($limit > 4)
+            {
+                abort(404);
+            }
+
+            $limit++;
+        }
+
+        $pay_periods = PayPeriod::where('date', '>=', $date->format('Y-m-d'))->orderBy('date')->take(12)->get();
 
         return view('dashboard.pay-periods', [
             'pay_periods' => $pay_periods,

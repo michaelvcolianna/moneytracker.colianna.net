@@ -25,7 +25,7 @@ class Listing extends Component
     public function render()
     {
         // 36 bi-weekly = 52 weeks
-        $pay_periods = PayPeriod::orderByDesc('date')->paginate(36);
+        $pay_periods = PayPeriod::orderByDesc('date')->paginate(4);
 
         return view('pay-periods.listing', [
             'pay_periods' => $pay_periods,

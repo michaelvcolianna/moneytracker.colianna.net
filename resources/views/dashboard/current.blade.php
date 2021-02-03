@@ -15,11 +15,11 @@
         </div>
 
         <div class="w-1/3">
-            <h3 class="font-semibold text-gray-800 leading-tight mb-4">
+            <h3 class="font-semibold text-gray-800 leading-tight mb-4" wire:click="$toggle('modal')">
                 Add an Entry
             </h3>
 
-            <form wire:submit.prevent="addEntry" class="mt-4">
+            {{-- <form wire:submit.prevent="addEntry" class="mt-4">
                 @csrf
 
                 <input type="hidden" wire:model="pay_period_id">
@@ -73,7 +73,21 @@
                         Add
                     </x-jet-button>
                 </div>
-            </form>
+            </form> --}}
         </div>
     </div>
+
+    <x-jet-dialog-modal wire:model="modal">
+        <x-slot name="title">
+            test
+        </x-slot>
+
+        <x-slot name="content">
+            oh damn
+        </x-slot>
+
+        <x-slot name="footer">
+            boom
+        </x-slot>
+    </x-jet-confirmation-modal>
 </div>

@@ -1,4 +1,4 @@
-<svg class="h-4 w-4 mr-2" height="20px" version="1.1" viewBox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="h-3 w-3 mr-2" height="20px" version="1.1" viewBox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
         <g fill="#000000" transform="translate(-128.000000, -86.000000)">
             <g transform="translate(128.000000, 86.000000)">

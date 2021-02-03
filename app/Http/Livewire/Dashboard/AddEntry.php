@@ -7,7 +7,7 @@ use App\Models\PayPeriod;
 use App\Models\Payee;
 use App\Models\Entry;
 
-class Current extends Component
+class AddEntry extends Component
 {
     public $pay_period_id;
     public $payee_id;
@@ -61,13 +61,12 @@ class Current extends Component
             }
         }
 
-        $current = PayPeriod::where('date', $date->format('Y-m-d'))->first();
-        $this->pay_period_id = $current->id;
-
+        $pay_period = PayPeriod::where('date', $date->format('Y-m-d'))->first();
+        $this->pay_period_id = $pay_period->id;
         $payees = Payee::orderBy('name')->get();
 
-        return view('dashboard.current', [
-            'current' => $current,
+        return view('dashboard.add-entry', [
+            'date' => $pay_period->date->format('n/j/Y'),
             'payees' => $payees,
         ]);
     }
@@ -85,12 +84,18 @@ class Current extends Component
             'reconciled' => $this->reconciled ?? false,
         ]);
 
+        $this->clearModal();
+
+        $this->emit('entry:add');
+    }
+
+    public function clearModal()
+    {
+        $this->modal = false;
         $this->payee_id = null;
         $this->name = null;
         $this->amount = null;
         $this->scheduled = null;
         $this->reconciled = null;
-
-        $this->emit('entry:add');
     }
 }
