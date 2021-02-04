@@ -7,18 +7,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div>
-                <livewire:dashboard.pay-periods :date="$date->format('Y-m-d')" />
-            </div>
+            <livewire:dashboard.pay-periods :date="$date->format('Y-m-d')" />
 
-            <div class="w-1/2 flex flex-row flex-wrap items-center">
+            <div class="px-4 lg:px-0 lg:w-1/2 flex flex-row flex-wrap items-center">
                 <livewire:dashboard.amount :date="$date->format('Y-m-d')" />
                 <livewire:dashboard.add-entry :date="$date->format('Y-m-d')" />
             </div>
 
-            <div>
-                <livewire:dashboard.entries :date="$date->format('Y-m-d')" />
-            </div>
+            <livewire:dashboard.entries :date="$date->format('Y-m-d')" />
         </div>
     </div>
 </x-app-layout>

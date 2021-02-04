@@ -5,8 +5,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" class="flex flex-row items-center">
                         <x-jet-application-mark class="block h-9 w-auto" />
+                        <span class="ml-8 font-bold">MoneyTracker</span>
                     </a>
                 </div>
 

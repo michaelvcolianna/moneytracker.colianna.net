@@ -1,4 +1,4 @@
-<div class="w-1/2 flex flex-row justify-between items-center">
+<div class="px-4 lg:px-0 lg:w-1/2 flex flex-row justify-between items-center">
     @if($pay_periods['older'])
         <x-jet-secondary-button wire:click="switchPayPeriod({{ $pay_periods['older']->id }})">
             «

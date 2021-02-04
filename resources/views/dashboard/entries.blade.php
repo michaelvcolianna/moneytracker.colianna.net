@@ -1,10 +1,10 @@
-<div class="mt-8 w-full">
+<div class="mt-8 w-full px-4 lg:px-0">
     @if($entries->count() < 1)
         <p class="mt-4 italic">
             There are no entries for this date. Please add some.
         </p>
     @else
-        <div class="grid grid-cols-4 gap-4 mt-4">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-4">
             @foreach($entries as $entry)
                 <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="openEntry({{ $entry->id }})">
                     <div class="p-4">
