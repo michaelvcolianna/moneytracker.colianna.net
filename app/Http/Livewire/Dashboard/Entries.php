@@ -14,7 +14,7 @@ class Entries extends Dashboard
     protected $entry;
 
     protected $listeners = [
-        'entry:add' => '$refresh',
+        'entries:refresh' => '$refresh',
     ];
 
     public function render()
@@ -63,7 +63,7 @@ class Entries extends Dashboard
     {
         $this->validate();
 
-        $this->getEntry($this->entry_id);
+        $this->getPayPeriod()->getEntry($this->entry_id);
 
         $this->entry->update([
             'payee_id' => (!empty($this->payee_id)) ? $this->payee_id : null,
@@ -73,13 +73,18 @@ class Entries extends Dashboard
             'reconciled' => $this->reconciled ?? false,
         ]);
 
+        $this->emit('entries:refresh');
+
         $this->closeEntry();
     }
 
     public function deleteEntry()
     {
-        $this->getEntry($this->entry_id);
+        $this->getPayPeriod()->getEntry($this->entry_id);
+
         $this->entry->delete();
+
+        $this->emit('entries:refresh');
 
         $this->closeEntry();
     }

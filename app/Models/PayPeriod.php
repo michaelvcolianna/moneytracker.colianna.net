@@ -85,6 +85,20 @@ class PayPeriod extends Model
     }
 
     /**
+     * Recalculates the pay period's current amount.
+     *
+     * @return void
+     */
+    public function recalculateCurrentAmount()
+    {
+        $sum = $this->entries->sum('amount');
+        $this->current = ($this->start - $sum);
+        $this->save();
+
+        return;
+    }
+
+    /**
      * Get the entries for the pay period.
      */
     public function entries()

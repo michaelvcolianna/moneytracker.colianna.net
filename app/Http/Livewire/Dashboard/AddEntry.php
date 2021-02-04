@@ -43,7 +43,7 @@ class AddEntry extends Dashboard
 
         $this->clearModal();
 
-        $this->emit('entry:add');
+        $this->emit('entries:refresh');
     }
 
     public function clearModal()

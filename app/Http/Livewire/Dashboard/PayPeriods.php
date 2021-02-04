@@ -33,7 +33,7 @@ class PayPeriods extends Component
             $limit++;
         }
 
-        $pay_periods = PayPeriod::where('date', '>=', $date->format('Y-m-d'))->orderBy('date')->take(12)->get();
+        $pay_periods = PayPeriod::where('date', '>', $date->format('Y-m-d'))->orderBy('date')->take(12)->get();
 
         return view('dashboard.pay-periods', [
             'pay_periods' => $pay_periods,
