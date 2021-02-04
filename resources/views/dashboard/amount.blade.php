@@ -1,8 +1,4 @@
-<div class="w-11/12">
-    <h3 class="font-semibold text-gray-800 leading-tight mb-4">
-        Amount
-    </h3>
-
+<div class="w-11/12 mt-8">
     <p class="text-7xl font-thin {{ $status }}">
         {{ $current }}
     </p>

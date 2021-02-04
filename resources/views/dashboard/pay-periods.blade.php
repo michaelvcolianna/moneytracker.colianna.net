@@ -1,21 +1,23 @@
-<div>
-    <h3 class="font-semibold text-gray-800 leading-tight">
-        Upcoming Pay Periods
-    </h3>
+<div class="w-1/2 flex flex-row justify-between items-center">
+    @if($pay_periods['older'])
+        <x-jet-secondary-button wire:click="switchPayPeriod({{ $pay_periods['older']->id }})">
+            «
+            {{ $pay_periods['older']->date->format('n/j/Y') }}
+        </x-jet-secondary-button>
+    @else
+        <span class="text-gray-400 text-sm italic">No prior date</span>
+    @endif
 
-    <div class="grid grid-cols-2 gap-4 mt-4">
-        @foreach($pay_periods as $pay_period)
-            <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="switchPayPeriod({{ $pay_period->id }})">
-                <div class="p-4">
-                    <p class="font-thin text-3xl">
-                        {{ $pay_period->getPrettyCurrent() }}
-                    </p>
-
-                    <p class="text-gray-500 font-bold text-sm">
-                        {{ $pay_period->date->format('n/j/Y') }}
-                    </p>
-                </div>
-            </a>
-        @endforeach
+    <div class="font-bold">
+        {{ $pay_periods['current']->date->format('Y-m-d') }}
     </div>
+
+    @if($pay_periods['newer'])
+        <x-jet-secondary-button wire:click="switchPayPeriod({{ $pay_periods['newer']->id }})">
+            {{ $pay_periods['newer']->date->format('n/j/Y') }}
+            »
+        </x-jet-secondary-button>
+    @else
+        <span class="text-gray-400 text-sm italic">No later date</span>
+    @endif
 </div>

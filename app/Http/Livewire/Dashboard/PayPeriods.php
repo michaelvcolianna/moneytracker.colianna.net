@@ -2,38 +2,21 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use Livewire\Component;
+use App\Http\Livewire\Dashboard;
 use Livewire\WithPagination;
 use App\Models\PayPeriod;
 
-class PayPeriods extends Component
+class PayPeriods extends Dashboard
 {
     use WithPagination;
 
     public function render()
     {
-        $date = new \DateTime;
-
-        if($date->format('w') != 5)
-        {
-            $date->modify('last friday');
-        }
-
-        $limit = 0;
-        while(PayPeriod::where('date', $date->format('Y-m-d'))->count() == 0)
-        {
-            $date->modify('-1 week');
-
-            // Don't look back further than 8 weeks
-            if($limit > 4)
-            {
-                abort(404);
-            }
-
-            $limit++;
-        }
-
-        $pay_periods = PayPeriod::where('date', '>', $date->format('Y-m-d'))->orderBy('date')->take(12)->get();
+        $pay_periods = [
+            'older' => PayPeriod::where('date', '<', $this->date)->orderByDesc('date')->take(1)->first(),
+            'current' => PayPeriod::where('date', $this->date)->first(),
+            'newer' => PayPeriod::where('date', '>', $this->date)->orderBy('date')->take(1)->first(),
+        ];
 
         return view('dashboard.pay-periods', [
             'pay_periods' => $pay_periods,
