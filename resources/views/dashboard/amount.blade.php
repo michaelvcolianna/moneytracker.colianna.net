@@ -1,6 +1,6 @@
 <div class="w-11/12">
     <h3 class="font-semibold text-gray-800 leading-tight mb-4">
-        Amount for {{ $date }}
+        Amount
     </h3>
 
     <p class="text-7xl font-thin {{ $status }}">

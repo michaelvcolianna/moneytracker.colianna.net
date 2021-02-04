@@ -45,63 +45,78 @@
         </x-slot>
 
         <x-slot name="content">
-            <div>
-                <x-jet-label for="amount" value="Amount" />
-                <x-jet-input id="amount" class="block mt-1 w-full" type="number" step="0.01" wire:model="amount" :value="old('amount')" required autofocus />
-                <x-jet-input-error for="amount" class="mt-2" />
-            </div>
+            <form wire:submit.prevent="updateEntry">
+                <input type="hidden" wire:model="entry_id" />
 
-            @if($payees->count() > 0)
-                <div class="mt-4">
-                    <x-jet-label for="payee" value="Payee" />
-                    <select id="payee" wire:model="payee_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">
-                        <option value>-- Choose --</option>
-                        @foreach($payees as $payee)
-                            <option value="{{ $payee->id }}">{{ $payee->name }}</option>
-                        @endforeach
-                    </select>
-                    <x-jet-input-error for="payee_id" class="mt-2" />
+                <div>
+                    <x-jet-label for="edit-amount" value="Amount" />
+                    <x-jet-input id="edit-amount" class="block mt-1 w-full" type="number" step="0.01" wire:model="amount" :value="old('amount')" required autofocus />
+                    <x-jet-input-error for="amount" class="mt-2" />
                 </div>
-            @endif
 
-            <div class="mt-4">
-                <x-jet-label for="name">
-                    Name
-                    @if($payees->count() > 0)
-                        <span class="ml-4 text-xs text-gray-400">(Only used if payee isn't selected)</span>
-                    @endif
-                </x-jet-label>
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" wire:model="name" :value="old('amount')" />
-                <x-jet-input-error for="name" class="mt-2" />
-            </div>
+                @if($payees->count() > 0)
+                    <div class="mt-4">
+                        <x-jet-label for="edit-payee" value="Payee" />
+                        <select id="edit-payee" wire:model="payee_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">
+                            <option value>-- Choose --</option>
+                            @foreach($payees as $payee)
+                                <option value="{{ $payee->id }}">{{ $payee->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-jet-input-error for="payee_id" class="mt-2" />
+                    </div>
+                @endif
 
-            <div class="mt-4">
-                <label for="scheduled" class="flex items-start">
-                    <x-jet-checkbox id="scheduled" wire:model="scheduled" />
-                    <span class="ml-2 text-sm text-gray-600">Scheduled</span>
-                </label>
-            </div>
+                <div class="mt-4">
+                    <x-jet-label for="edit-name">
+                        Name
+                        @if($payees->count() > 0)
+                            <span class="ml-4 text-xs text-gray-400">(Only used if payee isn't selected)</span>
+                        @endif
+                    </x-jet-label>
+                    <x-jet-input id="edit-name" class="block mt-1 w-full" type="text" wire:model="name" :value="old('amount')" />
+                    <x-jet-input-error for="name" class="mt-2" />
+                </div>
 
-            <div class="mt-4">
-                <label for="reconciled" class="flex items-start">
-                    <x-jet-checkbox id="reconciled" wire:model="reconciled" />
-                    <span class="ml-2 text-sm text-gray-600">Reconciled</span>
-                </label>
-            </div>
+                <div class="mt-4">
+                    <label for="edit-scheduled" class="flex items-start">
+                        <x-jet-checkbox id="edit-scheduled" wire:model="scheduled" />
+                        <span class="ml-2 text-sm text-gray-600">Scheduled</span>
+                    </label>
+                </div>
+
+                <div class="mt-4">
+                    <label for="edit-reconciled" class="flex items-start">
+                        <x-jet-checkbox id="edit-reconciled" wire:model="reconciled" />
+                        <span class="ml-2 text-sm text-gray-600">Reconciled</span>
+                    </label>
+                </div>
+
+                <div class="mt-4">
+                    <label for="delete" class="flex items-start">
+                        <x-jet-checkbox id="delete" wire:click="$toggle('delete')" />
+                        <span class="ml-2 text-sm text-gray-600">Delete</span>
+                    </label>
+                </div>
+
+                <button class="hidden" />
+            </form>
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button class="mr-2" wire:click="closeEntry">
-                Cancel
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="mr-2" onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="deleteEntry">
-                Delete
-            </x-jet-danger-button>
+            @if($delete)
+                <x-jet-danger-button class="mr-2" wire:click="deleteEntry">
+                    Delete
+                </x-jet-danger-button>
+            @endif
 
             <x-jet-button wire:click="updateEntry">
                 Update
             </x-jet-button>
+
+            <x-jet-secondary-button class="mr-2" wire:click="closeEntry">
+                Cancel
+            </x-jet-secondary-button>
         </x-slot>
     </x-jet-confirmation-modal>
 </div>

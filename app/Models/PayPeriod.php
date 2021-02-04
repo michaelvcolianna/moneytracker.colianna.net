@@ -62,6 +62,29 @@ class PayPeriod extends Model
     }
 
     /**
+     * Get the pay period's amount status.
+     *
+     * @return string
+     */
+    public function getAmountStatus()
+    {
+        switch(true)
+        {
+            case ($this->current >= 1000):
+                $status = 'text-green-600';
+                break;
+            case ($this->current < 0):
+                $status = 'text-red-600';
+                break;
+            default:
+                $status = null;
+                break;
+        }
+
+        return $status;
+    }
+
+    /**
      * Get the entries for the pay period.
      */
     public function entries()
