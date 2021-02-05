@@ -12,8 +12,8 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
             @foreach($pay_periods as $pay_period)
-                <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="openPayPeriod({{ $pay_period->id }})">
-                    <div class="p-4">
+                <div class="bg-white cursor-pointer rounded shadow transform transition-transform hover:scale-105">
+                    <div class="p-4" wire:click="switchPayPeriod({{ $pay_period->id }})">
                         <p class="font-bold text-sm">
                             {{ $pay_period->date->format('n/j/Y') }}
                         </p>
@@ -26,7 +26,11 @@
                             of {{ $pay_period->getPrettyStart() }}
                         </p>
                     </div>
-                </a>
+
+                    <div class="px-4 py-2 text-sm text-blue-600 border-t border-gray-200" wire:click="openPayPeriod({{ $pay_period->id }})">
+                        Edit
+                    </div>
+                </div>
             @endforeach
         </div>
     @endif

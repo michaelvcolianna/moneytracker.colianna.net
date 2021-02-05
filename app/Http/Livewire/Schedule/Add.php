@@ -95,4 +95,13 @@ class Add extends Component
 
         return $this;
     }
+
+    public function switchPayPeriod($id)
+    {
+        $pay_period = PayPeriod::where('id', $id)->first();
+
+        return redirect()->route('dashboard', [
+            'date' => $pay_period->date->format('Y-m-d'),
+        ]);
+    }
 }
