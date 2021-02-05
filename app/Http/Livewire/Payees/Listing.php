@@ -13,6 +13,7 @@ class Listing extends Component
     public $payee_id;
     public $name;
     public $amount;
+    public $notes;
     public $schedule;
     public $delete;
     public $modal;
@@ -22,6 +23,7 @@ class Listing extends Component
     protected $rules = [
         'name' => 'required|string',
         'amount' => 'nullable|numeric',
+        'notes' => 'nullable|string',
         'schedule' => 'nullable|boolean',
     ];
 
@@ -45,6 +47,7 @@ class Listing extends Component
         $this->payee_id = $id;
         $this->name = $this->payee->name;
         $this->amount = $this->payee->amount ?? null;
+        $this->notes = $this->payee->notes ?? null;
         $this->schedule = $this->payee->schedule ?? false;
         $this->delete = false;
 
@@ -61,6 +64,7 @@ class Listing extends Component
 
         $this->name = null;
         $this->amount = null;
+        $this->notes = null;
         $this->schedule = null;
         $this->delete = null;
     }
@@ -74,6 +78,7 @@ class Listing extends Component
         $this->payee->update([
             'name' => $this->name,
             'amount' => (!empty($this->amount)) ? $this->amount : null,
+            'notes' => (!empty($this->notes)) ? $this->notes : null,
             'schedule' => $this->schedule ?? false,
         ]);
 

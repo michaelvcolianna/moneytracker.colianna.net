@@ -13,6 +13,12 @@
         </div>
 
         <div class="mt-4">
+            <x-jet-label for="notes" value="Notes" />
+            <x-textarea id="notes" class="block mt-1 w-full h-20 resize-none" wire:model="notes" :value="old('notes')" />
+            <x-jet-input-error for="notes" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
             <label for="schedule" class="flex items-start">
                 <x-jet-checkbox id="schedule" wire:model="schedule" />
                 <span class="ml-2 text-sm text-gray-600">Auto-schedule</span>

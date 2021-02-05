@@ -14,6 +14,7 @@ class Add extends Component
 
     public $pay_period_id;
     public $date;
+    public $next;
     public $schedule;
     public $modal;
     public $added;
@@ -26,7 +27,7 @@ class Add extends Component
 
     public function render()
     {
-        $pay_periods = PayPeriod::orderByDesc('date')->paginate(8);
+        $pay_periods = PayPeriod::orderByDesc('date')->paginate(16);
         $payees = Payee::where('amount', '>', 0)->orderBy('name')->get();
 
         return view('schedule.add', [
@@ -39,8 +40,12 @@ class Add extends Component
     {
         $this->getPayPeriod($id);
 
+        $next = clone $this->pay_period->date;
+        $next->modify('+13 days');
+
         $this->pay_period_id = $id;
         $this->date = $this->pay_period->date->format('n/j/Y');
+        $this->next = $next->format('n/j/Y');
         $this->schedule = [];
         $this->modal = true;
         $this->added = false;

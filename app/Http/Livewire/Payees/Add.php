@@ -9,11 +9,13 @@ class Add extends Component
 {
     public $name;
     public $amount;
+    public $notes;
     public $schedule;
 
     protected $rules = [
         'name' => 'required|string',
-        'amount' => 'nullable|required_with:schedule|numeric',
+        'amount' => 'nullable|numeric',
+        'notes' => 'nullable|string',
         'schedule' => 'nullable|boolean',
     ];
 
@@ -29,11 +31,13 @@ class Add extends Component
         Payee::create([
             'name' => $this->name,
             'amount' => $this->amount ?? null,
+            'notes' => $this->notes ?? null,
             'schedule' => $this->schedule ?? false,
         ]);
 
         $this->name = null;
         $this->amount = null;
+        $this->notes = null;
         $this->schedule = null;
 
         $this->emit('payees:refresh');

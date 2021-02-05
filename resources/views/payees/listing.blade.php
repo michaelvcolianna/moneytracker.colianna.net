@@ -18,21 +18,23 @@
                             {{ $payee->name }}
                         </p>
 
-                        <p class="text-gray-500 text-sm">
-                            @if($payee->amount)
+                        @if($payee->amount)
+                            <p class="text-gray-500 text-sm">
                                 {{ $payee->getPrettyAmount() }} standard
-                            @else
-                                No standard amount
-                            @endif
-                        </p>
+                            </p>
+                        @endif
 
-                        <p class="text-gray-500 text-sm">
-                            @if($payee->schedule)
-                                Scheduled automatically
-                            @else
-                                Not scheduled automatically
-                            @endif
-                        </p>
+                        @if($payee->schedule)
+                            <p class="text-gray-500 text-sm">
+                            Scheduled automatically
+                            </p>
+                        @endif
+
+                        @if($payee->notes)
+                            <p class="text-xs mt-2 pt-2 border-t border-gray-200">
+                                {{ $payee->notes }}
+                            </p>
+                        @endif
                     </div>
                 </a>
             @endforeach
@@ -58,6 +60,12 @@
                     <x-jet-label for="edit-payee-amount" value="Amount" />
                     <x-jet-input id="edit-payee-amount" class="block mt-1 w-full" type="number" step="0.01" wire:model="amount" :value="old('amount')" />
                     <x-jet-input-error for="amount" class="mt-2" />
+                </div>
+
+                <div class="mt-4">
+                    <x-jet-label for="edit-payee-notes" value="Notes" />
+                    <x-textarea id="edit-payee-notes" class="block mt-1 w-full h-20 resize-none" wire:model="notes" :value="old('notes')" />
+                    <x-jet-input-error for="notes" class="mt-2" />
                 </div>
 
                 <div class="mt-4">

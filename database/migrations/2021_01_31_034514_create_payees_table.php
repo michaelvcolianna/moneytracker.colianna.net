@@ -17,6 +17,7 @@ class CreatePayeesTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('amount')->nullable();
+            $table->text('notes')->nullable();
             $table->boolean('schedule')->default(false);
             $table->timestamps();
             $table->softDeletes();

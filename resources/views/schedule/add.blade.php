@@ -34,7 +34,7 @@
     <x-jet-dialog-modal wire:model="modal">
         <x-slot name="title">
             Schedule Payees for Pay Period:
-            <span class="font-bold">{{ $date }}</span>
+            <span class="font-bold">{{ $date }} — {{ $next }}</span>
         </x-slot>
 
         <x-slot name="content">
@@ -48,10 +48,11 @@
 
                 @foreach($payees as $payee)
                     <div class="mt-4">
-                        <label for="schedule-{{ $payee->id }}" class="flex items-start">
+                        <label for="schedule-{{ $payee->id }}" class="flex items-center">
                             <x-jet-checkbox id="schedule-{{ $payee->id }}" wire:model="schedule.{{ $payee->id }}" />
                             <span class="ml-2 text-sm text-gray-600">
-                                {{ $payee->name }} ({{ $payee->getPrettyAmount() }})
+                                {{ $payee->name }}
+                                <span class="block text-xs">{{ $payee->notes ?? 'n/a' }}</span>
                             </span>
                         </label>
                     </div>

@@ -19,6 +19,7 @@ class Payee extends Model
     protected $fillable = [
         'name',
         'amount',
+        'notes',
         'schedule',
     ];
 
