@@ -10,10 +10,14 @@ class Listing extends Component
 {
     use WithPagination;
 
-    public $edit_id;
+    public $payee_id;
     public $name;
     public $amount;
     public $schedule;
+    public $delete;
+    public $modal;
+
+    protected $payee;
 
     protected $rules = [
         'name' => 'required|string',
@@ -22,7 +26,7 @@ class Listing extends Component
     ];
 
     protected $listeners = [
-        'payee:add' => '$refresh',
+        'payees:refresh' => '$refresh',
     ];
 
     public function render()
@@ -36,35 +40,63 @@ class Listing extends Component
 
     public function openPayee($id)
     {
-        $payee = Payee::where('id', $id)->first();
-        $this->edit_id = $payee->id;
-        $this->name = $payee->name;
-        $this->amount = $payee->amount ?? null;
-        $this->schedule = $payee->schedule ?? false;
+        $this->getPayee($id);
+
+        $this->payee_id = $id;
+        $this->name = $this->payee->name;
+        $this->amount = $this->payee->amount ?? null;
+        $this->schedule = $this->payee->schedule ?? false;
+        $this->delete = false;
+
+        $this->modal = true;
+
+        $this->emit('payee:edit');
     }
 
     public function closePayee()
     {
-        $this->edit_id = null;
+        $this->modal = false;
+
+        $this->payee = null;
+
+        $this->name = null;
+        $this->amount = null;
+        $this->schedule = null;
+        $this->delete = null;
     }
 
     public function updatePayee()
     {
         $this->validate();
 
-        Payee::find($this->edit_id)->update([
+        $this->getPayee($this->payee_id);
+
+        $this->payee->update([
             'name' => $this->name,
-            'amount' => $this->amount ?? null,
+            'amount' => (!empty($this->amount)) ? $this->amount : null,
             'schedule' => $this->schedule ?? false,
         ]);
+
+        $this->emit('payees:refresh');
 
         $this->closePayee();
     }
 
     public function deletePayee()
     {
-        Payee::find($this->edit_id)->delete();
+        $this->getPayee($this->payee_id);
+
+        $this->payee->delete();
+
+        $this->emit('payees:refresh');
 
         $this->closePayee();
+    }
+
+    protected function getPayee($id)
+    {
+        $this->payee = Payee::where('id', $id)->first();
+
+        return $this;
     }
 }

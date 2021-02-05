@@ -59,13 +59,13 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button class="mr-2" wire:click="clearModal">
-                Cancel
-            </x-jet-secondary-button>
-
             <x-jet-button wire:click="addEntry">
                 Add
             </x-jet-button>
+
+            <x-jet-secondary-button class="mr-2" wire:click="clearModal">
+                Cancel
+            </x-jet-secondary-button>
         </x-slot>
     </x-jet-confirmation-modal>
 </div>

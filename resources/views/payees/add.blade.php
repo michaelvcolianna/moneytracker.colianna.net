@@ -1,11 +1,5 @@
-<div class="my-8 max-w-sm">
-    <h3 class="font-semibold text-gray-800 leading-tight">
-        Add New
-    </h3>
-
-    <form wire:submit.prevent="addPayee" class="mt-4">
-        @csrf
-
+<div class="order-1 lg:order-2 w-full lg:w-1/3 px-4 lg:px-0">
+    <form wire:submit.prevent="addPayee">
         <div>
             <x-jet-label for="name" value="Name" />
             <x-jet-input id="name" class="block mt-1 w-full" type="text" wire:model="name" :value="old('name')" required />
@@ -27,7 +21,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-jet-button class="bg-blue-600">
-                Add
+                Add Payee
             </x-jet-button>
         </div>
     </form>

@@ -1,88 +1,97 @@
-<div>
-    @if($edit_id)
-        <h3 class="font-semibold text-gray-800 leading-tight mb-4">
-            Edit Payee
-        </h3>
+<div class="order-2 lg:order-1 w-full lg:w-1/2 px-4 lg:px-0 mt-8 lg:mt-0">
+    @if($payees->count() < 1)
+        <p class="mt-4 italic">
+            There are no payees yet. Please add some.
+        </p>
+    @else
+        @if($payees->hasPages())
+            <div class="mb-4">
+                {{ $payees->links() }}
+            </div>
+        @endif
 
-        <div class="w-1/4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            @foreach($payees as $payee)
+                <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="openPayee({{ $payee->id }})">
+                    <div class="p-4">
+                        <p class="text-3xl font-thin mb-2 truncate">
+                            {{ $payee->name }}
+                        </p>
+
+                        <p class="text-gray-500 text-sm">
+                            @if($payee->amount)
+                                {{ $payee->getPrettyAmount() }} standard
+                            @else
+                                No standard amount
+                            @endif
+                        </p>
+
+                        <p class="text-gray-500 text-sm">
+                            @if($payee->schedule)
+                                Scheduled automatically
+                            @else
+                                Not scheduled automatically
+                            @endif
+                        </p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    @endif
+
+    <x-jet-dialog-modal wire:model="modal">
+        <x-slot name="title">
+            Edit Payee
+        </x-slot>
+
+        <x-slot name="content">
             <form wire:submit.prevent="updatePayee">
-                @csrf
+                <input type="hidden" wire:model="payee_id" />
 
                 <div>
-                    <x-jet-label for="name" value="Name" />
-                    <x-jet-input id="name" class="block mt-1 w-full" type="text" wire:model="name" :value="old('name')" required />
+                    <x-jet-label for="edit-payee-name" value="Name" />
+                    <x-jet-input id="edit-payee-name" class="block mt-1 w-full" type="text" wire:model="name" :value="old('name')" required />
                     <x-jet-input-error for="name" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label for="amount" value="Amount" />
-                    <x-jet-input id="amount" class="block mt-1 w-full" type="number" step="0.01" wire:model="amount" :value="old('amount')" />
+                    <x-jet-label for="edit-payee-amount" value="Amount" />
+                    <x-jet-input id="edit-payee-amount" class="block mt-1 w-full" type="number" step="0.01" wire:model="amount" :value="old('amount')" />
                     <x-jet-input-error for="amount" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
-                    <label for="schedule" class="flex items-start">
-                        <x-jet-checkbox id="schedule" wire:model="schedule" />
+                    <label for="edit-payee-schedule" class="flex items-start">
+                        <x-jet-checkbox id="edit-payee-schedule" wire:model="schedule" />
                         <span class="ml-2 text-sm text-gray-600">Auto-schedule</span>
                     </label>
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
-                    <x-jet-button type="button" class="bg-pink-600 mr-2" onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="deletePayee">
-                        Delete
-                    </x-jet-button>
-
-                    <x-jet-button class="bg-green-600 mr-2">
-                        Update
-                    </x-jet-button>
-
-                    <x-jet-button type="button" wire:click="closePayee">
-                        Cancel
-                    </x-jet-button>
+                <div class="mt-4">
+                    <label for="delete" class="flex items-start">
+                        <x-jet-checkbox id="delete" wire:click="$toggle('delete')" />
+                        <span class="ml-2 text-sm text-gray-600">Delete</span>
+                    </label>
                 </div>
+
+                <button class="hidden" />
             </form>
-        </div>
-    @else
-        <h3 class="font-semibold text-gray-800 leading-tight">
-            List
-        </h3>
+        </x-slot>
 
-        @if($payees->count() < 1)
-            <p class="mt-4 italic">
-                There are no payees. Please add some.
-            </p>
-        @else
-            <div>
-                {{ $payees->links() }}
-            </div>
+        <x-slot name="footer">
+            @if($delete)
+                <x-jet-danger-button class="mr-2" wire:click="deletePayee">
+                    Delete
+                </x-jet-danger-button>
+            @endif
 
-            <div class="grid grid-cols-4 gap-4 mt-4">
-                @foreach($payees as $payee)
-                    <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="openPayee({{ $payee->id }})">
-                        <div class="p-4">
-                            <p class="text-3xl font-thin mb-2 truncate">
-                                {{ $payee->name }}
-                            </p>
+            <x-jet-button wire:click="updatePayee">
+                Update
+            </x-jet-button>
 
-                            <p class="text-gray-500 text-sm">
-                                @if($payee->amount)
-                                    {{ $payee->getPrettyAmount() }} standard
-                                @else
-                                    No standard amount
-                                @endif
-                            </p>
-
-                            <p class="text-gray-500 text-sm">
-                                @if($payee->schedule)
-                                    Scheduled automatically
-                                @else
-                                    Not scheduled automatically
-                                @endif
-                            </p>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-        @endif
-    @endif
+            <x-jet-secondary-button class="mr-2" wire:click="closePayee">
+                Cancel
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>

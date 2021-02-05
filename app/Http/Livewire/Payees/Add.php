@@ -36,6 +36,6 @@ class Add extends Component
         $this->amount = null;
         $this->schedule = null;
 
-        $this->emit('payee:add');
+        $this->emit('payees:refresh');
     }
 }
