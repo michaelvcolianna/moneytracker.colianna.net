@@ -15,6 +15,25 @@
             <x-jet-input-error for="start" class="mt-2" />
         </div>
 
+        <div class="mt-4 overflow-y-scroll max-h-modal">
+            <x-jet-label for="schedule" value="Auto-schedule payees" />
+
+            @foreach($payees as $payee)
+                <div class="mt-4">
+                    <label for="schedule-{{ $payee->id }}" class="flex items-center">
+                        <x-jet-checkbox id="schedule-{{ $payee->id }}" wire:model="schedule.{{ $payee->id }}" />
+                        <span class="ml-2 text-sm text-gray-600">
+                            {{ $payee->name }}
+                            <span class="block text-xs">{{ $payee->notes ?? 'n/a' }}</span>
+                        </span>
+                    </label>
+                </div>
+            @endforeach
+
+            <x-jet-input-error for="schedule" class="mt-2" />
+        </div>
+
+
         <div class="flex items-center justify-end mt-4">
             <x-jet-button class="bg-blue-600">
                 Add Pay Period
