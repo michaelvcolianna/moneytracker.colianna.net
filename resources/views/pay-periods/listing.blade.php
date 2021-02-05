@@ -1,4 +1,4 @@
-<div class="w-1/2">
+<div class="order-2 lg:order-1 w-full lg:w-1/2 px-4 lg:px-0 mt-8 lg:mt-0">
     @if($pay_periods->count() < 1)
         <p class="italic">
             There are no pay periods yet. Please add some.
@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
             @foreach($pay_periods as $pay_period)
                 <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105" wire:click="openPayPeriod({{ $pay_period->id }})">
                     <div class="p-4">

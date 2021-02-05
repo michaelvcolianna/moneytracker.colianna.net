@@ -1,5 +1,5 @@
-<div class="w-1/3">
-    <form wire:submit.prevent="addPayPeriod" class="mt-4">
+<div class="order-1 lg:order-2 w-full lg:w-1/3 px-4 lg:px-0">
+    <form wire:submit.prevent="addPayPeriod">
         <div>
             <x-jet-label for="date" value="Date" />
             <x-jet-input id="date" class="block mt-1 w-full" type="date" wire:model="date" :value="old('date')" required />
