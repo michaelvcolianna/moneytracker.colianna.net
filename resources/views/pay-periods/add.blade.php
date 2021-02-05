@@ -7,8 +7,11 @@
         </div>
 
         <div class="mt-4">
-            <x-jet-label for="start" value="Starting amount" />
-            <x-jet-input id="start" class="block mt-1 w-full" type="number" step="0.01" wire:model="start" :value="old('start')" required />
+            <x-jet-label for="start">
+                Starting amount
+                <span class="ml-4 text-xs text-gray-400">(Defaults to $2,000 if left blank)</span>
+            </x-jet-label>
+            <x-jet-input id="start" class="block mt-1 w-full" type="number" step="0.01" wire:model="start" :value="old('start')" />
             <x-jet-input-error for="start" class="mt-2" />
         </div>
 

@@ -12,7 +12,7 @@ class Add extends Component
 
     protected $rules = [
         'date' => 'required|date_format:Y-m-d',
-        'start' => 'required|numeric',
+        'start' => 'nullable|numeric',
     ];
 
     public function render()
