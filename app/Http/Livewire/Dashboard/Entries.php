@@ -21,8 +21,14 @@ class Entries extends Dashboard
     {
         $this->getPayPeriod()->getPayees();
 
+        $entries = $this->pay_period->entries->sortBy(function($entry) {
+            return $entry->payee
+                ? $entry->payee->name
+                : $entry->name;
+        });
+
         return view('dashboard.entries', [
-            'entries' => $this->pay_period->entries,
+            'entries' => $entries,
             'payees' => $this->payees,
         ]);
     }

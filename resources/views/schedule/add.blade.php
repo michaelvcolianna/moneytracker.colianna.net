@@ -13,6 +13,14 @@
                         <p class="font-bold text-sm">
                             {{ $pay_period->date->format('n/j/Y') }}
                         </p>
+
+                        <p class="font-thin text-3xl">
+                            {{ $pay_period->getPrettyCurrent() }}
+                        </p>
+
+                        <p class="text-xs font-bold text-gray-500">
+                            of {{ $pay_period->getPrettyStart() }}
+                        </p>
                     </div>
                 </a>
             @endforeach

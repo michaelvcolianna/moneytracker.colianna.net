@@ -25,9 +25,16 @@ class Add extends Component
         'schedule' => 'min:1',
     ];
 
+    protected $listeners = [
+        'pay-periods:refresh' => '$refresh',
+    ];
+
     public function render()
     {
         $pay_periods = PayPeriod::orderByDesc('date')->paginate(16);
+        $pay_periods->each(function($pay_period, $key) {
+            $pay_period->recalculateCurrentAmount();
+        });
         $payees = Payee::where('amount', '>', 0)->orderBy('name')->get();
 
         return view('schedule.add', [
@@ -76,6 +83,8 @@ class Add extends Component
         }
 
         $this->closePayPeriod();
+
+        $this->emit('pay-periods:refresh');
 
         $this->added = true;
     }
