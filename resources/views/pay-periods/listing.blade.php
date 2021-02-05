@@ -42,8 +42,11 @@
                 <input type="hidden" wire:model="pay_period_id" />
 
                 <div>
-                    <x-jet-label for="edit-pay-period-start" value="Starting amount" />
-                    <x-jet-input id="edit-pay-period-start" class="block mt-1 w-full" type="number" step="0.01" wire:model="start" :value="old('start')" required />
+                    <x-jet-label for="start">
+                        Starting amount
+                        <span class="ml-4 text-xs text-gray-400">(Defaults to $2,000 if left blank)</span>
+                    </x-jet-label>
+                    <x-jet-input id="edit-pay-period-start" class="block mt-1 w-full" type="number" step="0.01" wire:model="start" :value="old('start')" />
                     <x-jet-input-error for="start" class="mt-2" />
                 </div>
 

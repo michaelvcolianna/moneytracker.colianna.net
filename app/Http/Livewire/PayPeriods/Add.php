@@ -26,7 +26,7 @@ class Add extends Component
 
         PayPeriod::create([
             'date' => $this->date,
-            'start' => $this->start,
+            'start' => (!empty($this->start)) ? $this->start : 2000,
         ]);
 
         $this->date = null;

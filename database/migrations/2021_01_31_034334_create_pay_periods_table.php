@@ -16,7 +16,7 @@ class CreatePayPeriodsTable extends Migration
         Schema::create('pay_periods', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->integer('start')->default(2000);
+            $table->integer('start');
             $table->integer('current')->nullable();
             $table->timestamps();
             $table->softDeletes();

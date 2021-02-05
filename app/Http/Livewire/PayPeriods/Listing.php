@@ -20,7 +20,7 @@ class Listing extends Component
     protected $pay_period;
 
     protected $rules = [
-        'start' => 'required|numeric',
+        'start' => 'nullable|numeric',
     ];
 
     protected $listeners = [
@@ -72,7 +72,7 @@ class Listing extends Component
         $this->getPayPeriod($this->pay_period_id);
 
         $this->pay_period->update([
-            'start' => $this->start,
+            'start' => (!empty($this->start)) ? $this->start : 2000,
         ]);
 
         $this->emit('pay-periods:refresh');
