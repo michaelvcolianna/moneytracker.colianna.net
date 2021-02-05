@@ -6,26 +6,34 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\PayPeriod;
 
+// Can't be 'List' :/
 class Listing extends Component
 {
     use WithPagination;
 
-    public $edit_id;
+    public $pay_period_id;
     public $date;
     public $start;
+    public $delete;
+    public $modal;
+
+    protected $pay_period;
 
     protected $rules = [
         'start' => 'required|numeric',
     ];
 
     protected $listeners = [
-        'pay_period:add' => '$refresh',
+        'pay-periods:refresh' => '$refresh',
     ];
 
     public function render()
     {
         // 36 bi-weekly = 52 weeks
-        $pay_periods = PayPeriod::orderByDesc('date')->paginate(4);
+        $pay_periods = PayPeriod::orderByDesc('date')->paginate(36);
+        $pay_periods->each(function($pay_period, $key) {
+            $pay_period->recalculateCurrentAmount();
+        });
 
         return view('pay-periods.listing', [
             'pay_periods' => $pay_periods,
@@ -34,34 +42,59 @@ class Listing extends Component
 
     public function openPayPeriod($id)
     {
-        $pay_period = PayPeriod::where('id', $id)->first();
-        $this->edit_id = $pay_period->id;
-        $this->date = $pay_period->date->format('n/j/Y');
-        $this->start = $pay_period->start;
+        $this->getPayPeriod($id);
+
+        $this->pay_period_id = $id;
+        $this->date = $this->pay_period->date->format('n/j/Y');
+        $this->start = $this->pay_period->start;
+        $this->delete = false;
+
+        $this->modal = true;
+
+        $this->emit('pay-period:edit');
     }
 
     public function closePayPeriod()
     {
-        $this->edit_id = null;
+        $this->modal = false;
+
+        $this->pay_period = null;
+
+        $this->date = null;
+        $this->start = null;
+        $this->delete = null;
     }
 
     public function updatePayPeriod()
     {
         $this->validate();
 
-        // @todo Recalculate the current amount
+        $this->getPayPeriod($this->pay_period_id);
 
-        PayPeriod::find($this->edit_id)->update([
+        $this->pay_period->update([
             'start' => $this->start,
         ]);
+
+        $this->emit('pay-periods:refresh');
 
         $this->closePayPeriod();
     }
 
     public function deletePayPeriod()
     {
-        PayPeriod::find($this->edit_id)->delete();
+        $this->getPayPeriod($this->pay_period_id);
+
+        $this->pay_period->delete();
+
+        $this->emit('pay-periods:refresh');
 
         $this->closePayPeriod();
+    }
+
+    protected function getPayPeriod($id)
+    {
+        $this->pay_period = PayPeriod::where('id', $id)->first();
+
+        return $this;
     }
 }

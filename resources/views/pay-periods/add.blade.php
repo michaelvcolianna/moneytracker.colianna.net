@@ -1,11 +1,5 @@
-<div class="my-8 max-w-sm">
-    <h3 class="font-semibold text-gray-800 leading-tight">
-        Add New
-    </h3>
-
+<div class="w-1/3">
     <form wire:submit.prevent="addPayPeriod" class="mt-4">
-        @csrf
-
         <div>
             <x-jet-label for="date" value="Date" />
             <x-jet-input id="date" class="block mt-1 w-full" type="date" wire:model="date" :value="old('date')" required />
@@ -20,7 +14,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-jet-button class="bg-blue-600">
-                Add
+                Add Pay Period
             </x-jet-button>
         </div>
     </form>

@@ -32,6 +32,7 @@ class Add extends Component
         $this->date = null;
         $this->start = null;
 
-        $this->emit('pay_period:add');
+        $this->emit('pay-period:new');
+        $this->emit('pay-periods:refresh');
     }
 }
