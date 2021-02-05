@@ -21,4 +21,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/dashboard', [Controller::class, 'showDashboard'])->name('dashboard');
     Route::get('/pay-periods', [Controller::class, 'showPayPeriods'])->name('pay-periods');
     Route::get('/payees', [Controller::class, 'showPayees'])->name('payees');
+    Route::get('/schedule', [Controller::class, 'showSchedule'])->name('schedule');
 });

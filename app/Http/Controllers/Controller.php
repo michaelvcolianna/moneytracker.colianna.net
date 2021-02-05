@@ -46,6 +46,11 @@ class Controller extends BaseController
         return view('payees.index');
     }
 
+    public function showSchedule()
+    {
+        return view('schedule.index');
+    }
+
     protected function getDateFromRequest()
     {
         $date = new \DateTime;

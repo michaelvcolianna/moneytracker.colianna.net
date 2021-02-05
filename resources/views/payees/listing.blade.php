@@ -1,6 +1,6 @@
 <div class="order-2 lg:order-1 w-full lg:w-1/2 px-4 lg:px-0 mt-8 lg:mt-0">
     @if($payees->count() < 1)
-        <p class="mt-4 italic">
+        <p class="italic">
             There are no payees yet. Please add some.
         </p>
     @else

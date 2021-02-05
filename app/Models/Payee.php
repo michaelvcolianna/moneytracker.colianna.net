@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Entry;
+use App\Models\PayPeriod;
 
 class Payee extends Model
 {
@@ -29,6 +30,26 @@ class Payee extends Model
     public function getPrettyAmount()
     {
         return '$' . number_format($this->amount, 2);
+    }
+
+    /**
+     * Schedule this payee to a pay period.
+     *
+     * @param  integer  $id
+     * @return void
+     */
+    public function schedule($id)
+    {
+        Entry::create([
+            'pay_period_id' => $id,
+            'payee_id' => $this->id,
+            'name' => $this->name,
+            'amount' => $this->amount,
+            'scheduled' => true,
+            'reconciled' => false,
+        ]);
+
+        return;
     }
 
     /**

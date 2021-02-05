@@ -13,7 +13,7 @@ class Add extends Component
 
     protected $rules = [
         'name' => 'required|string',
-        'amount' => 'nullable|numeric',
+        'amount' => 'nullable|required_with:schedule|numeric',
         'schedule' => 'nullable|boolean',
     ];
 
