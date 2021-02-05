@@ -27,7 +27,7 @@ class Add extends Component
     public function render()
     {
         $pay_periods = PayPeriod::orderByDesc('date')->paginate(8);
-        $payees = Payee::where('schedule', true)->get();
+        $payees = Payee::where('amount', '>', 0)->orderBy('name')->get();
 
         return view('schedule.add', [
             'pay_periods' => $pay_periods,

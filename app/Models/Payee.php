@@ -43,10 +43,8 @@ class Payee extends Model
         Entry::create([
             'pay_period_id' => $id,
             'payee_id' => $this->id,
-            'name' => $this->name,
             'amount' => $this->amount,
-            'scheduled' => true,
-            'reconciled' => false,
+            'scheduled' => $this->schedule,
         ]);
 
         return;
