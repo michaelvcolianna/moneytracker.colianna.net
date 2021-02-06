@@ -65,8 +65,8 @@ class Listing extends Component
         $this->name = null;
         $this->amount = null;
         $this->notes = null;
-        $this->schedule = null;
-        $this->delete = null;
+        $this->schedule = false;
+        $this->delete = false;
     }
 
     public function updatePayee()

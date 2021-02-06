@@ -53,7 +53,7 @@ class AddEntry extends Dashboard
         $this->payee_id = null;
         $this->name = null;
         $this->amount = null;
-        $this->scheduled = null;
-        $this->reconciled = null;
+        $this->scheduled = false;
+        $this->reconciled = false;
     }
 }

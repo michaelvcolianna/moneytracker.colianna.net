@@ -62,7 +62,7 @@ class Listing extends Component
         $this->pay_period_id = null;
         $this->date = null;
         $this->start = null;
-        $this->delete = null;
+        $this->delete = false;
     }
 
     public function updatePayPeriod()
