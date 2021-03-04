@@ -26,6 +26,31 @@ class Entry extends Model
     ];
 
     /**
+     * Get the entry's ring status.
+     *
+     * @return string
+     */
+    public function getRingColor()
+    {
+        if($this->scheduled && !$this->reconciled)
+        {
+            return 'ring ring-gray-300';
+        }
+
+        if($this->scheduled && $this->reconciled)
+        {
+            return 'ring ring-gray-500';
+        }
+
+        if(!$this->scheduled && $this->reconciled)
+        {
+            return 'ring ring-pink-300';
+        }
+
+        return '';
+    }
+
+    /**
      * Get the payee's real name.
      *
      * @return string
