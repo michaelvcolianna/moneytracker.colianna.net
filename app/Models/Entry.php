@@ -34,20 +34,20 @@ class Entry extends Model
     {
         if($this->scheduled && !$this->reconciled)
         {
-            return 'ring ring-gray-300';
+            return 'bg-gray-100';
         }
 
         if($this->scheduled && $this->reconciled)
         {
-            return 'ring ring-gray-500';
+            return 'bg-white';
         }
 
         if(!$this->scheduled && $this->reconciled)
         {
-            return 'ring ring-pink-300';
+            return 'bg-red-200';
         }
 
-        return '';
+        return 'bg-gray-200';
     }
 
     /**

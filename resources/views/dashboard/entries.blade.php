@@ -6,7 +6,7 @@
     @else
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-4">
             @foreach($entries as $entry)
-                <a class="bg-white rounded shadow cursor-pointer transform transition-transform hover:scale-105 {{ $entry->getRingColor() }}" wire:click="openEntry({{ $entry->id }})">
+                <a class="rounded shadow cursor-pointer transform transition-transform hover:scale-105 {{ $entry->getRingColor() }}" wire:click="openEntry({{ $entry->id }})">
                     <div class="p-4">
                         <p class="text-gray-500 font-bold text-sm truncate">
                             {{ $entry->getRealName() }}
