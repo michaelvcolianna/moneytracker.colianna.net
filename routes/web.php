@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    $page = request()->query('page', 'login');
+
+    return view('pages.' . $page, [
+        'errors' => request()->has('errors'),
+    ]);
 });
