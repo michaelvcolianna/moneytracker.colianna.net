@@ -8,10 +8,8 @@
             <strong class="legend__biweekly">Biweekly</strong>
         </div>
 
-        <div class="payperiod" id="payperiod-1" aria-label="Pay period">
-            <x-form.field.input id="payperiod-1-date" label="Starting Date" type="date" value="2022-01-07" />
-            <x-form.field.input id="payperiod-1-amount" label="Amount" type="number" step="0.01" value="2000" />
-            <x-form.field.boolean id="payperiod-1-biweeky" label="Biweekly" checked />
-        </div>
+        <livewire:form.update.pay-period num="3" date="2022-01-07" amount="2000" />
+        <livewire:form.update.pay-period num="2" date="2021-01-08" amount="1500" />
+        <livewire:form.update.pay-period num="1" date="2020-01-10" amount="1000" />
     </div>
 </x-layout>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Form\Add;
 
+use App\Traits\HasHiddenForm;
 use Livewire\Component;
 
 class PayPeriod extends Component
 {
-    /** @var boolean */
-    public $isFormShowing;
+    use HasHiddenForm;
 
     /**
      * Get the view / contents that represent the component.

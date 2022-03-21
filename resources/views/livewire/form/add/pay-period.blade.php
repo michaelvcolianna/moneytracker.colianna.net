@@ -7,6 +7,7 @@
             <x-form.field.input id="new-amount" label="Amount" type="number" step="0.01" />
             <x-form.field.boolean id="new-biweekly" label="Biweekly" />
             <x-form.field.button id="add" label="Save New Pay Period" icon="&#10095;" />
+            <x-form.field.button id="cancel" type="reset" wire:click="clearForm" />
         </div>
     @endif
 </div>
