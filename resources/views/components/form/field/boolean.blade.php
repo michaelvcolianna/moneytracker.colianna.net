@@ -1,4 +1,4 @@
-<div class="field field--boolean field__{{ $id }}">
+<div class="field field--boolean field__checkbox">
     <label>
         <input id="{{ $id }}" type="checkbox" {{ $attributes }} />
         <span>{{ $label }}</span>

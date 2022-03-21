@@ -1,7 +1,7 @@
-<div class="field field--input field__{{ $id }}">
+<div class="field field--input field__{{ $attributes->get('type') }}">
     <label for="{{ $id }}">{{ $label }}</label>
 
-    <input id="{{ $id }}" {{ $attributes->merge(['type' => 'text']) }} />
+    <input id="{{ $id }}" {{ $attributes }} />
 
     @if($help)
         <span class="field__help">{{ $help }}</span>
