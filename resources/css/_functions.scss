@@ -1,0 +1,53 @@
+// Breakpoint with option for reverse w/auto calculation
+@mixin bp($size, $reverse: false)
+{
+    $measure: if($reverse, 'max-width', 'min-width');
+    $width: if($reverse, $size - 1, $size);
+
+    @media (#{$measure}: $width)
+    {
+        @content;
+    }
+}
+
+// Prevent duplication of color rules
+@mixin colors($dark: false)
+{
+    @if $dark
+    {
+        --color-background: #{$color-black};
+        --color-foreground: #{$color-white};
+        --color-blue: #{$color-carolina-blue};
+        --color-green: #{$color-yellow-green};
+        --color-grey: #{$color-spanish-grey};
+        --color-red: #{$color-candy-pink};
+    }
+    @else
+    {
+        --color-background: #{$color-white};
+        --color-foreground: #{$color-black};
+        --color-blue: #{$color-lapis-lazuli};
+        --color-green: #{$color-dark-green};
+        --color-grey: #{$color-davys-grey};
+        --color-red: #{$color-upsdell-red};
+    }
+}
+
+// When a device hasn't explicitly disabled motion
+@mixin motion
+{
+    @media (prefers-reduced-motion: no-preference)
+    {
+        @content;
+    }
+}
+
+// Only visible to screen readers
+@mixin sr
+{
+    left: -999em;
+    height: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 0;
+}
