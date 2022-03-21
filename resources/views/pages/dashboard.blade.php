@@ -27,144 +27,19 @@
         <div class="total">of $2,000.00</div>
     </div>
 
-    <div class="entries__add">
-        <button type="button">
-            <strong>Add Entry</strong>
-            <span aria-hidden="true">&#10010;</span>
-        </button>
-
-        <div class="entries__add__form">
-            <div class="field field--input field__amount">
-                <label for="new-amount">Amount</label>
-                <input id="new-amount" type="number" step="0.01" />
-            </div>
-
-            <div class="field field--input field__payee">
-                <label for="new-payee">Payee</label>
-                <input id="new-payee" type="text" />
-            </div>
-
-            <div class="field field--boolean field__scheduled">
-                <label>
-                    <input id="new-scheduled" type="checkbox" />
-                    <span>Scheduled</span>
-                </label>
-            </div>
-
-            <div class="field field--boolean field__reconciled">
-                <label>
-                    <input id="new-reconciled" type="checkbox" />
-                    <span>Reconciled</span>
-                </label>
-            </div>
-
-            <div class="button button--add">
-                <button type="button">
-                    <strong>Add Entry</strong>
-                    <span aria-hidden="true">&#10095;</span>
-                </button>
-            </div>
-        </div>
-    </div>
+    <livewire:form.add.entry />
 
     <div class="entries__list">
-        <div class="entry" id="entry-1" aria-label="Entry">
-            <div class="field field--input field__amount">
-                <label for="entry-1-amount">Amount</label>
-                <input id="entry-1-amount" type="number" step="0.01" value="10" />
-            </div>
-
-            <div class="field field--input field__payee">
-                <label for="entry-1-payee">Payee</label>
-                <input id="entry-1-payee" type="text" value="Disney+" />
-            </div>
-
-            <div class="field field--boolean field__scheduled">
-                <label>
-                    <input id="entry-1-scheduled" type="checkbox" />
-                    <span>Scheduled</span>
-                </label>
-            </div>
-
-            <div class="field field--boolean field__reconciled">
-                <label>
-                    <input id="entry-1-reconciled" type="checkbox" />
-                    <span>Reconciled</span>
-                </label>
-            </div>
-
-            <div class="button button--delete">
-                <button type="button">
-                    <strong>Delete Entry</strong>
-                    <span aria-hidden="true">&#10006;</span>
-                </button>
-            </div>
+        <div class="legend legend--entries" aria-hidden="true">
+            <strong class="legend__amount">Amount</strong>
+            <strong class="legend__payee">Payee</strong>
+            <strong class="legend__scheduled">Scheduled</strong>
+            <strong class="legend__reconciled">Reconciled</strong>
+            <strong class="legend__delete">Delete</strong>
         </div>
 
-        <div class="entry entry--scheduled" id="entry-2" aria-label="Entry">
-            <div class="field field--input field__amount">
-                <label for="entry-2-amount">Amount</label>
-                <input id="entry-2-amount" type="number" step="0.01" value="80" />
-            </div>
-
-            <div class="field field--input field__payee">
-                <label for="entry-2-payee">Payee</label>
-                <input id="entry-2-payee" type="text" value="Geico" />
-            </div>
-
-            <div class="field field--boolean field__scheduled">
-                <label>
-                    <input id="entry-2-scheduled" type="checkbox" checked />
-                    <span>Scheduled</span>
-                </label>
-            </div>
-
-            <div class="field field--boolean field__reconciled">
-                <label>
-                    <input id="entry-2-reconciled" type="checkbox" />
-                    <span>Reconciled</span>
-                </label>
-            </div>
-
-            <div class="button button--delete">
-                <button type="button">
-                    <strong>Delete Entry</strong>
-                    <span aria-hidden="true">&#10006;</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="entry" id="entry-3" aria-label="Entry">
-            <div class="field field--input field__amount">
-                <label for="entry-3-amount">Amount</label>
-                <input id="entry-3-amount" type="number" step="0.01" value="230" />
-            </div>
-
-            <div class="field field--input field__payee">
-                <label for="entry-3-payee">Payee</label>
-                <input id="entry-3-payee" type="text" value="Southern CT Gas" />
-            </div>
-
-            <div class="field field--boolean field__scheduled">
-                <label>
-                    <input id="entry-3-scheduled" type="checkbox" checked />
-                    <span>Scheduled</span>
-                </label>
-            </div>
-
-            <div class="field field--boolean field__reconciled">
-                <label>
-                    <input id="entry-3-reconciled" type="checkbox" checked />
-                    <span>Reconciled</span>
-                </label>
-            </div>
-
-            <div class="button button--delete">
-                <button type="button">
-                    <strong>Delete Entry</strong>
-                    <span aria-hidden="true">&#10006;</span>
-                </button>
-            </div>
-        </div>
+        <livewire:form.update.entry num="3" amount="10" payee="Disney+" />
+        <livewire:form.update.entry num="2" amount="80" payee="Geico" />
+        <livewire:form.update.entry num="1" amount="230" payee="Southern CT Gas" />
     </div>
 </x-layout>
