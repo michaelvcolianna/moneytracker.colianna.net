@@ -4,26 +4,32 @@ namespace App\Http\Livewire\Form\Update;
 
 use Livewire\Component;
 
-class PayPeriod extends Component
+class Payee extends Component
 {
     /** @var string */
     public $amount;
-    public $date;
+    public $end;
+    public $name;
     public $num;
+    public $start;
 
     /**
      * Create a new component instance.
      *
      * @param  string  $amount
-     * @param  string  $date
+     * @param  string  $end
+     * @param  string  $name
      * @param  string  $num
+     * @param  string  $end
      * @return void
      */
-    public function mount($amount, $date, $num)
+    public function mount($amount = null, $end = null, $name, $num, $start = null)
     {
         $this->amount = $amount;
-        $this->date = $date;
+        $this->end = $end;
+        $this->name = $name;
         $this->num = $num;
+        $this->start = $start;
     }
 
     /**
@@ -33,6 +39,6 @@ class PayPeriod extends Component
      */
     public function render()
     {
-        return view('livewire.form.update.pay-period');
+        return view('livewire.form.update.payee');
     }
 }
