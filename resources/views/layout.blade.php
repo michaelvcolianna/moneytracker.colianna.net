@@ -6,6 +6,7 @@
         <title>Design: {{ $title }}</title>
         <link rel="stylesheet" href="{{ mix('storage/assets/css/app.css') }}" />
         <script src="{{ mix('storage/assets/js/app.js') }}" defer></script>
+        @livewireStyles
     </head>
 
     <body>
@@ -41,25 +42,8 @@
                     <h1>{{ $title }}</h1>
                 </section>
 
-                @if($errors)
-                    <section class="page__errors" role="alert">
-                        <h3>Errors</h3>
-
-                        <p>The following errors occurred:</p>
-
-                        <ul>
-                            <li>First</li>
-                            <li>Second</li>
-                            <li>Third</li>
-                        </ul>
-                    </section>
-                @endif
-
-                @if($status)
-                    <section class="page__status" role="dialog">
-                        <p>Status message here.</p>
-                    </section>
-                @endif
+                @include('partials.error-messages')
+                @include('partials.status-message')
 
                 <section class="page entries payperiods login">
                     {{ $slot }}
@@ -67,8 +51,10 @@
             </main>
 
             <footer>
-                &copy; 2019-2022 | <a href="#">Source Code Link</a> | Current Git hash | <a href="/?login&page=dashboard">Log In</a>
+                &copy; 2019-{{ date('Y') }} | <a href="#">Source Code Link</a> | {{ $git['hash'] . ' [' . $git['branch'] . ']' }} | <a href="/?login&page=dashboard">Log In</a>
             </footer>
         </div>
+
+        @livewireScripts
     </body>
 </html>
