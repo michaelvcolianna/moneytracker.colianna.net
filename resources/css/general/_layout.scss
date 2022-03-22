@@ -1,10 +1,20 @@
 .wrapper
 {
     @include lg;
+    margin: auto;
+    max-width: 1440px;
 }
 
 header
 {
+    @include xbp
+    {
+        align-items: center;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+    }
+
     ul
     {
         display: flex;
@@ -21,13 +31,35 @@ header
             color: var(--color-background);
             display: flex;
             flex-flow: row;
+            font-weight: 700;
             justify-content: center;
             height: 3rem;
+            text-decoration: none;
             width: 3rem;
+
+            @include xbp
+            {
+                gap: 0.5rem;
+                height: auto;
+                padding: 0.25rem 0.5rem;
+                width: auto;
+            }
+
+            svg
+            {
+                @include xbp
+                {
+                    height: 1rem;
+                    width: 1rem;
+                }
+            }
 
             span
             {
-                @include sr;
+                @include xbr
+                {
+                    @include sr;
+                }
             }
 
             &[aria-current="page"]
@@ -65,6 +97,11 @@ main
         display: flex;
         flex-flow: row;
         justify-content: center;
+
+        @include xbp
+        {
+            display: none;
+        }
     }
 
     &__status,
@@ -74,6 +111,11 @@ main
         border-radius: 3px;
         margin: 0.5rem;
         padding: 0.5rem;
+
+        @include xbp
+        {
+            margin: 0;
+        }
     }
 
     &__status
@@ -92,6 +134,11 @@ main
     &__errors
     {
         color: var(--color-red);
+
+        p
+        {
+            margin: 0.5rem 0;
+        }
 
         ul
         {
@@ -117,14 +164,25 @@ footer
     ul
     {
         display: flex;
-        flex-flow: row wrap;gap: 1rem;
+        flex-flow: row wrap;
+        gap: 1rem;
         justify-content: center;
+
+        @include xbp
+        {
+            gap: 2rem;
+        }
     }
 
     .copyright
     {
         text-align: center;
         width: 100%;
+
+        @include xbp
+        {
+            width: auto;
+        }
     }
 
     .branch

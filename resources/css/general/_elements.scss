@@ -79,6 +79,12 @@ button
     padding: 0 1rem;
     text-transform: uppercase;
 
+    @include xbp
+    {
+        height: auto;
+        padding: 0.5rem 1rem;
+    }
+
     &.danger,
     &.primary
     {
@@ -118,6 +124,9 @@ button
     {
         .label
         {
+            text-align: right;
+            width: 6.333333333333333rem;
+
             &::before
             {
                 content: 'Des';
@@ -157,7 +166,8 @@ h2,
 h3,
 h4,
 h5,
-h6
+h6,
+p
 {
     margin: 0;
 }

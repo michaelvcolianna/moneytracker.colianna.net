@@ -58,3 +58,20 @@
     position: fixed;
     width: 0;
 }
+
+// For MVC purposes
+@mixin xbp
+{
+    @include bp(1024px)
+    {
+        @content;
+    }
+}
+
+@mixin xbr
+{
+    @include bp(1024px, true)
+    {
+        @content;
+    }
+}
