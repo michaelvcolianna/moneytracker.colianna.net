@@ -1,0 +1,47 @@
+.field
+{
+    position: relative;
+
+    &--input
+    {
+        align-items: flex-end;
+        display: flex;
+        height: 3rem;
+
+        label
+        {
+            font-size: 0.75rem;
+            height: 1.25rem;
+            position: absolute;
+            top: 0;
+        }
+
+        input
+        {
+            border: 2px solid var(--color-grey);
+            border-radius: 3px;
+            height: 2.111111111111111rem;
+            padding: 0 0.35rem;
+        }
+    }
+
+    &--boolean
+    {
+        label
+        {
+            align-items: center;
+            display: flex;
+            flex-flow: row;
+            height: 3rem;
+        }
+
+        [aria-hidden="true"]
+        {
+            color: var(--color-grey);
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            width: 3rem;
+        }
+    }
+}

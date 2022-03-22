@@ -3,5 +3,5 @@
     <x-form.field.input id="entry-{{ $num }}-payee" label="Payee" type="text" value="{{ $payee }}" />
     <x-form.field.boolean id="entry-{{ $num }}-scheduled" label="Scheduled" />
     <x-form.field.boolean id="entry-{{ $num }}-reconciled" label="Reconciled" />
-    <x-form.field.button id="delete" label="Delete Entry" icon="trash" />
+    <x-form.field.button id="delete" label="Delete Entry" icon="trash" class="danger" />
 </div>
