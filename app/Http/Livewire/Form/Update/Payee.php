@@ -6,6 +6,9 @@ use Livewire\Component;
 
 class Payee extends Component
 {
+    /** @var boolean */
+    public $areAnySelected;
+
     /** @var string */
     public $amount;
     public $end;
@@ -40,5 +43,16 @@ class Payee extends Component
     public function render()
     {
         return view('livewire.form.update.payee');
+    }
+
+    /**
+     * Selects/deselects all
+     *
+     * @return void
+     */
+    public function selectAll()
+    {
+        // @todo Make a trait to handle this here & in add form
+        $this->areAnySelected = !$this->areAnySelected;
     }
 }

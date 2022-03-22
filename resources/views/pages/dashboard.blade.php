@@ -3,7 +3,7 @@
         <ul>
             <li class="previous">
                 <a href="#" rel="prev" aria-label="Previous pay date: March 4 2022">
-                    <span aria-hidden="true">&laquo;</span>
+                    <x-shared.icon name="chevrons-left" aria-hidden="true" />
                     <time datetime="2022-03-04T00:00:00-04:00">2022-03-04</time>
                 </a>
             </li>
@@ -15,7 +15,7 @@
             <li class="next">
                 <a href="#" rel="next" aria-label="Next pay date: April 1 2022">
                     <time datetime="2022-04-01T00:00:00-04:00">2022-04-01</time>
-                    <span aria-hidden="true">&raquo;</span>
+                    <x-shared.icon name="chevrons-right" aria-hidden="true" />
                 </a>
             </li>
         </ul>

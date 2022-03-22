@@ -1,9 +1,9 @@
 <div class="button button--{{ $id }}">
     <button {{ $attributes->merge(['type' => 'button']) }}>
-        <strong>{{ $label }}</strong>
+        <span>{{ $label }}</span>
 
         @if($icon)
-            <span aria-hidden="true">{!! $icon !!}</span>
+            <x-shared.icon :name="$icon" aria-hidden="true" />
         @endif
     </button>
 </div>

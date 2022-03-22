@@ -85,6 +85,85 @@ button
         color: var(--color-grey);
         cursor: auto;
     }
+
+    &.form-toggle
+    {
+        &.open
+        {
+            svg
+            {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &.select-all
+    {
+        .label
+        {
+            &::before
+            {
+                content: 'Des';
+            }
+        }
+
+        .on
+        {
+            display: none;
+        }
+
+        &.empty
+        {
+            .label
+            {
+                &::before
+                {
+                    content: 'S';
+                }
+            }
+
+            .on
+            {
+                display: inline-block;
+            }
+
+            .off
+            {
+                display: none;
+            }
+        }
+    }
+}
+
+.checkbox
+{
+    cursor: pointer;
+
+    input
+    {
+        @include sr;
+
+        &:checked
+        {
+            & + span
+            {
+                .checked
+                {
+                    display: inline-block;
+                }
+
+                .unchecked
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .checked
+    {
+        display: none;
+    }
 }
 
 img,

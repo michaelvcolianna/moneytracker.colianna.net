@@ -18,19 +18,19 @@
                     <nav aria-label="Areas">
                         <ul>
                             <li>
-                                <a href="/?login&page=dashboard">Dashboard</a>
+                                <x-shared.nav-link url="/?login&page=dashboard" icon="dashboard" label="Dashboard" />
                             </li>
 
                             <li>
-                                <a href="/?login&page=payperiods">Pay Periods</a>
+                                <x-shared.nav-link url="/?login&page=payperiods" icon="pay-periods" label="Pay Periods" />
                             </li>
 
                             <li>
-                                <a href="/?login&page=payees">Payees</a>
+                                <x-shared.nav-link url="/?login&page=payees" icon="payees" label="Payees" />
                             </li>
 
                             <li>
-                                <a href="/">Log Out</a>
+                                <x-shared.nav-link url="/" icon="log-out" label="Log Out" />
                             </li>
                         </ul>
                     </nav>
@@ -42,8 +42,8 @@
                     <h1>{{ $title }}</h1>
                 </section>
 
-                @include('partials.error-messages')
-                @include('partials.status-message')
+                @include('partials.layout.error-messages')
+                @include('partials.layout.status-message')
 
                 <section class="page entries payperiods login">
                     {{ $slot }}
@@ -51,10 +51,34 @@
             </main>
 
             <footer>
-                &copy; 2019-{{ date('Y') }} | <a href="#">Source Code Link</a> | {{ $git['hash'] . ' [' . $git['branch'] . ']' }} | <a href="/?login&page=dashboard">Log In</a>
+                <ul>
+                    <li>
+                        &copy; 2019-{{ date('Y') }}
+                    </li>
+
+                    <li>
+                        <a href="https://github.com/michaelvcolianna/moneytracker.colianna.net" target="_blank" rel="noreferrer nofollow" aria-describedby="external-label new-window-label">
+                            <span class="label">Source Code</span>
+                            <x-shared.icon name="external-link" aria-hidden="true" />
+                        </a>
+                    </li>
+
+                    <li>
+                        <x-shared.icon name="git" />{{ $git['hash'] . ' [' . $git['branch'] . ']' }}
+                    </li>
+
+                    <li>
+                        <a href="/?login&page=dashboard">Log In</a>
+                    </li>
+                </ul>
             </footer>
         </div>
 
         @livewireScripts
+
+        <div hidden>
+            <span id="new-window-label">opens in a new window</span>
+            <span id="external-label">opens an external site</span>
+        </div>
     </body>
 </html>
