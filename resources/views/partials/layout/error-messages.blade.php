@@ -5,9 +5,20 @@
         <p>The following errors occurred:</p>
 
         <ul>
-            <li>First</li>
-            <li>Second</li>
-            <li>Third</li>
+            <li>
+                <x-shared.icon name="chevron-right" aria-hidden="true" />
+                First
+            </li>
+
+            <li>
+                <x-shared.icon name="chevron-right" aria-hidden="true" />
+                Second
+            </li>
+
+            <li>
+                <x-shared.icon name="chevron-right" aria-hidden="true" />
+                Third
+            </li>
         </ul>
     </section>
 @endif

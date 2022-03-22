@@ -33,6 +33,13 @@
     }
 }
 
+// Common use layout
+@mixin lg
+{
+    display: grid;
+    gap: 1rem;
+}
+
 // When a device hasn't explicitly disabled motion
 @mixin motion
 {

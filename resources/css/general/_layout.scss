@@ -1,0 +1,141 @@
+.wrapper
+{
+    @include lg;
+}
+
+header
+{
+    ul
+    {
+        display: flex;
+        flex-flow: row;
+        gap: 1rem;
+        justify-content: center;
+
+        a
+        {
+            align-items: center;
+            background-color: var(--color-blue);
+            border: 2px solid var(--color-blue);
+            border-radius: 3px;
+            color: var(--color-background);
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            height: 3rem;
+            width: 3rem;
+
+            span
+            {
+                @include sr;
+            }
+
+            &[aria-current="page"]
+            {
+                background-color: var(--color-background);
+                color: var(--color-blue);
+            }
+        }
+    }
+}
+
+.branding
+{
+    align-items: center;
+    color: var(--color-foreground);
+    display: flex;
+    flex-flow: row;
+    font-size: 2rem;
+    font-weight: 700;
+    height: 4rem;
+    justify-content: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+main
+{
+    @include lg;
+}
+
+.page
+{
+    &__title
+    {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+    }
+
+    &__status,
+    &__errors
+    {
+        border: 2px dotted;
+        border-radius: 3px;
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    &__status
+    {
+        p
+        {
+            align-items: flex-start;
+            border-color: var(--color-grey);
+            color: var(--color-grey);
+            display: grid;
+            gap: 0.5rem;
+            grid-template-columns: 1rem 1fr;
+        }
+    }
+
+    &__errors
+    {
+        color: var(--color-red);
+
+        ul
+        {
+            display: grid;
+            gap: 0.25rem;
+        }
+
+        li
+        {
+            align-items: flex-start;
+            display: grid;
+            gap: 0.5rem;
+            grid-template-columns: 1rem 1fr;
+        }
+    }
+}
+
+footer
+{
+    color: var(--color-grey);
+    font-size: 0.8rem;
+
+    ul
+    {
+        display: flex;
+        flex-flow: row wrap;gap: 1rem;
+        justify-content: center;
+    }
+
+    .copyright
+    {
+        text-align: center;
+        width: 100%;
+    }
+
+    a
+    {
+        display: inline-flex;
+        flex-flow: row;
+        gap: 0.1rem;
+
+        svg
+        {
+            align-self: flex-start;
+        }
+    }
+}

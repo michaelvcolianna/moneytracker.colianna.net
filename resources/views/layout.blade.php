@@ -52,22 +52,22 @@
 
             <footer>
                 <ul>
-                    <li>
+                    <li class="copyright">
                         &copy; 2019-{{ date('Y') }}
                     </li>
 
-                    <li>
+                    <li class="source">
                         <a href="https://github.com/michaelvcolianna/moneytracker.colianna.net" target="_blank" rel="noreferrer nofollow" aria-describedby="external-label new-window-label">
                             <span class="label">Source Code</span>
-                            <x-shared.icon name="external-link" aria-hidden="true" />
+                            <x-shared.icon name="external-link" height="12" width="12" aria-hidden="true" />
                         </a>
                     </li>
 
-                    <li>
+                    <li class="branch">
                         <x-shared.icon name="git" />{{ $git['hash'] . ' [' . $git['branch'] . ']' }}
                     </li>
 
-                    <li>
+                    <li style="width: 100%;">
                         <a href="/?login&page=dashboard">Log In</a>
                     </li>
                 </ul>

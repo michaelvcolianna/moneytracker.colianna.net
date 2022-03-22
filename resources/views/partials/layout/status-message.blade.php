@@ -1,5 +1,8 @@
 @if($status)
     <section class="page__status" role="dialog">
-        <p>Status message here.</p>
+        <p>
+            <x-shared.icon name="info" aria-hidden="true" />
+            Status message here.
+        </p>
     </section>
 @endif
