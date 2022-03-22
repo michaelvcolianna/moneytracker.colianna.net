@@ -127,6 +127,13 @@ footer
         width: 100%;
     }
 
+    .branch
+    {
+        display: flex;
+        flex-flow: row;
+        gap: 0.25rem;
+    }
+
     a
     {
         display: inline-flex;
