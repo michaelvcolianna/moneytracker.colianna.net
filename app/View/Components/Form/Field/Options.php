@@ -22,6 +22,7 @@ class Options extends Component
      * Create a new component instance.
      *
      * @param  boolean  $areAnySelected
+     * @param  boolean  $forceError
      * @param  string  $help
      * @param  string  $id
      * @param  string  $label
@@ -29,9 +30,9 @@ class Options extends Component
      * @param  string  $type
      * @return void
      */
-    public function __construct($areAnySelected = false, $help = null, $id, $label = null, $options, $type = 'options')
+    public function __construct($areAnySelected = false, $forceError = false, $help = null, $id, $label = null, $options, $type = 'options')
     {
-        $this->setDefaultValues($help, $id, $label);
+        $this->setDefaultValues($forceError, $help, $id, $label);
         $this->areAnySelected = $areAnySelected;
         $this->options = $options;
         $this->type = $type;

@@ -12,14 +12,15 @@ class Input extends Component
     /**
      * Create a new component instance.
      *
+     * @param  boolean  $forceError
      * @param  string  $help
      * @param  string  $id
      * @param  string  $label
      * @return void
      */
-    public function __construct($help = null, $id, $label = null)
+    public function __construct($forceError = false, $help = null, $id, $label = null)
     {
-        $this->setDefaultValues($help, $id, $label);
+        $this->setDefaultValues($forceError, $help, $id, $label);
     }
 
     /**

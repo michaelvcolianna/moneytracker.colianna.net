@@ -2,25 +2,41 @@
 {
     position: relative;
 
+    [role="alert"]
+    {
+        font-style: normal;
+    }
+
+    &__help
+    {
+        color: var(--color-grey);
+        display: block;
+        font-size: 0.8rem;
+    }
+
     &--input
     {
-        align-items: flex-end;
-        display: flex;
-        height: 3rem;
+        zoom: 1;
+
+        label,
+        input
+        {
+            width: 100%;
+        }
 
         label
         {
+            display: flex;
+            flex-flow: row wrap;
             font-size: 0.75rem;
-            height: 1.25rem;
-            position: absolute;
-            top: 0;
+            justify-content: space-between;
         }
 
         input
         {
             border: 2px solid var(--color-grey);
             border-radius: 3px;
-            height: 2.111111111111111rem;
+            height: 2.5rem;
             padding: 0 0.35rem;
         }
     }
@@ -33,6 +49,7 @@
             display: flex;
             flex-flow: row;
             height: 3rem;
+            position: relative;
         }
 
         [aria-hidden="true"]
@@ -42,6 +59,31 @@
             flex-flow: row;
             justify-content: center;
             width: 3rem;
+        }
+
+        [role="alert"]
+        {
+            font-size: 0.75rem;
+            left: 3rem;
+            position: absolute;
+            top: 0;
+        }
+
+        .field__help
+        {
+            bottom: 0;
+            left: 3rem;
+            position: absolute;
+        }
+    }
+
+    &--options
+    {
+        .label
+        {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
         }
     }
 }

@@ -6,13 +6,13 @@
             <x-shared.icon name="box-unchecked" class="unchecked" />
         </span>
         <span>{{ $label }}</span>
+
+        @if($errors->has($id) || $error)
+            <em role="alert">{{ !empty($errors->first($id)) ? $errors->first($id) : 'Unknown error'}}</em>
+        @endif
     </label>
 
     @if($help)
         <span class="field__help">{{ $help }}</span>
     @endif
-
-    @error($id)
-        <em role="alert">{{ $message }}
-    @enderror
 </div>
