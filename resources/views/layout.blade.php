@@ -45,7 +45,7 @@
                 @include('partials.layout.error-messages')
                 @include('partials.layout.status-message')
 
-                <section class="page entries payperiods login">
+                <section class="page entries payperiods payees login">
                     {{ $slot }}
                 </section>
             </main>
