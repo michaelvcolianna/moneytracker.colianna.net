@@ -2,7 +2,12 @@
 {
     @include lg;
     margin: auto;
-    max-width: 1440px;
+    max-width: calc(414px - 3rem);
+
+    @include xbp
+    {
+        max-width: calc(1024px - 3rem);
+    }
 }
 
 header
