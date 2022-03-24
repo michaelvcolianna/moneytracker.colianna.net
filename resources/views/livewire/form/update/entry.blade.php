@@ -10,6 +10,6 @@
 
     @if($isConfirmShowing)
         <x-form.field.button id="delete" label="Delete Entry" icon="trash" class="danger" />
-        <x-form.field.button id="cancel" type="reset" icon="cancel" wire:click="$set('isConfirmShowing', false)" />
+        <x-form.field.button id="cancel" type="reset" icon="cancel" class="cancel" wire:click="$set('isConfirmShowing', false)" />
     @endif
 </div>
