@@ -42,4 +42,11 @@
         <livewire:form.update.entry num="2" amount="80" payee="Geico" />
         <livewire:form.update.entry num="1" amount="230" payee="Southern CT Gas" />
     </div>
+
+    {{-- @todo Replace with real payees list --}}
+    <datalist id="payees-list">
+        <option value="Disney+">
+        <option value="Geico">
+        <option value="Southern CT Gas">
+    </datalist>
 </x-layout>

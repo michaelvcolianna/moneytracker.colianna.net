@@ -6,7 +6,7 @@
             <h3>Add Entry</h3>
 
             <x-form.field.input id="new-amount" label="Amount" type="number" step="0.01" />
-            <x-form.field.input id="new-payee" label="Payee" type="text" />
+            <x-form.field.input id="new-payee" label="Payee" type="list" list="payees-list" />
             <x-form.field.boolean id="new-scheduled" label="Scheduled" />
             <x-form.field.boolean id="new-reconciled" label="Reconciled" />
 
