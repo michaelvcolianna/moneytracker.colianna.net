@@ -70,12 +70,6 @@
     {
         @include fg;
 
-        @include xbp
-        {
-            align-items: center;
-            border-bottom: none;
-        }
-
         .field
         {
             &--input
@@ -112,14 +106,6 @@
                 {
                     width: 13.5rem;
                 }
-            }
-        }
-
-        .button
-        {
-            @include xbp
-            {
-                margin-top: 1rem;
             }
         }
     }

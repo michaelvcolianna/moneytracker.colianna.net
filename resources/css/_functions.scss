@@ -42,9 +42,23 @@
     flex-flow: row wrap;
     gap: 1rem;
 
+    @include xbp
+    {
+        align-items: center;
+        border-bottom: none;
+    }
+
     h3
     {
         @include sr;
+    }
+
+    .button
+    {
+        @include xbp
+        {
+            margin-top: 1rem;
+        }
     }
 }
 

@@ -16,11 +16,24 @@
             {
                 align-self: flex-end;
                 order: 2;
+                top: 0.25rem;
+
+                @include xbp
+                {
+                    align-self: center;
+                    order: 3;
+                    top: 0.5rem;
+                }
             }
 
             &__number
             {
                 order: 3;
+
+                @include xbp
+                {
+                    order: 2;
+                }
             }
         }
 
