@@ -1,0 +1,58 @@
+.payees
+{
+    &__add__form,
+    .payee
+    {
+        @include fg;
+
+        .field
+        {
+            &__text
+            {
+                width: 100%;
+
+                @include xbp
+                {
+                    width: auto;
+                }
+            }
+
+            &__number
+            {
+                width: 6rem;
+
+                label
+                {
+                    width: 4rem;
+                }
+            }
+        }
+
+        & > .field__checkbox
+        {
+            margin: -1rem 0;
+            width: 100%;
+        }
+
+        .options
+        {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .select-all
+        {
+            .label
+            {
+                display: inline;
+            }
+        }
+    }
+
+    &__add__form
+    {
+        @include formg;
+    }
+
+    @include listg('payee');
+}

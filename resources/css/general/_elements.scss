@@ -137,11 +137,6 @@ button
         {
             text-align: right;
             width: 6.666666666666667rem;
-
-            &::before
-            {
-                content: 'De-';
-            }
         }
 
         .on
@@ -151,14 +146,6 @@ button
 
         &.empty
         {
-            .label
-            {
-                &::before
-                {
-                    content: '';
-                }
-            }
-
             .on
             {
                 display: inline-block;

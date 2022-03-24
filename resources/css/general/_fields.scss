@@ -85,6 +85,7 @@
             bottom: 0;
             left: 3rem;
             position: absolute;
+            z-index: -1;
         }
     }
 
@@ -94,7 +95,13 @@
         {
             display: flex;
             flex-flow: row wrap;
+            font-weight: 700;
             justify-content: space-between;
+        }
+
+        .options
+        {
+            font-size: 0.75rem;
         }
     }
 }
