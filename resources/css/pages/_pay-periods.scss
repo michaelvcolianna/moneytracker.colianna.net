@@ -1,0 +1,47 @@
+.pay-periods
+{
+    &__add__form,
+    .pay-period
+    {
+        @include fg;
+
+        .field
+        {
+            &__date
+            {
+                order: 1;
+            }
+
+            &__checkbox
+            {
+                align-self: flex-end;
+                order: 2;
+            }
+
+            &__number
+            {
+                order: 3;
+            }
+        }
+
+        .button
+        {
+            &--add
+            {
+                order: 4;
+            }
+
+            &--cancel
+            {
+                order: 5;
+            }
+        }
+    }
+
+    &__add__form
+    {
+        @include formg;
+    }
+
+    @include listg('pay-period')
+}

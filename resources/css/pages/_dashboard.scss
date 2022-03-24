@@ -68,22 +68,12 @@
     &__add__form,
     .entry
     {
-        align-content: center;
-        background-color: var(--color-background);
-        border-bottom: 2px dotted var(--color-grey);
-        display: flex;
-        flex-flow: row wrap;
-        gap: 1rem;
+        @include fg;
 
         @include xbp
         {
             align-items: center;
             border-bottom: none;
-        }
-
-        h3
-        {
-            @include sr;
         }
 
         .field
@@ -136,32 +126,8 @@
 
     &__add__form
     {
-        padding: 1rem 0;
-
-        @include xbp
-        {
-            padding: 1rem 0 0 0;
-        }
+        @include formg;
     }
 
-    &__list
-    {
-        @include lg;
-    }
-
-    .entry
-    {
-        padding-bottom: 1rem;
-
-        @include xbp
-        {
-            padding-bottom: 0;
-        }
-
-        &:last-child
-        {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-    }
+    @include listg('entry');
 }

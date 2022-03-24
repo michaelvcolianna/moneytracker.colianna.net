@@ -3,6 +3,8 @@
 
     @if($isFormShowing)
         <div class="payees__add__form">
+            <h3>Add Payee</h3>
+
             <x-form.field.boolean id="new-active" label="Active" checked />
             <x-form.field.input id="new-name" label="Name" type="text" />
             <x-form.field.input id="new-amount" label="Schedule Amount" type="number" step="0.01" />

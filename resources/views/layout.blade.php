@@ -22,7 +22,7 @@
                             </li>
 
                             <li>
-                                <x-shared.nav-link url="/?login&page=payperiods" icon="pay-periods" label="Pay Periods" />
+                                <x-shared.nav-link url="/?login&page=pay-periods" icon="pay-periods" label="Pay Periods" />
                             </li>
 
                             <li>
@@ -45,7 +45,7 @@
                 @include('partials.layout.error-messages')
                 @include('partials.layout.status-message')
 
-                <section class="page entries payperiods payees login">
+                <section class="page entries pay-periods payees login">
                     {{ $slot }}
                 </section>
             </main>

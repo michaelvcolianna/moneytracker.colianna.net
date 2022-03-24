@@ -1,8 +1,8 @@
 <x-layout title="Pay Periods">
     <livewire:form.add.pay-period />
 
-    <div class="payperiods__list">
-        <div class="legend legend--payperiods" aria-hidden="true">
+    <div class="pay-periods__list">
+        <div class="legend legend--pay-periods" aria-hidden="true">
             <strong class="legend__date">Starting Date</strong>
             <strong class="legend__amount">Amount</strong>
             <strong class="legend__biweekly">Biweekly</strong>
