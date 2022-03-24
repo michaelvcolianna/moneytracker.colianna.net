@@ -6,6 +6,9 @@ use Livewire\Component;
 
 class Entry extends Component
 {
+    /** @var boolean */
+    public $isConfirmShowing;
+
     /** @var string */
     public $amount;
     public $num;

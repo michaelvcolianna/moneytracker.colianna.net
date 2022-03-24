@@ -3,5 +3,13 @@
     <x-form.field.input id="entry-{{ $num }}-payee" label="Payee" type="text" value="{{ $payee }}" />
     <x-form.field.boolean id="entry-{{ $num }}-scheduled" label="Scheduled" />
     <x-form.field.boolean id="entry-{{ $num }}-reconciled" label="Reconciled" />
-    <x-form.field.button id="delete" label="Delete Entry" icon="trash" class="danger" />
+
+    @if(!$isConfirmShowing)
+        <x-form.field.button id="delete" label="Delete Entry" icon="question" wire:click="$set('isConfirmShowing', true)" />
+    @endif
+
+    @if($isConfirmShowing)
+        <x-form.field.button id="delete" label="Delete Entry" icon="trash" class="danger" />
+        <x-form.field.button id="cancel" type="reset" icon="cancel" wire:click="$set('isConfirmShowing', false)" />
+    @endif
 </div>

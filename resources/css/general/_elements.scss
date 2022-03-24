@@ -86,7 +86,8 @@ button
     }
 
     &.danger,
-    &.primary
+    &.primary,
+    &.save
     {
         color: var(--color-background);
     }
@@ -102,10 +103,20 @@ button
         background-color: var(--color-blue);
     }
 
+    &.save
+    {
+        background-color: var(--color-green);
+    }
+
+    &.cancel,
     &[disabled]
     {
         border-color: var(--color-grey);
         color: var(--color-grey);
+    }
+
+    &[disabled]
+    {
         cursor: auto;
     }
 

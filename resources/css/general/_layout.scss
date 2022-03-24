@@ -97,6 +97,8 @@ main
 
 .page
 {
+    @include lg;
+
     &__title
     {
         display: flex;
