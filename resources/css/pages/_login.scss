@@ -6,6 +6,8 @@
         flex-flow: row wrap;
         gap: 1rem;
         justify-content: space-between;
+        margin: auto;
+        max-width: 480px;
 
         .field--input
         {
