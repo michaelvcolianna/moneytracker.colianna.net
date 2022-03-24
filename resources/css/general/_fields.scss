@@ -50,6 +50,12 @@
             flex-flow: row;
             height: 3rem;
             position: relative;
+
+            @include xbp
+            {
+                gap: 0.5rem;
+                height: auto;
+            }
         }
 
         [aria-hidden="true"]
@@ -59,6 +65,11 @@
             flex-flow: row;
             justify-content: center;
             width: 3rem;
+
+            @include xbp
+            {
+                width: auto;
+            }
         }
 
         [role="alert"]

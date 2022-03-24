@@ -9,6 +9,11 @@
         margin: auto;
         max-width: 480px;
 
+        @include xbp
+        {
+            align-items: center;
+        }
+
         .field--input
         {
             width: 100%;
