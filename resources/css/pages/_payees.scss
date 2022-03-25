@@ -13,6 +13,7 @@
 
                 @include xbp
                 {
+                    order: 1;
                     width: auto;
                 }
             }
@@ -21,9 +22,29 @@
             {
                 width: 6rem;
 
+                @include xbp
+                {
+                    order: 2;
+                    width: 8rem;
+                }
+
                 label
                 {
                     width: 4rem;
+
+                    @include xbp
+                    {
+                        width: auto;
+                    }
+                }
+            }
+
+            &__months
+            {
+                @include xbp
+                {
+                    order: 4;
+                    width: 100%;
                 }
             }
         }
@@ -32,19 +53,66 @@
         {
             margin: -1rem 0;
             width: 100%;
+
+            @include xbp
+            {
+                margin: 1rem 0 0 0;
+                order: 3;
+                width: auto;
+            }
         }
 
         .options
         {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+
+            @include xbp
+            {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 1rem;
+            }
         }
 
         .select-all
         {
+            @include xbp
+            {
+                margin-top: 1rem;
+            }
+
             .label
             {
                 display: inline;
+            }
+        }
+
+        .button
+        {
+            &--add,
+            &--cancel
+            {
+                @include xbp
+                {
+                    margin-top: 0;
+                }
+            }
+
+            &--add
+            {
+                @include xbp
+                {
+                    order: 5;
+                }
+            }
+
+            &--cancel
+            {
+                @include xbp
+                {
+                    order: 6;
+                }
             }
         }
     }
