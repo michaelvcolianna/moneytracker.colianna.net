@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-    $page = request()->query('page', 'login');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/', function() {
+        return view('pages.dashboard');
+    })->name('dashboard');
 
-    return view('pages.' . $page, [
-        'errors' => request()->has('errors'),
-    ]);
+    Route::get('/pay-periods', function() {
+        return view('pages.pay-periods');
+    })->name('pay-periods');
+
+    Route::get('/payees', function() {
+        return view('pages.payees');
+    })->name('payees');
 });

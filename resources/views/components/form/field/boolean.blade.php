@@ -7,9 +7,9 @@
         </span>
         <span>{{ $label }}</span>
 
-        @if($errors->has($id) || $error)
-            <em role="alert">{{ !empty($errors->first($id)) ? $errors->first($id) : 'Unknown error'}}</em>
-        @endif
+        @error($id)
+            <em role="alert">{{ $message }}</em>
+        @enderror
     </label>
 
     @if($help)

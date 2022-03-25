@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Design: {{ $title }}</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{ mix('storage/assets/css/app.css') }}" />
         <script src="{{ mix('storage/assets/js/app.js') }}" defer></script>
         @livewireStyles
@@ -12,29 +13,30 @@
     <body>
         <div class="wrapper">
             <header>
-                <a href="/" class="branding">MoneyTracker</a>
+                <a href="{{ route('dashboard') }}" class="branding">MoneyTracker</a>
 
-                @if($login)
+                @auth
                     <nav aria-label="Areas">
                         <ul>
                             <li>
-                                <x-shared.nav-link url="/?login&page=dashboard" icon="dashboard" label="Dashboard" />
+                                <x-shared.nav-link route="dashboard" icon="dashboard" label="Dashboard" />
                             </li>
 
                             <li>
-                                <x-shared.nav-link url="/?login&page=pay-periods" icon="pay-periods" label="Pay Periods" />
+                                <x-shared.nav-link route="pay-periods" icon="pay-periods" label="Pay Periods" />
                             </li>
 
                             <li>
-                                <x-shared.nav-link url="/?login&page=payees" icon="payees" label="Payees" />
+                                <x-shared.nav-link route="payees" icon="payees" label="Payees" />
                             </li>
 
                             <li>
-                                <x-shared.nav-link url="/" icon="log-out" label="Log Out" />
+                                <x-shared.nav-link route="logout" icon="log-out" label="Log Out" onclick="event.preventDefault(); this.nextElementSibling.submit();" />
+                                <form method="POST" action="{{ route('logout') }}"><input type="hidden" name="_token" value="{{ csrf_token() }}"></form>
                             </li>
                         </ul>
                     </nav>
-                @endif
+                @endauth
             </header>
 
             <main>
@@ -65,10 +67,6 @@
 
                     <li class="branch">
                         <x-shared.icon name="git" />{{ $git['hash'] . ' [' . $git['branch'] . ']' }}
-                    </li>
-
-                    <li style="width: 100%;">
-                        <a href="/?login&page=dashboard">Log In</a>
                     </li>
                 </ul>
             </footer>

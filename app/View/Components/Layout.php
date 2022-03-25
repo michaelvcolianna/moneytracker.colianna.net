@@ -9,11 +9,6 @@ class Layout extends Component
     /** @var array<string> */
     public $git;
 
-    /** @var boolean */
-    public $errors;
-    public $login;
-    public $status;
-
     /** @var string */
     public $title;
 
@@ -25,10 +20,7 @@ class Layout extends Component
      */
     public function __construct($title)
     {
-        $this->errors = request()->has('errors');
         $this->git = $this->getGitData();
-        $this->login = request()->has('login');
-        $this->status = request()->has('status');
         $this->title = $title;
     }
 

@@ -9,7 +9,7 @@
             </li>
 
             <li class="current">
-                <time datetime="2022-03-18T00:00:00-04:00" aria-current="page" aria-label="Current pay date: March 18 2022">2022-03-18</span>
+                <time datetime="2022-03-18T00:00:00-04:00" aria-current="true" aria-label="Current pay date: March 18 2022">2022-03-18</span>
             </li>
 
             <li class="next">

@@ -6,6 +6,9 @@ use Illuminate\View\Component;
 
 class NavLink extends Component
 {
+    /** @var boolean */
+    public $current;
+
     /** @var string */
     public $icon;
     public $label;
@@ -16,7 +19,6 @@ class NavLink extends Component
     /**
      * Create a new component instance.
      *
-     * @param  string  $current
      * @param  string  $icon
      * @param  string  $label
      * @param  string  $route
@@ -24,18 +26,14 @@ class NavLink extends Component
      * @param  string  $url
      * @return void
      */
-    public function __construct($current = 'page', $icon, $label, $route = null, $test = null, $url = null)
+    public function __construct($icon, $label, $route = null, $test = null, $url = null)
     {
+        $this->current = request()->routeIs($test ?? $route);
         $this->icon = $icon;
         $this->label = $label;
         $this->route = $route;
         $this->test = $test;
-        $this->url = $url;
-
-        if(request()->routeIs($test ?? $route))
-        {
-            $this->properties['aria-current'] = $current;
-        }
+        $this->url = $url ?? route($route);
     }
 
     /**
