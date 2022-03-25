@@ -162,9 +162,21 @@ button
 
 input
 {
+    color-scheme: light;
+
+    .scheme-dark &
+    {
+        color-scheme: dark;
+    }
+
     @media (prefers-color-scheme: dark)
     {
         color-scheme: dark;
+
+        .scheme-light &
+        {
+            color-scheme: light;
+        }
     }
 }
 
