@@ -15,11 +15,12 @@ class Boolean extends Component
      * @param  string  $help
      * @param  string  $id
      * @param  string  $label
+     * @param  string  $test
      * @return void
      */
-    public function __construct($help = null, $id, $label = null)
+    public function __construct($help = null, $id, $label = null, $test = null)
     {
-        $this->setDefaultValues($help, $id, $label);
+        $this->setDefaultValues($help, $id, $label, $test);
     }
 
     /**

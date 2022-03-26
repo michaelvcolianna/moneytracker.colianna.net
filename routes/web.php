@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\PayPeriod;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,9 @@ Route::middleware(['auth'])->group(function() {
     })->name('dashboard');
 
     Route::get('/pay-periods', function() {
-        return view('pages.pay-periods');
+        return view('pages.pay-periods', [
+            'payPeriods' => PayPeriod::orderByDesc('started_at')->get(),
+        ]);
     })->name('pay-periods');
 
     Route::get('/payees', function() {

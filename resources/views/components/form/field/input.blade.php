@@ -2,7 +2,7 @@
     <label for="{{ $id }}">
         {{ $label }}
 
-        @error($id)
+        @error($test)
             <em role="alert">{{ $message }}</em>
         @enderror
     </label>
