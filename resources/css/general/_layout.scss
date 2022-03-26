@@ -177,6 +177,13 @@ main
     }
 }
 
+.empty
+{
+    color: var(--color-grey);
+    padding: 3rem 0;
+    text-align: center;
+}
+
 footer
 {
     color: var(--color-grey);

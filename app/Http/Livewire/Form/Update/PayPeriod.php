@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Form\Update;
 
 use App\Http\Livewire\Component;
+use App\Models\PayPeriod as PayPeriodModel;
 
 class PayPeriod extends Component
 {
@@ -15,13 +16,12 @@ class PayPeriod extends Component
     /**
      * Validation rules.
      *
-     * @var array
+     * @return array
      */
-    protected $rules = [
-        'payPeriod.started_at' => 'required|date_format:Y-m-d',
-        'payPeriod.amount' => 'required|numeric',
-        'payPeriod.biweekly' => 'nullable|boolean',
-    ];
+    protected function rules()
+    {
+        return PayPeriodModel::validationRules('payPeriod.');
+    }
 
     /**
      * Create a new component instance.

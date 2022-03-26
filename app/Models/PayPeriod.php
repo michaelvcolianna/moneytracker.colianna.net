@@ -25,4 +25,19 @@ class PayPeriod extends Model
         'amount',
         'biweekly',
     ];
+
+    /**
+     * Provides the validation rules.
+     *
+     * @param  string  $preface
+     * @return array
+     */
+    public static function validationRules($preface = null)
+    {
+        return [
+            $preface . 'started_at' => 'required|date_format:Y-m-d',
+            $preface . 'amount' => 'required|numeric',
+            $preface . 'biweekly' => 'nullable|boolean',
+        ];
+    }
 }
