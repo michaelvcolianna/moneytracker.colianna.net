@@ -9,7 +9,7 @@
 
     <div class="options">
         @foreach($options as $key => $option)
-            <x-form.field.boolean id="{{ $id }}-{{ $key }}" :label="$option" />
+            <x-form.field.boolean id="{{ $id }}-{{ $key }}" :label="$option" wire:model="{{ $key }}" />
         @endforeach
     </div>
 

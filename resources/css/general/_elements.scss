@@ -134,6 +134,10 @@ button
 
     &.select-all
     {
+        border-color: var(--color-grey);
+        color: var(--color-grey);
+        text-align: center;
+
         .label
         {
             text-align: right;
@@ -147,6 +151,9 @@ button
 
         &.empty
         {
+            border-color: var(--color-blue);
+            color: var(--color-blue);
+
             .on
             {
                 display: inline-block;

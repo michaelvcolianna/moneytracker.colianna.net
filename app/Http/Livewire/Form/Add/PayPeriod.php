@@ -42,20 +42,17 @@ class PayPeriod extends Component
     /**
      * Saves a new instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function save()
     {
-        $this->validate();
+        $data = $this->validate();
+        $data['biweekly'] ??= false;
 
-        PayPeriodModel::create([
-            'started_at' => $this->started_at,
-            'amount' => $this->amount,
-            'biweekly' => $this->biweekly ?? false,
-        ]);
-
-        $this->emit('refreshPayPeriods');
+        PayPeriodModel::create($data);
 
         $this->reset();
+
+        $this->emit('refreshPayPeriods');
     }
 }

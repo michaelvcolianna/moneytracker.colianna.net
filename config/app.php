@@ -206,5 +206,19 @@ return [
     */
 
     'force_scheme' => env('APP_FORCE_SCHEME'),
+    'months' => [
+        'jan' => 'January',
+        'feb' => 'February',
+        'mar' => 'March',
+        'apr' => 'April',
+        'may' => 'May',
+        'jun' => 'June',
+        'jul' => 'July',
+        'aug' => 'August',
+        'sep' => 'September',
+        'oct' => 'October',
+        'nov' => 'November',
+        'dec' => 'December',
+    ],
 
 ];
