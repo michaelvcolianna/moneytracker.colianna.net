@@ -10,9 +10,6 @@ class PayPeriod extends Component
     /** @var \App\Models\PayPeriod */
     public $payPeriod;
 
-    /** @var string */
-    public $fieldId;
-
     /**
      * Validation rules.
      *

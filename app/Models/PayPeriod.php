@@ -16,6 +16,15 @@ class PayPeriod extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'started_at' => 'datetime',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -25,6 +34,17 @@ class PayPeriod extends Model
         'amount',
         'biweekly',
     ];
+
+    /**
+     * Get nearest period by date.
+     *
+     * @param  \Carbon\Carbon  $date
+     * @return \App\Models\PayPeriod
+     */
+    public static function getNearest($date)
+    {
+        return static::where('started_at', '<=', $date)->first();
+    }
 
     /**
      * Provides the validation rules.
@@ -39,5 +59,26 @@ class PayPeriod extends Model
             $preface . 'amount' => 'required|numeric',
             $preface . 'biweekly' => 'nullable|boolean',
         ];
+    }
+
+    /**
+     * Get the modulus check for the date.
+     *
+     * @return integer
+     */
+    public function getDateModAttribute()
+    {
+        return $this->biweekly
+            ? 14
+            : 7
+            ;
+    }
+
+    /**
+     * Get the pay dates for this pay period.
+     */
+    public function payDates()
+    {
+        return $this->hasMany(PayDate::class);
     }
 }

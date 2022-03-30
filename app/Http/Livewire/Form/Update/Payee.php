@@ -17,9 +17,6 @@ class Payee extends Component
     /** @var boolean */
     public $areAnySelected;
 
-    /** @var string */
-    public $fieldId;
-
     /**
      * Validation rules.
      *

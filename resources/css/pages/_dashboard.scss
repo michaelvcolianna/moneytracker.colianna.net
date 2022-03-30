@@ -43,6 +43,8 @@
 
     &__amount
     {
+        position: relative;
+
         .current
         {
             font-size: 3rem;
@@ -62,6 +64,49 @@
         {
             color: var(--color-grey);
             font-size: 0.75rem;
+        }
+
+        &__edit
+        {
+            @include xbp
+            {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+
+        .form-toggle,
+        &__form
+        {
+            margin-top: 1rem;
+        }
+
+        &__form
+        {
+            @include fg;
+            padding-bottom: 1rem;
+
+            @include xbp
+            {
+                padding-bottom: 0;
+                width: 330px;
+            }
+
+            h3
+            {
+                @include sr;
+            }
+
+            .field
+            {
+                width: 100%;
+            }
+
+            .button
+            {
+                margin-top: 0;
+            }
         }
     }
 

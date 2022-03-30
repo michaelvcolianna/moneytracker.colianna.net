@@ -1,23 +1,23 @@
 <?php
 
-namespace App\View\Components\Form\Add;
+namespace App\Http\Livewire;
 
-use Illuminate\View\Component;
+use App\Models\PayDate;
+use Livewire\Component;
 
-class Toggle extends Component
+class Navigation extends Component
 {
-    /** @var string */
-    public $label;
+    /** @var \App\Models\PayDate */
+    public $payDate;
 
     /**
      * Create a new component instance.
      *
-     * @param  string  $label
      * @return void
      */
-    public function __construct($label)
+    public function mount()
     {
-        $this->label = $label;
+        $this->payDate = PayDate::getCurrent();
     }
 
     /**
@@ -27,6 +27,6 @@ class Toggle extends Component
      */
     public function render()
     {
-        return view('components.form.add.toggle');
+        return view('livewire.navigation');
     }
 }

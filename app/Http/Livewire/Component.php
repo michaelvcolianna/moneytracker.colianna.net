@@ -6,6 +6,9 @@ use Livewire\Component as LivewireComponent;
 
 abstract class Component extends LivewireComponent
 {
+    /** @var string */
+    public $fieldId;
+
     /**
      * Makes sure money is formatted properly.
      *
