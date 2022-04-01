@@ -65,11 +65,12 @@ class Entry extends Component
 
         EntryModel::create($data);
 
-        // @todo Recalc
+        PayDate::getCurrent()->recalculateCurrent();
 
         $this->clearForm();
 
         $this->emit('refreshEntries');
+        $this->emit('refreshAmount');
     }
 
     public function updatedPayee($value)

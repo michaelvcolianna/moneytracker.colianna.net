@@ -106,6 +106,19 @@ class PayDate extends Model
         return $previous;
     }
 
+    public function recalculateCurrent()
+    {
+        $subtract = 0;
+
+        foreach($this->entries as $entry)
+        {
+            $subtract+= $entry->amount;
+        }
+
+        $this->current = $this->beginning - $subtract;
+        $this->save();
+    }
+
     /**
      * Get the pay period this pay date belongs to.
      */

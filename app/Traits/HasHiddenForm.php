@@ -5,7 +5,7 @@ namespace App\Traits;
 trait HasHiddenForm
 {
     /** @var boolean */
-    public $isFormShowing;
+    public $isFormShowing = false;
 
     /**
      * Resets form values and closes the form

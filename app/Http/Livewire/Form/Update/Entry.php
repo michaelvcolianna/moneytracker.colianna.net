@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Form\Update;
 
 use App\Http\Livewire\Component;
 use App\Models\Entry as EntryModel;
+use App\Models\PayDate;
 use App\Models\Payee;
 use Illuminate\Support\Str;
 
@@ -60,6 +61,10 @@ class Entry extends Component
 
         $this->entry->amount = $this->moneyFormat($value);
         $this->entry->save();
+
+        PayDate::getCurrent()->recalculateCurrent();
+
+        $this->emit('refreshAmount');
     }
 
     /**
@@ -127,6 +132,9 @@ class Entry extends Component
     {
         $this->entry->delete();
 
+        PayDate::getCurrent()->recalculateCurrent();
+
         $this->emit('refreshEntries');
+        $this->emit('refreshAmount');
     }
 }

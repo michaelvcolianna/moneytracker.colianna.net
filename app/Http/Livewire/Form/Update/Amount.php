@@ -22,6 +22,10 @@ class Amount extends Component
         'payDate.beginning' => 'required|numeric',
     ];
 
+    protected $listeners = [
+        'refreshAmount' => '$refresh',
+    ];
+
     /**
      * Create a new component instance.
      *
@@ -53,7 +57,9 @@ class Amount extends Component
 
         $this->payDate->save();
 
-        // @todo Recalculate
+        $this->paydate()->recalculateCurrent();
+
+        $this->emit('refreshAmount');
 
         $this->isFormShowing = false;
     }
