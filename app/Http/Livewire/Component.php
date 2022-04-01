@@ -19,4 +19,15 @@ abstract class Component extends LivewireComponent
     {
         return number_format($value, 2, '.', '');
     }
+
+    /**
+     * Format money with comma.
+     *
+     * @param  float  $value
+     * @return float
+     */
+    public function moneyFormatComma($value)
+    {
+        return number_format($value, 2, '.', ',');
+    }
 }

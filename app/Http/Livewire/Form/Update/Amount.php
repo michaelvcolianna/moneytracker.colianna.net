@@ -19,7 +19,7 @@ class Amount extends Component
      * @var array
      */
     protected $rules = [
-        'pay-date.beginning' => 'required|numeric',
+        'payDate.beginning' => 'required|numeric',
     ];
 
     /**
@@ -40,5 +40,21 @@ class Amount extends Component
     public function render()
     {
         return view('livewire.form.update.amount');
+    }
+
+    /**
+     * Update the pay date.
+     *
+     * @return void
+     */
+    public function update()
+    {
+        $data = $this->validate();
+
+        $this->payDate->save();
+
+        // @todo Recalculate
+
+        $this->isFormShowing = false;
     }
 }

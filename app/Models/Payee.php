@@ -74,4 +74,12 @@ class Payee extends Model
 
         return $rules;
     }
+
+    /**
+     * Get the entries for the payee.
+     */
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
 }

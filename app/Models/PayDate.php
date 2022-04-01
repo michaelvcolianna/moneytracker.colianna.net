@@ -110,4 +110,12 @@ class PayDate extends Model
     {
         return $this->belongsTo(PayPeriod::class);
     }
+
+    /**
+     * Get the entries for the pay date.
+     */
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
 }
