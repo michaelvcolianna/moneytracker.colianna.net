@@ -44,7 +44,7 @@ class Entry extends Component
      */
     public function mount()
     {
-        $this->pay_date_id = PayDate::getCurrent()->id;
+        $this->pay_date_id = PayDate::getCurrent()->id ?? null;
     }
 
     /**

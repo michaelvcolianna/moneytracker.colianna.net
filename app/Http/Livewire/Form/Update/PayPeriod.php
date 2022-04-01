@@ -78,9 +78,9 @@ class PayPeriod extends Component
      */
     public function updatedPayPeriodStartedAt($value)
     {
-        $this->validateOnly('payPeriod.started_at');
+        $this->validateOnly('payPeriod.start');
 
-        $this->payPeriod->started_at = $value;
+        $this->payPeriod->start = $value;
         $this->payPeriod->save();
     }
 }

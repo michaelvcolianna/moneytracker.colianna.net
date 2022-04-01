@@ -43,6 +43,6 @@ class PayPeriods extends Component
      */
     public function refreshPayPeriods()
     {
-        $this->payPeriods = PayPeriod::orderByDesc('started_at')->get();
+        $this->payPeriods = PayPeriod::orderByDesc('start')->get();
     }
 }

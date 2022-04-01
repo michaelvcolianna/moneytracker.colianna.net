@@ -21,7 +21,7 @@ class PayPeriod extends Model
      * @var array
      */
     protected $casts = [
-        'started_at' => 'datetime',
+        'start' => 'datetime:Y-m-d',
     ];
 
     /**
@@ -30,7 +30,7 @@ class PayPeriod extends Model
      * @var array
      */
     protected $fillable = [
-        'started_at',
+        'start',
         'amount',
         'biweekly',
     ];
@@ -43,7 +43,7 @@ class PayPeriod extends Model
      */
     public static function getNearest($date)
     {
-        return static::where('started_at', '<=', $date)->first();
+        return static::where('start', '<=', $date)->first();
     }
 
     /**
@@ -55,7 +55,7 @@ class PayPeriod extends Model
     public static function validationRules($preface = null)
     {
         return [
-            $preface . 'started_at' => 'required|date_format:Y-m-d',
+            $preface . 'start' => 'required|date_format:Y-m-d',
             $preface . 'amount' => 'required|numeric',
             $preface . 'biweekly' => 'nullable|boolean',
         ];

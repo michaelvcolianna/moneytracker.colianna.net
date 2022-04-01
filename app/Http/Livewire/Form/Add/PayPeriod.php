@@ -17,7 +17,7 @@ class PayPeriod extends Component
     public $amount;
 
     /** @var string */
-    public $started_at;
+    public $start;
 
     /**
      * Validation rules.

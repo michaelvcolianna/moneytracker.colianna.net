@@ -14,7 +14,7 @@ class Payee extends Component
     public $months;
 
     /** @var boolean */
-    public $active;
+    public $active = true;
     public $areAnySelected;
 
     /** @var float */

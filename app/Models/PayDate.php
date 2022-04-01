@@ -37,24 +37,27 @@ class PayDate extends Model
      */
     public static function getCurrent()
     {
+        $payDate = null;
         $current = new Carbon(request()->query('date', date('Y-m-d')));
-        $payPeriod = PayPeriod::getNearest($current);
-        $current->subDays($current->diffInDays($payPeriod->started_at) % $payPeriod->date_mod);
-
-        if(!$payDate = PayDate::where('start', $current)->first())
+        if($payPeriod = PayPeriod::getNearest($current))
         {
-            $end = $current->copy()->addDays(13);
+            $current->subDays($current->diffInDays($payPeriod->start) % $payPeriod->date_mod);
 
-            $payDate = static::create([
-                'pay_period_id' => $payPeriod->id,
-                'start' => $current,
-                'end' => $current->copy()->addDays($payPeriod->date_mod - 1),
-                'beginning' => $payPeriod->amount,
-                'current' => $payPeriod->amount,
-            ]);
+            if(!$payDate = PayDate::where('start', $current)->first())
+            {
+                $end = $current->copy()->addDays(13);
 
-            // @todo After adding entries, find ones that fit this pay date with
-            // auto-schedule settings and create them
+                $payDate = static::create([
+                    'pay_period_id' => $payPeriod->id,
+                    'start' => $current,
+                    'end' => $current->copy()->addDays($payPeriod->date_mod - 1),
+                    'beginning' => $payPeriod->amount,
+                    'current' => $payPeriod->amount,
+                ]);
+
+                // @todo After adding entries, find ones that fit this pay date with
+                // auto-schedule settings and create them
+            }
         }
 
         return $payDate;
@@ -95,7 +98,7 @@ class PayDate extends Model
         $previous = $this->start->copy()->subDays($this->payPeriod->date_mod);
 
         $checkPeriod = PayPeriod::getNearest($previous);
-        if($checkPeriod->started_at->notEqualTo($this->payPeriod->started_at))
+        if($checkPeriod->start->notEqualTo($this->payPeriod->start))
         {
             $previous = $this->start->copy()->subDays($checkPeriod->date_mod);
         }

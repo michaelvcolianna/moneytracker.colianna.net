@@ -44,6 +44,11 @@ class Entries extends Component
      */
     public function refreshEntries()
     {
-        $this->entries = PayDate::getCurrent()->entries()->orderBy('payee')->get();
+        $payDate = PayDate::getCurrent();
+
+        $this->entries = $payDate && $payDate->entries
+            ? $payDate->entries()->orderBy('payee')->get()
+            : []
+            ;
     }
 }
