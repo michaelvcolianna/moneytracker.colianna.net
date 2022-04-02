@@ -57,7 +57,7 @@ class Amount extends Component
 
         $this->payDate->save();
 
-        $this->paydate()->recalculateCurrent();
+        $this->payDate->recalculateCurrent();
 
         $this->emit('refreshAmount');
 

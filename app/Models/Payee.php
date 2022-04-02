@@ -82,4 +82,16 @@ class Payee extends Model
     {
         return $this->hasMany(Entry::class);
     }
+
+    public function noMonthsSelected()
+    {
+        $selected = 0;
+
+        foreach(array_keys(config('app.months')) as $month)
+        {
+            $selected+= $this->$month;
+        }
+
+        return !(bool)$selected;
+    }
 }

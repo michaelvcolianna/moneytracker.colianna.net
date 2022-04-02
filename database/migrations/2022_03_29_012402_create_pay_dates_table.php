@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('start');
             $table->date('end');
             $table->unsignedDecimal('beginning')->nullable();
-            $table->unsignedDecimal('current')->nullable();
+            $table->decimal('current')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class PayDate extends Model
 {
@@ -13,8 +14,8 @@ class PayDate extends Model
      * @var array
      */
     protected $casts = [
-        'start' => 'datetime',
-        'end' => 'datetime',
+        'start' => 'datetime:Y-m-d',
+        'end' => 'datetime:Y-m-d',
     ];
 
     /**
@@ -45,8 +46,6 @@ class PayDate extends Model
 
             if(!$payDate = PayDate::where('start', $current)->first())
             {
-                $end = $current->copy()->addDays(13);
-
                 $payDate = static::create([
                     'pay_period_id' => $payPeriod->id,
                     'start' => $current,
@@ -55,8 +54,62 @@ class PayDate extends Model
                     'current' => $payPeriod->amount,
                 ]);
 
-                // @todo After adding entries, find ones that fit this pay date with
-                // auto-schedule settings and create them
+                $startDay = $payDate->start->format('d');
+                $endDay = $payDate->end->format('d');
+                $startMonth = Str::lower($payDate->start->format('M'));
+                $endMonth = Str::lower($payDate->end->format('M'));
+                $payees = Payee::whereNotNull('amount');
+
+                if($payDate->start->format('m') != $payDate->end->format('m'))
+                {
+                    $payees->where(function($query) use($startDay, $endDay) {
+                        $query->where('start', '>=', $startDay)
+                            ->orWhere('start', '<=', $endDay)
+                            ->orWhere('end', '<=', $endDay)
+                            ;
+                    });
+                }
+                else
+                {
+                    $payees->where([
+                        ['start', '>=', $startDay],
+                        ['start', '<=', $endDay],
+                    ])->orWhere([
+                        ['end', '>=', $startDay],
+                        ['end', '<=', $endDay],
+                    ]);
+                }
+
+                foreach($payees->get() as $payee)
+                {
+                    $entry = [
+                        'pay_date_id' => $payDate->id,
+                        'payee_id' => $payee->id,
+                        'amount' => $payee->amount,
+                        'payee' => $payee->name,
+                        'reconciled' => false,
+                    ];
+
+                    if($payee->noMonthsSelected())
+                    {
+                        $entry['scheduled'] = false;
+                    }
+                    elseif(!$payee->noMonthsSelected() && ($payee->$startMonth || $payee->endMonth))
+                    {
+                        $entry['scheduled'] = true;
+                    }
+                    else
+                    {
+                        unset($entry);
+                    }
+
+                    if(!empty($entry))
+                    {
+                        Entry::create($entry);
+                    }
+                }
+
+                $payDate->recalculateCurrent();
             }
         }
 

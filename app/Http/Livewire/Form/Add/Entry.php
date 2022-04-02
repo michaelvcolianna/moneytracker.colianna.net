@@ -77,27 +77,31 @@ class Entry extends Component
     {
         if(is_numeric($value) && $payee = Payee::find($value))
         {
+            \Log::debug('-- set payee id and name');
             $this->payee_id = $value;
             $this->payee = $payee->name;
         }
 
         if(preg_match('/\D+/m', $value) && $payee = Payee::firstWhere('name', $value))
         {
+            \Log::debug('-- set payee id');
             $this->payee_id = $payee->id;
         }
 
-        if(!empty($value) && $this->payee_id)
+        if(preg_match('/\D+/m', $value) && $this->payee_id)
         {
             $payee = Payee::find($this->payee_id);
 
             if(!Str::contains($value, $payee->name))
             {
+                \Log::debug('-- unset payee id');
                 $this->payee_id = null;
             }
         }
 
         if(empty($value))
         {
+            \Log::debug('-- unset payee id');
             $this->payee_id = null;
         }
     }
