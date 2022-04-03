@@ -24,13 +24,23 @@ class Amount extends Component
     ];
 
     /**
+     * Resets form values and closes the form
+     *
+     * @return void
+     */
+    public function clearForm()
+    {
+        $this->payDate = PayDate::getCurrent();
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
     public function mount()
     {
-        $this->payDate = PayDate::getCurrent();
+       $this->clearForm();
     }
 
     /**

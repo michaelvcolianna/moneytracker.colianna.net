@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Shared;
 
-use Illuminate\View\Component;
+use App\View\Component;
 
 class NavLink extends Component
 {
@@ -20,7 +20,7 @@ class NavLink extends Component
      * @param  string  $route
      * @return void
      */
-    public function __construct($icon, $route = null)
+    public function __construct($icon = null, $route = null)
     {
         $this->current = request()->routeIs($route);
         $this->icon = $icon;
@@ -41,6 +41,15 @@ class NavLink extends Component
                 ? 'page'
                 : null
                 ;
+
+            // Add an icon if specified
+            if($this->icon)
+            {
+                $data['attributes']['class'] = $this->addIcon(
+                    $data['attributes']['class'],
+                    $this->icon
+                );
+            }
 
             return 'components.shared.nav-link';
         };

@@ -14,13 +14,13 @@
             Payees
         </x-shared.nav-link>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ route('logout') }}" x-data>
             @csrf
 
             <x-shared.nav-link
                 route="logout"
                 icon="log-out"
-                onclick="event.preventDefault(); this.closest('form').submit();"
+                @click.prevent="$root.submit();"
             >
                 Log Out
             </x-shared.nav-link>

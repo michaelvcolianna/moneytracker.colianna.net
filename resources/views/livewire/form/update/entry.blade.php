@@ -28,17 +28,20 @@
         Reconciled
     </x-form.field.boolean>
 
-    <div class="form__confirm field__delete">
+    <div
+        class="form__confirm field__delete"
+        :class="open && 'open'"
+        x-data="{ open: false }"
+    >
         <button
             type="button"
-            class="button--more {{ $isConfirmShowing ? 'dim' : '' }}"
-            wire:click="$toggle('isConfirmShowing')"
+            class="button--more icon icon--vertical"
+            @click="open = !open"
         >
-            <x-shared.icon name="more-vertical" aria-hidden="true" />
             <span>Options...</span>
         </button>
 
-        <div class="confirm {{ $isConfirmShowing ? 'open' : '' }}">
+        <x-form.hidden.interior>
             <x-form.field.button
                 type="button"
                 icon="trash"
@@ -47,6 +50,6 @@
             >
                 Delete Entry
             </x-form.field.button>
-        </div>
+        </x-form.hidden.interior>
     </div>
 </div>

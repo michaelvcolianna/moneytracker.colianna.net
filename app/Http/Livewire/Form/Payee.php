@@ -43,7 +43,7 @@ abstract class Payee extends Component
             $this->payee->{$key} = $select;
         }
 
-        if($this->payee->wasRecentlyCreated)
+        if(!$this->payee->wasRecentlyCreated)
         {
             $this->payee->save();
         }

@@ -28,7 +28,7 @@ class Icon extends Component
         $this->fill = $fill;
         $this->height = $height;
         $this->width = $width;
-        $this->name = 'partials.svg.' . $name;
+        $this->name = 'components.svg.' . $name;
     }
 
     /**

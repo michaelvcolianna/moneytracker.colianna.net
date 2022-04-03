@@ -14,7 +14,7 @@
         <header>
             <a href="{{ route('dashboard') }}">MoneyTracker</a>
 
-            @include('partials.navigation')
+            <x-shared.navigation />
         </header>
 
         <main class="page">

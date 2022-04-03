@@ -10,6 +10,11 @@ class Navigation extends Component
     /** @var \App\Models\PayDate */
     public $payDate;
 
+    /** @var string */
+    public $current;
+    public $date;
+    public $rfc;
+
     /**
      * Create a new component instance.
      *
@@ -18,6 +23,10 @@ class Navigation extends Component
     public function mount()
     {
         $this->payDate = PayDate::getCurrent();
+
+        $this->current = $this->payDate->start->format('F j Y');
+        $this->date = $this->payDate->start->format('Y-m-d');
+        $this->rfc = $this->payDate->start->format('c');
     }
 
     /**

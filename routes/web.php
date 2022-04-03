@@ -20,13 +20,19 @@ Route::middleware(['auth'])->group(function() {
 });
 
 Route::get('/svg', function() {
-    $name = 'partials.svg.' . request()->query('name');
+    $name = 'components.svg.' . request()->query('name');
 
     abort_unless(view()->exists($name), 404);
 
+    $queryFill = request()->query('fill', 'currentColor');
+    $fill = ctype_xdigit($queryFill)
+        ? '#' . $queryFill
+        : $queryFill
+        ;
+
     $icon = view('components.shared.icon', [
         'name' => $name,
-        'fill' => request()->query('fill', 'currentColor'),
+        'fill' => $fill,
         'height' => request()->query('height', 16),
         'width' => request()->query('width', 16),
         'attributes' => null,
