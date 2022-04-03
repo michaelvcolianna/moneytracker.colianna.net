@@ -1,45 +1,6 @@
 <div class="page__payees__add">
     <x-form.hidden title="Add Payee">
-        <x-form.field.boolean
-            id="active"
-            wire:model="payee.active"
-        >
-            Active for autocomplete
-        </x-form.field.boolean>
-
-        <x-form.field.input
-            id="name"
-            type="text"
-            wire:model.lazy="payee.name"
-        >
-            Name
-        </x-form.field.input>
-
-        <x-form.field.input
-            id="amount"
-            type="number"
-            wire:model.lazy="payee.amount"
-        >
-            Scheduled Amount
-        </x-form.field.input>
-
-        <x-form.field.input
-            id="start"
-            type="number"
-            min="1" max="31"
-            wire:model.lazy="payee.start"
-        >
-            Schduled Start Day
-        </x-form.field.input>
-
-        <x-form.field.input
-            id="end"
-            type="number"
-            min="1" max="31"
-            wire:model.lazy="payee.end"
-        >
-            Scheduled End Day
-        </x-form.field.input>
+        <x-fields.payee :payee="$payee" />
 
         <div class="form__options field__months">
             <div class="options__info">

@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Form\Update;
 
-use App\Http\Livewire\Component;
 use App\Models\PayDate;
+use Livewire\Component;
 
 class Amount extends Component
 {
@@ -64,5 +64,16 @@ class Amount extends Component
         $this->payDate->save();
         $this->payDate->recalculateCurrent();
         $this->emit('refreshAmount');
+    }
+
+    /**
+     * Format money with comma.
+     *
+     * @param  float  $value
+     * @return float
+     */
+    public function moneyFormat($value)
+    {
+        return number_format($value, 0, null, ',');
     }
 }

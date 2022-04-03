@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Form\Update;
 
-use App\Http\Livewire\Component;
 use App\Models\PayPeriod as PayPeriodModel;
+use Livewire\Component;
 
 class PayPeriod extends Component
 {

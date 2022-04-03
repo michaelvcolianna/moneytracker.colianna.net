@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Form\Update;
 
-use App\Http\Livewire\Component;
 use App\Models\Entry as EntryModel;
 use App\Models\PayDate;
 use App\Models\Payee;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
 class Entry extends Component
 {
