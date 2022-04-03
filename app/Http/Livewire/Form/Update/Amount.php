@@ -65,15 +65,4 @@ class Amount extends Component
         $this->payDate->recalculateCurrent();
         $this->emit('refreshAmount');
     }
-
-    /**
-     * Format money with comma.
-     *
-     * @param  float  $value
-     * @return float
-     */
-    public function moneyFormat($value)
-    {
-        return number_format($value, 0, null, ',');
-    }
 }

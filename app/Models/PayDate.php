@@ -187,4 +187,29 @@ class PayDate extends Model
     {
         return $this->hasMany(Entry::class);
     }
+
+    public function getCssClassAttribute()
+    {
+        if($this->current < 0)
+        {
+            return '--negative';
+        }
+
+        if($this->current > 1000)
+        {
+            return '--positive';
+        }
+
+        return null;
+    }
+
+    public function getFormattedCurrentAttribute()
+    {
+        return number_format($this->current, 0, null, ',');
+    }
+
+    public function getFormattedBeginningAttribute()
+    {
+        return number_format($this->beginning, 0, null, ',');
+    }
 }

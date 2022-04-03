@@ -1,10 +1,10 @@
 <div class="page__dashboard__amount" aria-label="Pay date amount">
     <div class="amount__current">
-        ${{ $this->moneyFormat($payDate->current) }}
+        ${{ $payDate->formatted_current }}
     </div>
 
     <div class="amount__total">
-        of ${{ $this->moneyFormat($payDate->beginning) }}
+        of ${{ $payDate->formatted_beginning }}
     </div>
 
     <x-form.hidden title="Update Amount" submit="update">
