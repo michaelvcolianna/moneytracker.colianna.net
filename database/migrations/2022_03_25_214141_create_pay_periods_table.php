@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('pay_periods', function (Blueprint $table) {
             $table->id();
             $table->date('start');
-            $table->unsignedDecimal('amount');
-            $table->boolean('biweekly');
+            $table->unsignedInteger('amount');
             $table->timestamps();
         });
     }

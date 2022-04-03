@@ -2,31 +2,12 @@
 
 namespace App\Http\Livewire\Form\Update;
 
-use App\Http\Livewire\Component;
+use App\Http\Livewire\Form\Payee as Component;
 use App\Models\Payee as PayeeModel;
 use Illuminate\Support\Str;
 
 class Payee extends Component
 {
-    /** @var \App\Models\PayPeriod */
-    public $payee;
-
-    /** @var array */
-    public $options;
-
-    /** @var boolean */
-    public $areAnySelected;
-
-    /**
-     * Validation rules.
-     *
-     * @return array
-     */
-    protected function rules()
-    {
-        return PayeeModel::validationRules('payee.');
-    }
-
     /**
      * Create a new component instance.
      *
@@ -36,15 +17,8 @@ class Payee extends Component
     public function mount($payee)
     {
         $this->fieldId = 'payee-' . $payee->id;
+        $this->options = config('app.months');
         $this->payee = $payee;
-
-        $this->options = array_combine(
-            array_map(function($key) {
-                return 'payee.' . $key;
-            }, array_keys(config('app.months'))),
-            config('app.months')
-        );
-
         $this->updateSelectButton();
     }
 
@@ -56,28 +30,6 @@ class Payee extends Component
     public function render()
     {
         return view('livewire.form.update.payee');
-    }
-
-    /**
-     * Selects/deselects all
-     *
-     * @return void
-     */
-    public function selectAll()
-    {
-        $select = $this->areAnySelected
-            ? false
-            : true
-            ;
-
-        foreach(config('app.months') as $key => $value)
-        {
-            $this->payee->{$key} = $select;
-        }
-
-        $this->payee->save();
-
-        $this->updateSelectButton();
     }
 
     /**
@@ -104,10 +56,6 @@ class Payee extends Component
     {
         $this->validateOnly('payee.amount');
 
-        $value = $value
-            ? $this->moneyFormat($value)
-            : null
-            ;
         $this->payee->amount = $value;
         $this->payee->save();
     }
@@ -328,22 +276,5 @@ class Payee extends Component
             ;
         $this->payee->start = $value;
         $this->payee->save();
-    }
-
-    /**
-     * Switch between select/deselect all.
-     *
-     * @return void
-     */
-    protected function updateSelectButton()
-    {
-        $total = 0;
-
-        foreach(config('app.months') as $key => $value)
-        {
-            $total+= $this->payee->{$key};
-        }
-
-        $this->areAnySelected = (bool) $total;
     }
 }

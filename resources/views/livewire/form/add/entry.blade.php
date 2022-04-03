@@ -1,16 +1,40 @@
-<div class="entries__add">
-    @include('partials.button.toggle', ['label' => 'New Entry'])
+<div class="page__dashboard__add">
+    <form class="form" wire:submit.prevent="save">
+        <h3 class="form__toggle">
+            Add Entry
+        </h3>
 
-    @if($isFormShowing)
-        <div class="entries__add__form">
-            <h3>Add Entry</h3>
+        <div class="form__interior">
+            <x-form.field.input
+                id="amount"
+                type="number"
+                wire:model.lazy="entry.amount"
+            >
+                Amount
+            </x-form.field.input>
 
-            <x-form.field.input id="new-amount" label="Amount" type="number" step="0.01" wire:model.lazy="amount" />
-            <x-form.field.input id="new-payee" label="Payee" type="list" list="payees-list" wire:model.lazy="payee" />
-            <x-form.field.boolean id="new-scheduled" label="Scheduled" wire:model="scheduled" />
-            <x-form.field.boolean id="new-reconciled" label="Reconciled" wire:model="reconciled" />
+            <x-form.field.input
+                id="payee"
+                type="list"
+                list="payees-list"
+                wire:model.lazy="entry.payee"
+            />
+
+            <x-form.field.boolean
+                id="scheduled"
+                wire:model="entry.scheduled"
+            >
+                Scheduled
+            </x-form.field.boolean>
+
+            <x-form.field.boolean
+                id="reconciled"
+                wire:model="entry.reconciled"
+            >
+                Reconciled
+            </x-form.field.boolean>
 
             @include('partials.button.save', ['label' => 'Entry'])
         </div>
-    @endif
+    </form>
 </div>

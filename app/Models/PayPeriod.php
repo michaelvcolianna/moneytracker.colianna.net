@@ -7,15 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class PayPeriod extends Model
 {
     /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'biweekly' => false,
-    ];
-
-    /**
      * The attributes that should be cast.
      *
      * @var array
@@ -32,7 +23,6 @@ class PayPeriod extends Model
     protected $fillable = [
         'start',
         'amount',
-        'biweekly',
     ];
 
     /**
@@ -52,26 +42,12 @@ class PayPeriod extends Model
      * @param  string  $preface
      * @return array
      */
-    public static function validationRules($preface = null)
+    public static function validationRules()
     {
         return [
-            $preface . 'start' => 'required|date_format:Y-m-d',
-            $preface . 'amount' => 'required|numeric',
-            $preface . 'biweekly' => 'nullable|boolean',
+            'payPeriod.start' => 'required|date_format:Y-m-d',
+            'payPeriod.amount' => 'required|integer',
         ];
-    }
-
-    /**
-     * Get the modulus check for the date.
-     *
-     * @return integer
-     */
-    public function getDateModAttribute()
-    {
-        return $this->biweekly
-            ? 14
-            : 7
-            ;
     }
 
     /**

@@ -205,7 +205,6 @@ return [
     |
     */
 
-    'force_scheme' => env('APP_FORCE_SCHEME'),
     'months' => [
         'jan' => 'January',
         'feb' => 'February',

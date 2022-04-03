@@ -10,24 +10,13 @@ abstract class Component extends LivewireComponent
     public $fieldId;
 
     /**
-     * Makes sure money is formatted properly.
-     *
-     * @param  float  $value
-     * @return float
-     */
-    protected function moneyFormat($value)
-    {
-        return number_format($value, 2, '.', '');
-    }
-
-    /**
      * Format money with comma.
      *
      * @param  float  $value
      * @return float
      */
-    public function moneyFormatComma($value)
+    public function moneyFormat($value)
     {
-        return number_format($value, 2, '.', ',');
+        return number_format($value, 0, null, ',');
     }
 }

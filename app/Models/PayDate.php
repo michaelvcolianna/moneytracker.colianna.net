@@ -42,14 +42,14 @@ class PayDate extends Model
         $current = new Carbon(request()->query('date', date('Y-m-d')));
         if($payPeriod = PayPeriod::getNearest($current))
         {
-            $current->subDays($current->diffInDays($payPeriod->start) % $payPeriod->date_mod);
+            $current->subDays($current->diffInDays($payPeriod->start) % 14);
 
             if(!$payDate = PayDate::where('start', $current)->first())
             {
                 $payDate = static::create([
                     'pay_period_id' => $payPeriod->id,
                     'start' => $current,
-                    'end' => $current->copy()->addDays($payPeriod->date_mod - 1),
+                    'end' => $current->copy()->addDays(13),
                     'beginning' => $payPeriod->amount,
                     'current' => $payPeriod->amount,
                 ]);
@@ -125,9 +125,9 @@ class PayDate extends Model
     public static function validationRules($preface = null)
     {
         return [
-            $preface . 'start' => 'required|date_format:Y-m-d',
-            $preface . 'end' => 'required|date_format:Y-m-d',
-            $preface . 'beginning' => 'required|numeric',
+            'payDate.start' => 'required|date_format:Y-m-d',
+            'payDate.end' => 'required|date_format:Y-m-d',
+            'payDate.beginning' => 'required|integer',
         ];
     }
 
@@ -148,12 +148,12 @@ class PayDate extends Model
      */
     public function getPreviousAttribute()
     {
-        $previous = $this->start->copy()->subDays($this->payPeriod->date_mod);
+        $previous = $this->start->copy()->subDays(14);
 
         $checkPeriod = PayPeriod::getNearest($previous);
         if($checkPeriod->start->notEqualTo($this->payPeriod->start))
         {
-            $previous = $this->start->copy()->subDays($checkPeriod->date_mod);
+            $previous = $this->start->copy()->subDays(14);
         }
 
         return $previous;

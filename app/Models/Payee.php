@@ -43,7 +43,7 @@ class Payee extends Model
         // Set defaults for months
         foreach(config('app.months') as $key => $value)
         {
-            $this->attributes[$key] = false;
+            $this->attributes[$key] = true;
         }
 
         // Set months as fillable
@@ -59,17 +59,17 @@ class Payee extends Model
     public static function validationRules($preface = null)
     {
         $rules = [
-            $preface . 'name' => 'required',
-            $preface . 'amount' => 'nullable|numeric',
-            $preface . 'start' => 'nullable|min:1|max:31',
-            $preface . 'end' => 'nullable|min:1|max:31',
-            $preface . 'active' => 'nullable|boolean',
+            'payee.name' => 'required',
+            'payee.amount' => 'nullable|integer',
+            'payee.start' => 'nullable|integer|min:1|max:31',
+            'payee.end' => 'nullable|integer|min:1|max:31',
+            'payee.active' => 'nullable|boolean',
         ];
 
         // Set rules for the months
         foreach(config('app.months') as $key => $value)
         {
-            $rules[$preface . $key] = 'nullable|boolean';
+            $rules['payee.' . $key] = 'nullable|boolean';
         }
 
         return $rules;

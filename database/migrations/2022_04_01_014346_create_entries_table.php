@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pay_date_id');
             $table->foreignId('payee_id')->nullable();
-            $table->unsignedDecimal('amount');
+            $table->integer('amount');
             $table->string('payee');
-            $table->boolean('scheduled');
-            $table->boolean('reconciled');
+            $table->boolean('scheduled')->default(false);
+            $table->boolean('reconciled')->default(false);
             $table->timestamps();
         });
     }

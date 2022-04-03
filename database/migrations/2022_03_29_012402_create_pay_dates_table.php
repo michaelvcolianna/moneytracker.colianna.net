@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('pay_period_id');
             $table->date('start');
             $table->date('end');
-            $table->unsignedDecimal('beginning')->nullable();
-            $table->decimal('current')->nullable();
+            $table->unsignedInteger('beginning')->nullable();
+            $table->integer('current')->nullable();
             $table->timestamps();
         });
     }

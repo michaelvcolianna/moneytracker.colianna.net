@@ -7,33 +7,24 @@ use Illuminate\View\Component;
 class NavLink extends Component
 {
     /** @var boolean */
-    public $current;
+    protected $current;
 
     /** @var string */
     public $icon;
-    public $label;
-    public $route;
-    public $test;
     public $url;
 
     /**
      * Create a new component instance.
      *
      * @param  string  $icon
-     * @param  string  $label
      * @param  string  $route
-     * @param  string  $test
-     * @param  string  $url
      * @return void
      */
-    public function __construct($icon, $label, $route = null, $test = null, $url = null)
+    public function __construct($icon, $route = null)
     {
-        $this->current = request()->routeIs($test ?? $route);
+        $this->current = request()->routeIs($route);
         $this->icon = $icon;
-        $this->label = $label;
-        $this->route = $route;
-        $this->test = $test;
-        $this->url = $url ?? route($route);
+        $this->url = route($route);
     }
 
     /**
@@ -43,6 +34,15 @@ class NavLink extends Component
      */
     public function render()
     {
-        return view('components.shared.nav-link');
+        return function($data)
+        {
+            // Set the aria-current if needed
+            $data['attributes']['aria-current'] = $this->current
+                ? 'page'
+                : null
+                ;
+
+            return 'components.shared.nav-link';
+        };
     }
 }

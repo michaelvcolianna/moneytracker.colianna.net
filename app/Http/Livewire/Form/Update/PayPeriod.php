@@ -17,7 +17,7 @@ class PayPeriod extends Component
      */
     protected function rules()
     {
-        return PayPeriodModel::validationRules('payPeriod.');
+        return PayPeriodModel::validationRules();
     }
 
     /**
@@ -52,21 +52,7 @@ class PayPeriod extends Component
     {
         $this->validateOnly('payPeriod.amount');
 
-        $this->payPeriod->amount = $this->moneyFormat($value);
-        $this->payPeriod->save();
-    }
-
-    /**
-     * Update biweekly.
-     *
-     * @param  mixed  $value
-     * @return void
-     */
-    public function updatedPayPeriodBiweekly($value)
-    {
-        $this->validateOnly('payPeriod.biweekly');
-
-        $this->payPeriod->biweekly = $value;
+        $this->payPeriod->amount = $value;
         $this->payPeriod->save();
     }
 

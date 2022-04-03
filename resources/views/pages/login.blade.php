@@ -1,10 +1,21 @@
 <x-layout title="Log In">
-    <form class="login__form" method="POST" action="{{ route('login') }}">
+    <form class="form" method="POST" action="{{ route('login') }}">
         @csrf
 
-        <x-form.field.input id="email" name="email" type="text" autocomplete="nickname" />
-        <x-form.field.input id="password" name="password" type="password" />
-        <x-form.field.boolean id="remember" label="Remember Me" name="remember" />
-        <x-form.field.button id="submit" label="Log In" icon="log-in" type="submit" class="primary" />
+        <x-form.field.input id="email" type="text" autocomplete="nickname">
+            Email Address
+        </x-form.field.input>
+
+        <x-form.field.input id="password" type="password">
+            Password
+        </x-form.field.input>
+
+        <x-form.field.boolean id="remember">
+            Remember Me
+        </x-form.field.boolean>
+
+        <x-form.field.button icon="log-in" class="button--primary">
+            Log In
+        </x-form.field.button>
     </form>
 </x-layout>

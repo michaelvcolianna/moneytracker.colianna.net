@@ -23,7 +23,7 @@ class Entry extends Component
      */
     protected function rules()
     {
-        return EntryModel::validationRules('entry.');
+        return EntryModel::validationRules();
     }
 
     /**
@@ -36,7 +36,6 @@ class Entry extends Component
     {
         $this->fieldId = 'entry-' . $entry->id;
         $this->entry = $entry;
-
     }
 
     /**
@@ -59,7 +58,7 @@ class Entry extends Component
     {
         $this->validateOnly('entry.amount');
 
-        $this->entry->amount = $this->moneyFormat($value);
+        $this->entry->amount = $value;
         $this->entry->save();
 
         PayDate::getCurrent()->recalculateCurrent();

@@ -14,10 +14,6 @@
     </div>
 
     <button type="button" class="select-all {{ $areAnySelected ? '' : 'empty' }}" wire:click="selectAll">
-        <span class="label">{{ $areAnySelected ? 'Des' : 'S' }}elect All</span>
-        <span aria-hidden="true">
-            <x-shared.icon name="box-select-all" class="on" height="14" width="14" />
-            <x-shared.icon name="box-deselect-all" class="off" height="14" width="14" />
-        </span>
+        <span>{{ $areAnySelected ? 'Des' : 'S' }}elect All</span>
     </button>
 </div>

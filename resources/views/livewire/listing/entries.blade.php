@@ -1,14 +1,13 @@
-<div class="entries__list">
-    <div class="legend legend--entries" aria-hidden="true">
-        <strong class="legend__amount">Amount</strong>
-        <strong class="legend__payee">Payee</strong>
-        <strong class="legend__scheduled">Scheduled</strong>
-        <strong class="legend__reconciled">Reconciled</strong>
-        <strong class="legend__delete">Delete</strong>
-    </div>
+<div class="page__dashboard__list">
+    <h3>
+        Entries For This Date
+    </h3>
 
     @forelse($entries as $entry)
-        <livewire:form.update.entry :entry="$entry" wire:key="entry-{{ $entry->id }}" />
+        <livewire:form.update.entry
+            :entry="$entry"
+            wire:key="entry-{{ $entry->id }}"
+        />
     @empty
         <div class="empty">
             <p><em>No entries yet.</em></p>

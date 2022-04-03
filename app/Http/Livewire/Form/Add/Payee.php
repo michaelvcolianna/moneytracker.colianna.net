@@ -2,31 +2,11 @@
 
 namespace App\Http\Livewire\Form\Add;
 
+use App\Http\Livewire\Form\Payee as Component;
 use App\Models\Payee as PayeeModel;
-use App\Traits\HasHiddenForm;
-use Livewire\Component;
 
 class Payee extends Component
 {
-    use HasHiddenForm;
-
-    /** @var array */
-    public $months;
-
-    /** @var boolean */
-    public $active = true;
-    public $areAnySelected;
-
-    /** @var float */
-    public $amount;
-
-    /** @var integer */
-    public $end;
-    public $start;
-
-    /** @var string */
-    public $name;
-
     /**
      * Resets form values and closes the form
      *
@@ -34,32 +14,8 @@ class Payee extends Component
      */
     public function clearForm()
     {
-        $this->reset(['active', 'isFormShowing', 'amount', 'end', 'start', 'name']);
-        $this->defaultMonthValues();
+        $this->payee = new PayeeModel;
         $this->updateSelectButton();
-    }
-
-    /**
-     * Default for months.
-     *
-     * @return void
-     */
-    protected function defaultMonthValues()
-    {
-        foreach(config('app.months') as $key => $value)
-        {
-            $this->{$key} = false;
-        }
-    }
-
-    /**
-     * Validation rules.
-     *
-     * @return array
-     */
-    protected function rules()
-    {
-        return PayeeModel::validationRules();
     }
 
     /**
@@ -69,9 +25,9 @@ class Payee extends Component
      */
     public function mount()
     {
-        $this->active = true;
         $this->areAnySelected = true;
-        $this->defaultMonthValues();
+        $this->options = config('app.months');
+        $this->clearForm();
     }
 
     /**
@@ -92,32 +48,9 @@ class Payee extends Component
     public function save()
     {
         $data = $this->validate();
-
-        PayeeModel::create($data);
-
+        $this->payee->save();
         $this->clearForm();
-
         $this->emit('refreshPayees');
-    }
-
-    /**
-     * Select/deselect all
-     *
-     * @return void
-     */
-    public function selectAll()
-    {
-        $select = $this->areAnySelected
-            ? false
-            : true
-            ;
-
-        foreach(config('app.months') as $key => $value)
-        {
-             $this->{$key} = $select;
-        }
-
-        $this->updateSelectButton();
     }
 
     /**
@@ -128,22 +61,5 @@ class Payee extends Component
     public function updated($name, $value)
     {
         $this->updateSelectButton();
-    }
-
-    /**
-     * Switch between select/deselect all.
-     *
-     * @return void
-     */
-    protected function updateSelectButton()
-    {
-        $total = 0;
-
-        foreach(config('app.months') as $key => $value)
-        {
-            $total+= $this->{$key};
-        }
-
-        $this->areAnySelected = (bool) $total;
     }
 }

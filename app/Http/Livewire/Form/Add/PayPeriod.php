@@ -2,22 +2,13 @@
 
 namespace App\Http\Livewire\Form\Add;
 
-use App\Http\Livewire\Component;
 use App\Models\PayPeriod as PayPeriodModel;
-use App\Traits\HasHiddenForm;
+use Livewire\Component;
 
 class PayPeriod extends Component
 {
-    use HasHiddenForm;
-
-    /** @var boolean */
-    public $biweekly;
-
-    /** @var float */
-    public $amount;
-
-    /** @var string */
-    public $start;
+    /** @var \App\Models\PayPeriod */
+    public $payPeriod;
 
     /**
      * Validation rules.
@@ -27,6 +18,26 @@ class PayPeriod extends Component
     protected function rules()
     {
         return PayPeriodModel::validationRules();
+    }
+
+    /**
+     * Resets form values and closes the form
+     *
+     * @return void
+     */
+    public function clearForm()
+    {
+        $this->payPeriod = new PayPeriodModel;
+    }
+
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function mount()
+    {
+        $this->clearForm();
     }
 
     /**
@@ -47,12 +58,8 @@ class PayPeriod extends Component
     public function save()
     {
         $data = $this->validate();
-        $data['biweekly'] ??= false;
-
-        PayPeriodModel::create($data);
-
-        $this->reset();
-
+        $this->payPeriod->save();
+        $this->clearForm();
         $this->emit('refreshPayPeriods');
     }
 }

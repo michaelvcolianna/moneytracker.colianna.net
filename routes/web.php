@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\PayDate;
-use App\Models\Payee;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +17,20 @@ Route::middleware(['auth'])->group(function() {
     Route::view('/', 'pages.dashboard')->name('dashboard');
     Route::view('/pay-periods', 'pages.pay-periods')->name('pay-periods');
     Route::view('/payees', 'pages.payees')->name('payees');
+});
+
+Route::get('/svg', function() {
+    $name = 'partials.svg.' . request()->query('name');
+
+    abort_unless(view()->exists($name), 404);
+
+    $icon = view('components.shared.icon', [
+        'name' => $name,
+        'fill' => request()->query('fill', 'currentColor'),
+        'height' => request()->query('height', 16),
+        'width' => request()->query('width', 16),
+        'attributes' => null,
+    ])->render();
+
+    return response($icon)->header('Content-Type', 'image/svg+xml');
 });

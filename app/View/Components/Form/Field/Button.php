@@ -8,22 +8,16 @@ class Button extends Component
 {
     /** @var string */
     public $icon;
-    public $id;
-    public $label;
 
     /**
      * Create a new component instance.
      *
      * @param  string  $icon
-     * @param  string  $id
-     * @param  string  $label
      * @return void
      */
-    public function __construct($icon = null, $id, $label = null)
+    public function __construct($icon = null)
     {
         $this->icon = $icon;
-        $this->id = $id;
-        $this->label = $label ?? ucfirst($id);
     }
 
     /**

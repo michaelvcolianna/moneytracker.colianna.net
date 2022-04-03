@@ -4,12 +4,9 @@ namespace App\Http\Livewire\Form\Update;
 
 use App\Http\Livewire\Component;
 use App\Models\PayDate;
-use App\Traits\HasHiddenForm;
 
 class Amount extends Component
 {
-    use HasHiddenForm;
-
     /** @var \App\Models\PayDate */
     public $payDate;
 
@@ -54,13 +51,8 @@ class Amount extends Component
     public function update()
     {
         $data = $this->validate();
-
         $this->payDate->save();
-
         $this->payDate->recalculateCurrent();
-
         $this->emit('refreshAmount');
-
-        $this->isFormShowing = false;
     }
 }

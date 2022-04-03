@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class Icon extends Component
 {
-    /** @var mixed<integer|string> */
+    /** @var integer */
     public $height;
     public $width;
 
@@ -19,11 +19,11 @@ class Icon extends Component
      *
      * @param  string  $name
      * @param  string  $fill
-     * @param  integer|string  $height
-     * @param  integer|string  $width
+     * @param  integer  $height
+     * @param  integer  $width
      * @return void
      */
-    public function __construct($name, $fill = 'currentColor', $height = 18, $width = 18)
+    public function __construct($name, $fill = 'currentColor', $height = 24, $width = 24)
     {
         $this->fill = $fill;
         $this->height = $height;

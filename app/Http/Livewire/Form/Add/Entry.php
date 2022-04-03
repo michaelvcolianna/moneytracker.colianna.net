@@ -5,27 +5,13 @@ namespace App\Http\Livewire\Form\Add;
 use App\Models\Entry as EntryModel;
 use App\Models\PayDate;
 use App\Models\Payee;
-use App\Traits\HasHiddenForm;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Entry extends Component
 {
-    use HasHiddenForm;
-
-    /** @var boolean */
-    public $reconciled;
-    public $scheduled;
-
-    /** @var float */
-    public $amount;
-
-    /** @var integer */
-    public $pay_date_id;
-    public $payee_id;
-
-    /** @var string */
-    public $payee;
+    /** @var \App\Models\Entry */
+    public $entry;
 
     /**
      * Validation rules.
@@ -38,13 +24,24 @@ class Entry extends Component
     }
 
     /**
+     * Resets form values and closes the form
+     *
+     * @return void
+     */
+    public function clearForm()
+    {
+        $this->entry = new EntryModel;
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
     public function mount()
     {
-        $this->pay_date_id = PayDate::getCurrent()->id ?? null;
+        $this->clearForm();
+        $this->entry->pay_date_id = PayDate::getCurrent()->id;
     }
 
     /**
@@ -59,50 +56,45 @@ class Entry extends Component
 
     public function save()
     {
-        $data = $this->validate();
-        $data['scheduled'] ??= false;
-        $data['reconciled'] ??= false;
-
-        EntryModel::create($data);
-
+        $this->validate();
+        $this->entry->save();
         PayDate::getCurrent()->recalculateCurrent();
-
         $this->clearForm();
-
         $this->emit('refreshEntries');
         $this->emit('refreshAmount');
     }
 
-    public function updatedPayee($value)
+    public function updatedEntryPayee($value)
     {
         if(is_numeric($value) && $payee = Payee::find($value))
         {
-            \Log::debug('-- set payee id and name');
-            $this->payee_id = $value;
-            $this->payee = $payee->name;
+            $this->entry->payee_id = $value;
+            $this->entry->payee = $payee->name;
         }
 
-        if(preg_match('/\D+/m', $value) && $payee = Payee::firstWhere('name', $value))
+        if
+        (
+            preg_match('/\D+/m', $value)
+            &&
+            $payee = Payee::firstWhere('name', $value)
+        )
         {
-            \Log::debug('-- set payee id');
-            $this->payee_id = $payee->id;
+            $this->entry->payee_id = $payee->id;
         }
 
-        if(preg_match('/\D+/m', $value) && $this->payee_id)
+        if(preg_match('/\D+/m', $value) && $this->entry->payee_id)
         {
-            $payee = Payee::find($this->payee_id);
+            $payee = Payee::find($this->entry->payee_id);
 
             if(!Str::contains($value, $payee->name))
             {
-                \Log::debug('-- unset payee id');
-                $this->payee_id = null;
+                $this->entry->payee_id = null;
             }
         }
 
         if(empty($value))
         {
-            \Log::debug('-- unset payee id');
-            $this->payee_id = null;
+            $this->entry->payee_id = null;
         }
     }
 }

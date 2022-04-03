@@ -1,21 +1,41 @@
-<div class="entries__amount" aria-label="Pay date amount">
-    <div class="current">${{ $this->moneyFormatComma($payDate->current) }}</div>
-    <div class="total">of ${{ $this->moneyFormatComma($payDate->beginning) }}</div>
+<div class="page__dashboard__amount" aria-label="Pay date amount">
+    <div class="amount__current">
+        ${{ $this->moneyFormat($payDate->current) }}
+    </div>
 
-    <div class="entries__amount__edit">
-        @if(!$isFormShowing)
-            <button type="button" class="form-toggle" wire:click="$toggle('isFormShowing')">
-                <span>Edit Amount</span>
-                <x-shared.icon name="edit" aria-hidden="true" />
-            </button>
-        @else
-            <div class="entries__amount__form">
-                <h3>Edit Original Amount</h3>
+    <div class="amount__total">
+        of ${{ $this->moneyFormat($payDate->beginning) }}
+    </div>
 
-                <x-form.field.input id="entries-beginning" test="payDate.beginning" label="Original Amount" type="number" step="0.01" wire:model.lazy="payDate.beginning" />
-                <x-form.field.button id="add" label="Save Amount" icon="save" class="save" wire:click="update" />
-                <x-form.field.button id="cancel" type="reset" icon="cancel" class="cancel" wire:click="$toggle('isFormShowing')" />
-            </div>
-        @endif
+    <form class="form" wire:submit.prevent="update">
+        <h3 class="form__toggle">
+            Update Amount
+        </h3>
+
+        <div class="form__interior">
+            <x-form.field.input
+                id="beginning"
+                type="number"
+                wire:model.lazy="payDate.beginning"
+            >
+                Beginning Amount
+            </x-form.field.input>
+
+            <x-form.field.button
+                icon="save"
+                class="button--save"
+                wire:click="update"
+            >
+                Save Amount
+            </x-form.field.button>
+
+            <x-form.field.button
+                type="reset"
+                icon="x-circle"
+                class="button--cancel"
+            >
+                Cancel
+            </x-form.field.button>
+        </div>
     </div>
 </div>

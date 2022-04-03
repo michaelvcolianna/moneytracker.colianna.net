@@ -41,12 +41,12 @@ class Entry extends Model
     public static function validationRules($preface = null)
     {
         return [
-            $preface . 'pay_date_id' => 'required|exists:App\Models\PayDate,id',
-            $preface . 'payee' => 'nullable|exists:App\Models\Payee,id',
-            $preface . 'amount' => 'required|numeric',
-            $preface . 'payee' => 'required|string',
-            $preface . 'scheduled' => 'nullable|boolean',
-            $preface . 'reconciled' => 'nullable|boolean',
+            'entry.pay_date_id' => 'required|exists:App\Models\PayDate,id',
+            'entry.payee' => 'nullable|exists:App\Models\Payee,id',
+            'entry.amount' => 'required|integer',
+            'entry.payee' => 'required|string',
+            'entry.scheduled' => 'nullable|boolean',
+            'entry.reconciled' => 'nullable|boolean',
         ];
     }
 

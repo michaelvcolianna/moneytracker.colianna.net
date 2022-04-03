@@ -18,13 +18,13 @@ return new class extends Migration
         Schema::create('payees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedDecimal('amount')->nullable();
+            $table->unsignedInteger('amount')->nullable();
             $table->unsignedTinyInteger('start')->nullable();
             $table->unsignedTinyInteger('end')->nullable();
-            $table->boolean('active');
+            $table->boolean('active')->default(false);
             foreach(config('app.months') as $key => $value)
             {
-                $table->boolean($key);
+                $table->boolean($key)->default(false);
             }
             $table->timestamps();
         });

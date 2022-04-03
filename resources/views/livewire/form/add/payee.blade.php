@@ -1,18 +1,82 @@
-<div class="payees__add">
-    @include('partials.button.toggle', ['label' => 'Payee'])
+<div class="page__payees__add">
+    <form class="form" wire:submit.prevent="save">
+        <h3 class="form__toggle">
+            Add Payee
+        </h3>
 
-    @if($isFormShowing)
-        <div class="payees__add__form">
-            <h3>Add Payee</h3>
+        <div class="form__interior">
+            <x-form.field.boolean
+                id="active"
+                wire:model="payee.active"
+            >
+                Active for autocomplete
+            </x-form.field.boolean>
 
-            <x-form.field.input id="new-name" label="Name" type="text" wire:model.lazy="name" />
-            <x-form.field.input id="new-amount" label="Schedule Amount" type="number" step="0.01" wire:model.lazy="amount" />
-            <x-form.field.input id="new-start" label="Schedule Start Day" type="number" step="1" min="1" max="31" wire:model.lazy="start" />
-            <x-form.field.input id="new-end" label="Schedule End Day" type="number" step="1" min="1" max="31" wire:model.lazy="end" />
-            <x-form.field.options id="new-month" label="Schedule Months" type="months" :options="config('app.months')" :areAnySelected="$areAnySelected" />
-            <x-form.field.boolean id="new-active" label="Active for autocomplete" wire:model="active" />
+            <x-form.field.input
+                id="name"
+                type="text"
+                wire:model.lazy="payee.name"
+            >
+                Name
+            </x-form.field.input>
+
+            <x-form.field.input
+                id="amount"
+                type="number"
+                wire:model.lazy="payee.amount"
+            >
+                Scheduled Amount
+            </x-form.field.input>
+
+            <x-form.field.input
+                id="start"
+                type="number"
+                min="1" max="31"
+                wire:model.lazy="payee.start"
+            >
+                Schduled Start Day
+            </x-form.field.input>
+
+            <x-form.field.input
+                id="end"
+                type="number"
+                min="1" max="31"
+                wire:model.lazy="payee.end"
+            >
+                Scheduled End Day
+            </x-form.field.input>
+
+            <div class="form__options field__months">
+                <div class="options__info">
+                    <h4>
+                        Scheduled Months
+                    </h4>
+
+                    <button
+                        type="button"
+                        class="select-all {{ $areAnySelected ? '' : 'empty' }}"
+                        wire:click="selectAll"
+                    >
+                        <span>
+                            {{ $areAnySelected ? 'Des' : 'S' }}elect All
+                        </span>
+                    </button>
+                </div>
+
+                <div class="options__items">
+                    @foreach($options as $key => $name)
+                        <x-form.field.boolean
+                            id="month-{{ $key }}"
+                            wire:model="payee.{{ $key }}"
+                            wire:key="month-{{ $key }}"
+                        >
+                            {{ $name }}
+                        </x-form.field.boolean>
+                    @endforeach
+                </div>
+            </div>
 
             @include('partials.button.save', ['label' => 'Payee'])
         </div>
-    @endif
+    </form>
 </div>
