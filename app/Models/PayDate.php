@@ -34,12 +34,14 @@ class PayDate extends Model
     /**
      * Get the current/specified pay date
      *
+     * @param  string  $date
      * @return \App\Models\PayDate
      */
-    public static function getCurrent()
+    public static function getCurrent($date = null)
     {
+        $date ??= request()->query('date', date('Y-m-d'));
         $payDate = null;
-        $current = new Carbon(request()->query('date', date('Y-m-d')));
+        $current = new Carbon($date);
         if($payPeriod = PayPeriod::getNearest($current))
         {
             $current->subDays($current->diffInDays($payPeriod->start) % 14);

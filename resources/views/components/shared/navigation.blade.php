@@ -4,13 +4,15 @@
             Dashboard
         </x-shared.nav-link>
 
-        {{-- @todo pay dates icon calendar --}}
+        <x-shared.nav-link route="forecast" icon="cast">
+            Forecast
+        </x-shared.nav-link>
 
-        <x-shared.nav-link route="pay-periods" icon="server">
+        <x-shared.nav-link route="pay-periods" icon="calendar">
             Pay Periods
         </x-shared.nav-link>
 
-        <x-shared.nav-link route="payees" icon="grid">
+        <x-shared.nav-link route="payees" icon="server">
             Payees
         </x-shared.nav-link>
 

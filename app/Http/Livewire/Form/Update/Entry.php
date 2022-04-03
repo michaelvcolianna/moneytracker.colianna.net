@@ -34,7 +34,6 @@ class Entry extends Component
      */
     public function mount($entry)
     {
-        $this->fieldId = 'entry-' . $entry->id;
         $this->entry = $entry;
     }
 

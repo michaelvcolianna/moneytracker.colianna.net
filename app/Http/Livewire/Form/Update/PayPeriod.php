@@ -28,7 +28,6 @@ class PayPeriod extends Component
      */
     public function mount($payPeriod)
     {
-        $this->fieldId = 'pay-period-' . $payPeriod->id;
         $this->payPeriod = $payPeriod;
     }
 

@@ -1,4 +1,4 @@
-<div class="entry" id="{{ $fieldId }}" aria-label="Entry">
+<div class="entry" id="entry-{{ $entry->id }}" aria-label="Entry">
     <x-fields.entry :entry="$entry" />
 
     <div

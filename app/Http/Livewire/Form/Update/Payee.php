@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 
 class Payee extends Component
 {
+    /** @var string */
+    public $fieldId;
+
     /**
      * Create a new component instance.
      *
