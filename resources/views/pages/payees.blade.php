@@ -1,4 +1,3 @@
-<x-layout title="Payees">
-    <livewire:form.add.payee />
+<x-layout title="Payees" form="payee">
     <livewire:listing.payees />
 </x-layout>

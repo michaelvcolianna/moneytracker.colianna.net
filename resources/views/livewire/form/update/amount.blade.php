@@ -18,7 +18,7 @@
 
         <x-form.field.button
             icon="save"
-            class="button--save"
+            class="button button--save"
             @click="$wire.update(); open = false"
         >
             Save Amount
@@ -27,7 +27,7 @@
         <x-form.field.button
             type="reset"
             icon="x-circle"
-            class="button--cancel"
+            class="button button--cancel"
             @click="$wire.clearForm(); open = false"
         >
             Cancel

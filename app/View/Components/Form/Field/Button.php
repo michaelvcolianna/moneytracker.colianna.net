@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Form\Field;
 
-use App\View\Component;
+use Illuminate\View\Component;
 
 class Button extends Component
 {
@@ -27,19 +27,6 @@ class Button extends Component
      */
     public function render()
     {
-        return function($data)
-        {
-            // Add an icon if specified
-            if($this->icon)
-            {
-                $data['attributes']['class'] = $this->addIcon(
-                    $data['attributes']['class'],
-                    $this->icon
-                );
-            }
-
-            return 'components.form.field.button';
-        };
-
+        return view('components.form.field.button');
     }
 }

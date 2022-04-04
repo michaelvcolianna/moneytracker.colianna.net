@@ -6,7 +6,9 @@ use Illuminate\View\Component;
 
 abstract class Field extends Component
 {
-    /** @var array */
+    /** @var boolean */
+    public $adding;
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -25,6 +27,33 @@ abstract class Field extends Component
                     ? $data['attributes'][reset($wire)]
                     : $data['attributes']['id']
                     ;
+            }
+
+            if
+            (
+                isset($data['attributes']['adding'])
+                &&
+                $data['attributes']['adding']
+            )
+            {
+                if(isset($data['attributes']['wire:model']))
+                {
+                    $model = $data['attributes']['wire:model'];
+                    unset($data['attributes']['wire:model']);
+                }
+
+                if(isset($data['attributes']['wire:model.lazy']))
+                {
+                    $model = $data['attributes']['wire:model.lazy'];
+                    unset($data['attributes']['wire:model.lazy']);
+                }
+
+                $data['attributes']['wire:model.defer'] = $model;
+            }
+
+            if($data['attributes']['type'] == 'number')
+            {
+                $data['attributes']['inputmode'] = 'numeric';
             }
 
             return 'components.' . $data['componentName'];

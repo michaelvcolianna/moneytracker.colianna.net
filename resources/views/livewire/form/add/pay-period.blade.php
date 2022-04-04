@@ -1,4 +1,4 @@
-<div class="page__pay-periods__add">
+<div class="block block__add">
     <x-form.hidden title="Add Pay Period">
         <x-fields.pay-period :payPeriod="$payPeriod" />
 

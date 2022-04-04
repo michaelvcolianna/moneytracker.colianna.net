@@ -1,4 +1,3 @@
-<x-layout title="Pay Periods">
-    <livewire:form.add.pay-period />
+<x-layout title="Pay Periods" form="pay-period">
     <livewire:listing.pay-periods />
 </x-layout>

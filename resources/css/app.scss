@@ -1,4 +1,376 @@
+@use 'sass:selector';
+
 @import 'variables';
 @import 'functions';
+@import 'elements';
+@import 'icons';
+@import 'layout';
 
-@import 'general/elements';
+header
+{
+    & > a
+    {
+        @include button;
+        color: var(--color-foreground);
+        font-family: var(--font-branding);
+        font-size: 1.5rem;
+        height: 3rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    nav
+    {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding: 1rem;
+
+        a
+        {
+            color: var(--color-foreground);
+            display: grid;
+            font-size: 0.6rem;
+            font-weight: 700;
+            justify-items: center;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+    }
+}
+
+footer
+{
+    @include button;
+    color: var(--color-grey);
+    font-size: 0.75rem;
+    font-weight: 700;
+    gap: 0.5rem;
+    height: 1.5rem;
+}
+
+.page
+{
+    @include standard-grid;
+    padding: 1rem;
+
+    &__header
+    {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        position: relative;
+    }
+}
+
+.form
+{
+    @include standard-grid;
+
+    &--hidden
+    {
+        display: block;
+    }
+
+    &__toggle
+    {
+        &.button
+        {
+            display: inline-flex;
+            font-size: 1rem;
+            font-weight: 400;
+            justify-content: space-between;
+            padding-left: 0.7rem;
+        }
+    }
+
+    &__interior
+    {
+        background-color: var(--color-background);
+        border: 2px dotted var(--color-border);
+        border-radius: 3px;
+        left: 0;
+        padding: 1rem;
+        position: absolute;
+        top: calc(100% + 1rem);
+        width: 100%;
+        z-index: 1;
+    }
+
+    &__fields
+    {
+        @include standard-grid;
+        margin: 1rem 0;
+
+        .page__pay-periods &,
+        .page__payees &
+        {
+            display: flex;
+            gap: 0;
+            justify-content: space-between;
+        }
+
+        .page__pay-periods &
+        {
+            .form__date
+            {
+                width: 55%;
+            }
+
+            .form__number
+            {
+                width: 40%;
+            }
+        }
+
+        .page__payees &
+        {
+            flex-flow: row wrap;
+
+            .form__checkbox
+            {
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+            .form__text
+            {
+                width: 100%;
+            }
+
+            .form__number
+            {
+                width: 30%;
+            }
+        }
+    }
+
+    &__options
+    {
+        @include standard-grid;
+        width: 100%;
+    }
+
+    &__actions
+    {
+        display: flex;
+        flex-flow: row-reverse wrap;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+}
+
+.field
+{
+    color: var(--color-grey);
+    display: flex;
+    flex-flow: column-reverse;
+
+    label
+    {
+        font-size: 0.65rem;
+    }
+
+    input
+    {
+        background-color: var(--color-background);
+        border: 0;
+        border-bottom: 2px solid var(--color-foreground);
+        border-radius: 0;
+        min-height: 2rem;
+        padding: 0;
+    }
+}
+
+.boolean
+{
+    label
+    {
+        position: relative;
+    }
+
+    input
+    {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    span
+    {
+        background-image: url('/svg?name=square');
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    input:checked + span
+    {
+        background-image: url('/svg?name=check-square');
+    }
+}
+
+.button
+{
+    @include button;
+    background-color: var(--color-background);
+    border: 2px solid var(--color-foreground);
+    border-radius: 3px;
+    color: var(--color-foreground);
+    gap: 0.25rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
+
+    svg
+    {
+        height: 1rem;
+        width: 1rem;
+
+        .open &
+        {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &--cancel
+    {
+        border-color: transparent;
+        color: var(--color-grey);
+    }
+
+    &--primary
+    {
+        color: var(--color-background);
+    }
+
+    &--primary
+    {
+        background-color: var(--color-blue);
+        border-color: var(--color-blue);
+    }
+
+    &--save
+    {
+        border-color: var(--color-green);
+        color: var(--color-green);
+    }
+}
+
+.block
+{
+    &__listing
+    {
+        display: flex;
+        flex-flow: column;
+        gap: 1rem;
+
+        h3
+        {
+            @include sr;
+        }
+    }
+}
+
+.pay-period
+{
+    zoom: 1;
+}
+
+.pay-date
+{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0 1rem;
+
+    &__title
+    {
+        width: 100%;
+    }
+
+    &__amount
+    {
+        font-size: 2rem;
+        width: 35%;
+    }
+}
+
+.amount
+{
+    &--negative
+    {
+        color: var(--color-red);
+    }
+
+    &--positive
+    {
+        color: var(--color-green);
+    }
+}
+
+.options
+{
+    &__info
+    {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+
+    &__items
+    {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 1rem;
+        justify-content: space-evenly;
+
+        .boolean
+        {
+            font-size: 0.75rem;
+
+            span
+            {
+                background-image: url('/svg?name=circle');
+                background-position: left 0.25rem center;
+                background-size: 0.75rem;
+                padding: 2px 0.5rem 2px 1.25rem;
+            }
+
+            input:checked + span
+            {
+                background-image: url('/svg?name=check-circle');
+            }
+        }
+    }
+}
+
+.select-all
+{
+    background-color: var(--color-background);
+    background-image: url('/svg?name=minus-circle');
+    background-position: left 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 0.75rem;
+    border: 2px solid var(--color-foreground);
+    border-radius: 3px;
+    color: var(--color-foreground);
+    font-size: 0.75rem;
+    padding: 0 0.5rem 0 1.75rem;
+    text-transform: uppercase;
+
+    &.empty
+    {
+        background-image: url('/svg?name=plus-circle');
+    }
+
+    span
+    {
+        display: inline-block;
+        text-align: left;
+        width: 5.388888888888889rem;
+    }
+}

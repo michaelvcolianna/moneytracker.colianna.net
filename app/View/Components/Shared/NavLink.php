@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Shared;
 
-use App\View\Component;
+use Illuminate\View\Component;
 
 class NavLink extends Component
 {
@@ -41,15 +41,6 @@ class NavLink extends Component
                 ? 'page'
                 : null
                 ;
-
-            // Add an icon if specified
-            if($this->icon)
-            {
-                $data['attributes']['class'] = $this->addIcon(
-                    $data['attributes']['class'],
-                    $this->icon
-                );
-            }
 
             return 'components.shared.nav-link';
         };

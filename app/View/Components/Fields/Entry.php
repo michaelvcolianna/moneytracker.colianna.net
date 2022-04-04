@@ -14,8 +14,7 @@ class Entry extends Fields
      */
     public function __construct($entry)
     {
-        $id = $entry->id ?? 'new';
-        $this->prefix = $this->createPrefix('entry-' . $id);
+        $this->setValues($entry, 'entry');
     }
 
     /**

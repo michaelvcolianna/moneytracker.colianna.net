@@ -1,4 +1,4 @@
-<div class="page__pay-periods__list">
+<div class="block block__listing">
     <h3>
         Current Pay Periods
     </h3>

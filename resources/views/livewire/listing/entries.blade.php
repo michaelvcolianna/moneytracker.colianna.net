@@ -1,4 +1,4 @@
-<div class="page__dashboard__list">
+<div class="block block__listing">
     <h3>
         Entries For This Date
     </h3>
@@ -10,7 +10,7 @@
         />
     @empty
         <div class="empty">
-            <p><em>No entries yet.</em></p>
+            <em>No entries yet.</em>
         </div>
     @endforelse
 </div>

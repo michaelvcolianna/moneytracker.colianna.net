@@ -4,7 +4,7 @@
     <div class="form__options field__months">
         <div class="options__info">
             <h4>
-                Scheduled Months
+                Months
             </h4>
 
             <button

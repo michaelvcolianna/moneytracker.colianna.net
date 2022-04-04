@@ -8,7 +8,7 @@
     >
         <button
             type="button"
-            class="button--more icon icon--vertical"
+            class="button button--more icon icon--vertical"
             @click="open = !open"
         >
             <span>Options...</span>
@@ -18,7 +18,7 @@
             <x-form.field.button
                 type="button"
                 icon="trash"
-                class="button--danger"
+                class="button button--danger"
                 wire:click="delete"
             >
                 Delete Entry

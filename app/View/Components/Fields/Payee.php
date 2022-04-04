@@ -14,8 +14,7 @@ class Payee extends Fields
      */
     public function __construct($payee)
     {
-        $id = $payee->id ?? 'new';
-        $this->prefix = $this->createPrefix('payee-' . $id);
+        $this->setValues($payee, 'payee');
     }
 
     /**

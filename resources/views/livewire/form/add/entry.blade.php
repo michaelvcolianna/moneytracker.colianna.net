@@ -1,4 +1,4 @@
-<div class="page__dashboard__add">
+<div class="block block__add">
     <x-form.hidden title="Add Entry">
         <x-fields.entry :entry="$entry" />
 

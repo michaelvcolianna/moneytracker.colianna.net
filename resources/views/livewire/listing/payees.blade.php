@@ -1,4 +1,4 @@
-<div class="page__payees__list">
+<div class="block block__listing">
     <h3>
         Existing Payees
     </h3>
@@ -10,7 +10,7 @@
         />
     @empty
         <div class="empty">
-            <p><em>No payees yet.</em></p>
+            <em>No payees yet.</em>
         </div>
     @endforelse
 </div>

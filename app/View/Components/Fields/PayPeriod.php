@@ -14,8 +14,7 @@ class PayPeriod extends Fields
      */
     public function __construct($payPeriod)
     {
-        $id = $payPeriod->id ?? 'new';
-        $this->prefix = $this->createPrefix('pay-period-' . $id);
+        $this->setValues($payPeriod, 'pay-period');
     }
 
     /**

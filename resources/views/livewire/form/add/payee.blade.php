@@ -1,11 +1,11 @@
-<div class="page__payees__add">
+<div class="block block__add">
     <x-form.hidden title="Add Payee">
         <x-fields.payee :payee="$payee" />
 
         <div class="form__options field__months">
             <div class="options__info">
                 <h4>
-                    Scheduled Months
+                    Months
                 </h4>
 
                 <button

@@ -2,7 +2,7 @@
     <form class="form" method="POST" action="{{ route('login') }}">
         @csrf
 
-        <x-form.field.input id="email" type="text" autocomplete="nickname">
+        <x-form.field.input id="email" type="text">
             Email Address
         </x-form.field.input>
 
@@ -14,7 +14,7 @@
             Remember Me
         </x-form.field.boolean>
 
-        <x-form.field.button icon="log-in" class="button--primary">
+        <x-form.field.button icon="log-in" class="button button--primary">
             Log In
         </x-form.field.button>
     </form>

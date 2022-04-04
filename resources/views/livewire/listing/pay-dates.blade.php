@@ -1,4 +1,4 @@
-<div class="page__forecast__list">
+<div class="block block__listing">
     <h3>
         Next 10 Pay Dates
     </h3>

@@ -1,7 +1,6 @@
 <div class="form__actions">
     <x-form.field.button
-        icon="plus-circle"
-        class="button--save"
+        class="button button--save"
         wire:click="save"
     >
         Save New {{ $slot }}
@@ -9,8 +8,7 @@
 
     <x-form.field.button
         type="reset"
-        icon="x-circle"
-        class="button--cancel"
+        class="button button--cancel"
         @click="$wire.clearForm(); open = false"
     >
         Cancel

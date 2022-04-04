@@ -7,17 +7,20 @@ use Illuminate\View\Component;
 class Layout extends Component
 {
     /** @var string */
+    public $form;
     public $route;
     public $title;
 
     /**
      * Create a new component instance.
      *
+     * @param  string  $form
      * @param  string  $title
      * @return void
      */
-    public function __construct($title)
+    public function __construct($form = null, $title)
     {
+        $this->form = $form;
         $this->route = request()->route()->getName();
         $this->title = $title;
     }

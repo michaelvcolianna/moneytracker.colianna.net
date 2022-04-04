@@ -10,6 +10,14 @@
     }
 }
 
+@mixin button
+{
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
 // When a device hasn't explicitly disabled motion
 @mixin motion
 {
@@ -27,4 +35,18 @@
     overflow: hidden;
     position: fixed;
     width: 0;
+}
+
+@mixin standard-grid
+{
+    display: grid;
+    gap: 1rem;
+}
+
+@mixin unify-parent($child)
+{
+    @at-root #{selector.unify(&, $child)}
+    {
+        @content;
+    }
 }
