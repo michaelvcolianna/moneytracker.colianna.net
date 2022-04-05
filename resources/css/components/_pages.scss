@@ -1,0 +1,73 @@
+.pay-period
+{
+    zoom: 1;
+}
+
+.pay-date
+{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0 1rem;
+    justify-content: space-between;
+
+    &__title
+    {
+        width: 100%;
+    }
+
+    &__amount
+    {
+        font-size: 2rem;
+        width: 35%;
+    }
+
+    .form__number
+    {
+        width: 7rem;
+    }
+}
+
+.entry
+{
+    display: grid;
+    grid-template-columns: 1fr 2rem;
+    gap: 1rem;
+
+    .field__delete
+    {
+        position: relative;
+
+        &.open
+        {
+            .button--more
+            {
+                svg
+                {
+                    color: var(--color-grey);
+                }
+            }
+        }
+    }
+
+    .button
+    {
+        &--more
+        {
+            border-color: transparent;
+            padding: 0;
+
+            span
+            {
+                @include sr;
+            }
+        }
+
+        &--danger
+        {
+            position: absolute;
+            right: 3rem;
+            top: 0;
+            width: 9rem;
+        }
+    }
+}

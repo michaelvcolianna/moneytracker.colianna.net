@@ -1,0 +1,81 @@
+header
+{
+    & > a
+    {
+        @include button;
+        color: var(--color-foreground);
+        font-family: var(--font-branding);
+        font-size: 1.5rem;
+        font-weight: 400;
+        height: 3rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    nav
+    {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding: 1rem;
+
+        a
+        {
+            color: var(--color-foreground);
+            display: grid;
+            font-size: 0.6rem;
+            font-weight: 700;
+            justify-items: center;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+    }
+}
+
+footer
+{
+    @include button;
+    color: var(--color-grey);
+    font-size: 0.75rem;
+    font-weight: 700;
+    gap: 0.5rem;
+    height: 1.5rem;
+}
+
+.page
+{
+    @include standard-grid;
+    padding: 1rem;
+
+    &__header
+    {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        position: relative;
+    }
+}
+
+.amount
+{
+    &__current
+    {
+        font-size: 2rem;
+    }
+
+    &__beginning
+    {
+        font-size: 0.75rem;
+        width: 110px;
+    }
+
+    &--negative
+    {
+        color: var(--color-red);
+    }
+
+    &--positive
+    {
+        color: var(--color-green);
+    }
+}
