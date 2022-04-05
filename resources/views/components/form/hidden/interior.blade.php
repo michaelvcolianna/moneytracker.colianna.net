@@ -1,7 +1,6 @@
 @props(['title' => null])
 
 <div
-    data-title="{{ $title }}"
     class="form__interior"
     x-cloak
     @click.away="open = false"

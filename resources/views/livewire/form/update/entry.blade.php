@@ -8,21 +8,22 @@
     >
         <button
             type="button"
-            class="button button--more icon icon--vertical"
+            class="button button--more"
             @click="open = !open"
         >
             <span>Options...</span>
+            <x-shared.icon name="trash-2" />
         </button>
 
-        <x-form.hidden.interior>
-            <x-form.field.button
-                type="button"
-                icon="trash"
-                class="button button--danger"
-                wire:click="delete"
-            >
-                Delete Entry
-            </x-form.field.button>
-        </x-form.hidden.interior>
+        <button
+            type="button"
+            class="button button--danger"
+            @click.away="open = false"
+            x-cloak
+            x-show="open"
+            x-transition
+        >
+            <span>Delete Entry<span>
+        </button>
     </div>
 </div>

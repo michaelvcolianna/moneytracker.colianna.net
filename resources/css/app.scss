@@ -14,6 +14,7 @@ header
         color: var(--color-foreground);
         font-family: var(--font-branding);
         font-size: 1.5rem;
+        font-weight: 400;
         height: 3rem;
         text-decoration: none;
         text-transform: uppercase;
@@ -103,7 +104,8 @@ footer
         margin: 1rem 0;
 
         .page__pay-periods &,
-        .page__payees &
+        .page__payees &,
+        .page__dashboard &
         {
             display: flex;
             gap: 0;
@@ -123,10 +125,14 @@ footer
             }
         }
 
-        .page__payees &
+        .page__payees &,
+        .page__dashboard &
         {
             flex-flow: row wrap;
+        }
 
+        .page__payees &
+        {
             .form__checkbox
             {
                 margin-top: 1rem;
@@ -141,6 +147,26 @@ footer
             .form__number
             {
                 width: 30%;
+            }
+        }
+
+        .page__dashboard &
+        {
+            .form__list
+            {
+                width: 100%;
+            }
+
+            .form__number,
+            .form__checkbox
+            {
+                width: 30%;
+            }
+
+            .form__checkbox
+            {
+                align-self: center;
+                font-size: 0.75rem;
             }
         }
     }
@@ -230,17 +256,19 @@ footer
     {
         height: 1rem;
         width: 1rem;
-
-        .open &
-        {
-            transform: rotate(-180deg);
-        }
     }
 
     &--cancel
     {
         border-color: transparent;
         color: var(--color-grey);
+    }
+
+    &--danger
+    {
+        background-color: var(--color-red);
+        border-color: var(--color-red);
+        color: var(--color-background);
     }
 
     &--primary
@@ -263,6 +291,20 @@ footer
 
 .block
 {
+    &__add
+    {
+        .open
+        {
+            .button
+            {
+                svg
+                {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
     &__listing
     {
         display: flex;
@@ -272,7 +314,22 @@ footer
         h3
         {
             @include sr;
+
+            .page__dashboard &
+            {
+                height: auto;
+                position: static;
+                width: auto;
+            }
         }
+    }
+
+    &__amount
+    {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        margin: 1rem 0;
     }
 }
 
@@ -301,6 +358,17 @@ footer
 
 .amount
 {
+    &__current
+    {
+        font-size: 2rem;
+    }
+
+    &__beginning
+    {
+        font-size: 0.75rem;
+        width: 110px;
+    }
+
     &--negative
     {
         color: var(--color-red);
@@ -372,5 +440,92 @@ footer
         display: inline-block;
         text-align: left;
         width: 5.388888888888889rem;
+    }
+}
+
+.dates
+{
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 0.75rem;
+    justify-content: space-between;
+
+    a
+    {
+        color: var(--color-blue);
+        text-decoration: none;
+
+        time
+        {
+            @include button;
+            gap: 0.25rem;
+        }
+    }
+
+    &__previous
+    {
+        a
+        {
+            time
+            {
+                flex-flow: row-reverse wrap;
+            }
+        }
+    }
+
+    &__current
+    {
+        font-weight: 700;
+    }
+
+    svg
+    {
+        height: 1rem;
+        width: 1rem;
+    }
+}
+
+.entry
+{
+    display: grid;
+    grid-template-columns: 1fr 2rem;
+    gap: 1rem;
+
+    .field__delete
+    {
+        position: relative;
+
+        &.open
+        {
+            .button--more
+            {
+                svg
+                {
+                    color: var(--color-grey);
+                }
+            }
+        }
+    }
+
+    .button
+    {
+        &--more
+        {
+            border-color: transparent;
+            padding: 0;
+
+            span
+            {
+                @include sr;
+            }
+        }
+
+        &--danger
+        {
+            position: absolute;
+            right: 3rem;
+            top: 0;
+            width: 9rem;
+        }
     }
 }

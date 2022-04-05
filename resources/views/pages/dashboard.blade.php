@@ -1,7 +1,6 @@
-<x-layout title="Dashboard">
+<x-layout title="Dashboard" form="entry">
     <livewire:navigation />
     <livewire:form.update.amount />
-    <livewire:form.add.entry />
     <livewire:listing.entries />
 
     <x-shared.payee-list />
