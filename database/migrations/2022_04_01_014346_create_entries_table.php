@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pay_date_id');
-            $table->foreignId('payee_id')->nullable();
             $table->integer('amount');
             $table->string('payee');
             $table->boolean('scheduled')->default(false);

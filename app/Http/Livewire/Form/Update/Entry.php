@@ -97,32 +97,7 @@ class Entry extends Component
     {
         $this->validateOnly('entry.payee');
 
-        if(is_numeric($value) && $payee = Payee::find($value))
-        {
-            $this->entry->payee_id = $value;
-            $this->entry->payee = $payee->name;
-        }
-
-        if(preg_match('/\D+/m', $value))
-        {
-            $payee = $this->entry->payee_id
-                ? Payee::find($this->entry->payee_id)
-                : Payee::firstWhere('name', $value)
-                ;
-
-            if($payee)
-            {
-                $this->entry->payee_id = Str::contains($value, $payee->name)
-                    ? $payee->id
-                    : null
-                    ;
-            }
-            else
-            {
-                $this->entry->payee_id = null;
-            }
-        }
-
+        $this->entry->payee = $value;
         $this->entry->save();
     }
 

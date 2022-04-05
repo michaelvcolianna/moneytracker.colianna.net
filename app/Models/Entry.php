@@ -25,7 +25,6 @@ class Entry extends Model
      */
     protected $fillable = [
         'pay_date_id',
-        'payee_id',
         'amount',
         'payee',
         'scheduled',
@@ -42,7 +41,6 @@ class Entry extends Model
     {
         return [
             'entry.pay_date_id' => 'required|exists:App\Models\PayDate,id',
-            'entry.payee' => 'nullable|exists:App\Models\Payee,id',
             'entry.amount' => 'required|integer',
             'entry.payee' => 'required|string',
             'entry.scheduled' => 'nullable|boolean',
@@ -56,13 +54,5 @@ class Entry extends Model
     public function payDate()
     {
         return $this->belongsTo(PayDate::class);
-    }
-
-    /**
-     * Get the payee this entry belongs to.
-     */
-    public function payee()
-    {
-        return $this->belongsTo(Payee::class);
     }
 }

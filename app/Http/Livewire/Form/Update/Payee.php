@@ -19,7 +19,7 @@ class Payee extends Component
      */
     public function mount($payee)
     {
-        $this->fieldId = 'payee-' . $payee->id;
+        $this->fieldId = 'payee-' . $payee->id . '-';
         $this->options = config('app.months');
         $this->payee = $payee;
         $this->updateSelectButton();

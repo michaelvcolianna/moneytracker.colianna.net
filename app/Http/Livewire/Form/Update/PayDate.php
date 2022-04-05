@@ -30,7 +30,7 @@ class PayDate extends Component
      */
     public function mount($payDate)
     {
-        $this->fieldId = 'pay-date-' . $payDate->id;
+        $this->fieldId = 'pay-date-' . $payDate->id . '-';
         $this->payDate = $payDate;
     }
 

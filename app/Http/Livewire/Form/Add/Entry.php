@@ -63,38 +63,4 @@ class Entry extends Component
         $this->emit('refreshEntries');
         $this->emit('refreshAmount');
     }
-
-    public function updatedEntryPayee($value)
-    {
-        if(is_numeric($value) && $payee = Payee::find($value))
-        {
-            $this->entry->payee_id = $value;
-            $this->entry->payee = $payee->name;
-        }
-
-        if
-        (
-            preg_match('/\D+/m', $value)
-            &&
-            $payee = Payee::firstWhere('name', $value)
-        )
-        {
-            $this->entry->payee_id = $payee->id;
-        }
-
-        if(preg_match('/\D+/m', $value) && $this->entry->payee_id)
-        {
-            $payee = Payee::find($this->entry->payee_id);
-
-            if(!Str::contains($value, $payee->name))
-            {
-                $this->entry->payee_id = null;
-            }
-        }
-
-        if(empty($value))
-        {
-            $this->entry->payee_id = null;
-        }
-    }
 }
