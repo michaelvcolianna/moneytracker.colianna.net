@@ -17,7 +17,13 @@ header
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        margin: auto;
         padding: 1rem;
+
+        @include bp
+        {
+            width: 30rem;
+        }
 
         a
         {

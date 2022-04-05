@@ -1,5 +1,6 @@
 .dates
 {
+    align-items: center;
     display: flex;
     flex-flow: row wrap;
     font-size: 0.75rem;
@@ -10,6 +11,14 @@
     {
         color: var(--color-blue);
         text-decoration: none;
+
+        &:hover
+        {
+            @include bp
+            {
+                text-decoration: underline;
+            }
+        }
 
         time
         {
@@ -32,6 +41,14 @@
     &__current
     {
         font-weight: 700;
+
+        @include bp
+        {
+            background-color: var(--color-foreground);
+            border-radius: 3px;
+            color: var(--color-background);
+            padding: 1rem;
+        }
     }
 
     svg

@@ -18,5 +18,13 @@ mix
 
 if(mix.inProduction())
 {
-mix .version();
+    mix.version();
+}
+else
+{
+    mix.webpackConfig({
+        devtool: 'source-map'
+    })
+    .sourceMaps()
+    ;
 }

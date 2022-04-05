@@ -71,16 +71,33 @@
             {
                 margin-top: 1rem;
                 width: 100%;
+
+                @include bp
+                {
+                    align-self: center;
+                    margin-top: 0;
+                    width: 25%;
+                }
             }
 
             .form__text
             {
                 width: 100%;
+
+                @include bp
+                {
+                    width: 35%;
+                }
             }
 
             .form__number
             {
                 width: 30%;
+
+                @include bp
+                {
+                    width: 10%;
+                }
             }
         }
 
@@ -89,6 +106,11 @@
             .form__list
             {
                 width: 100%;
+
+                @include bp
+                {
+                    width: 40%;
+                }
             }
 
             .form__number,
@@ -97,10 +119,23 @@
                 width: 30%;
             }
 
+            .form__number
+            {
+                @include bp
+                {
+                    width: 25%;
+                }
+            }
+
             .form__checkbox
             {
                 align-self: center;
                 font-size: 0.75rem;
+
+                @include bp
+                {
+                    width: 10%;
+                }
             }
         }
     }
@@ -109,6 +144,19 @@
     {
         @include standard-grid;
         width: 100%;
+
+        @include bp
+        {
+            display: flex;
+        }
+
+        h4
+        {
+            @include bp
+            {
+                @include sr;
+            }
+        }
     }
 
     &__actions
@@ -207,19 +255,33 @@
 
     &--primary
     {
-        color: var(--color-background);
-    }
-
-    &--primary
-    {
         background-color: var(--color-blue);
         border-color: var(--color-blue);
+        color: var(--color-background);
+
+        &:hover
+        {
+            @include bp
+            {
+                background-color: var(--color-background);
+                color: var(--color-blue)
+            }
+        }
     }
 
     &--save
     {
         border-color: var(--color-green);
         color: var(--color-green);
+
+        &:hover
+        {
+            @include bp
+            {
+                background-color: var(--color-green);
+                color: var(--color-background);
+            }
+        }
     }
 }
 

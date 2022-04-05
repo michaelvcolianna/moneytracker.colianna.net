@@ -1,8 +1,8 @@
 // Breakpoint with option for reverse w/auto calculation
-@mixin bp($size, $reverse: false)
+@mixin bp($reverse: false)
 {
     $measure: if($reverse, 'max-width', 'min-width');
-    $width: if($reverse, $size - 1, $size);
+    $width: if($reverse, 1023px, 1024px);
 
     @media (#{$measure}: $width)
     {

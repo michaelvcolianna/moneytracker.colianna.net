@@ -1,3 +1,41 @@
+.page
+{
+    margin: auto;
+
+    &__dashboard
+    {
+        @include bp
+        {
+            width: 80%;
+        }
+
+        .form__fields
+        {
+            @include bp
+            {
+                margin: 0;
+            }
+        }
+    }
+
+    &__forecast,
+    &__pay-periods
+    {
+        @include bp
+        {
+            width: 30rem;
+        }
+    }
+
+    &__login
+    {
+        @include bp
+        {
+            width: 20rem;
+        }
+    }
+}
+
 .pay-period
 {
     zoom: 1;
@@ -33,9 +71,19 @@
     grid-template-columns: 1fr 2rem;
     gap: 1rem;
 
+    @include bp
+    {
+        grid-template-columns: 1fr 20%;
+    }
+
     .field__delete
     {
         position: relative;
+
+        @include bp
+        {
+            align-self: center;
+        }
 
         &.open
         {
@@ -56,6 +104,11 @@
             border-color: transparent;
             padding: 0;
 
+            @include bp
+            {
+                margin: 0 0 0 auto;
+            }
+
             span
             {
                 @include sr;
@@ -68,6 +121,21 @@
             right: 3rem;
             top: 0;
             width: 9rem;
+
+            @include bp
+            {
+                background-color: var(--color-background);
+                color: var(--color-red);
+            }
+
+            &:hover
+            {
+                @include bp
+                {
+                    background-color: var(--color-red);
+                    color: var(--color-background);
+                }
+            }
         }
     }
 }
