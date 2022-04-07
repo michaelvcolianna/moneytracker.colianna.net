@@ -56,11 +56,12 @@ class Amount extends Component
     /**
      * Update the pay date.
      *
+     * @param  mixed  $value
      * @return void
      */
-    public function update()
+    public function updatedPayDateBeginning($value)
     {
-        $data = $this->validate();
+        $this->validate();
         $this->payDate->save();
         $this->payDate->recalculateCurrent();
         $this->emit('refreshAmount');

@@ -7,7 +7,7 @@
         <x-form.field.input
             id="beginning"
             type="number"
-            wire:model.defer="payDate.beginning"
+            wire:model.lazy="payDate.beginning"
         >
             Beginning Amount
         </x-form.field.input>

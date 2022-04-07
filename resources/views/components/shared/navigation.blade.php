@@ -8,12 +8,12 @@
             Forecast
         </x-shared.nav-link>
 
-        <x-shared.nav-link route="pay-periods" icon="calendar">
-            Pay Periods
-        </x-shared.nav-link>
-
         <x-shared.nav-link route="payees" icon="server">
             Payees
+        </x-shared.nav-link>
+
+        <x-shared.nav-link route="pay-periods" icon="calendar">
+            Pay Periods
         </x-shared.nav-link>
 
         <form method="POST" action="{{ route('logout') }}" x-data>

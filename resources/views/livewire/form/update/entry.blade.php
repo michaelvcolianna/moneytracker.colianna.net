@@ -18,6 +18,7 @@
         <button
             type="button"
             class="button button--danger"
+            wire:click="delete"
             @click.away="open = false"
             x-cloak
             x-show="open"
