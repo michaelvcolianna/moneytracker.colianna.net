@@ -34,9 +34,9 @@
     </x-form.field.input>
 
     <x-form.field.boolean
-        id="{{ $prefix }}active"
-        wire:model="payee.active"
+        id="{{ $prefix }}auto"
+        wire:model="payee.auto"
     >
-        Active for autocomplete
+        Auto-schedule
     </x-form.field.boolean>
 </div>

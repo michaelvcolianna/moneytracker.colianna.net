@@ -36,16 +36,16 @@ class Payee extends Component
     }
 
     /**
-     * Update active.
+     * Update auto.
      *
      * @param  mixed  $value
      * @return void
      */
-    public function updatedPayeeActive($value)
+    public function updatedPayeeAutoctive($value)
     {
-        $this->validateOnly('payee.active');
+        $this->validateOnly('payee.auto');
 
-        $this->payee->active = $value;
+        $this->payee->auto = $value;
         $this->payee->save();
     }
 

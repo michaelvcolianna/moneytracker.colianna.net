@@ -14,7 +14,7 @@ class Payee extends Model
      * @var array
      */
     protected $attributes = [
-        'active' => true,
+        'auto' => true,
     ];
 
     /**
@@ -27,7 +27,7 @@ class Payee extends Model
         'amount',
         'start',
         'end',
-        'active',
+        'auto',
     ];
 
     /**
@@ -63,7 +63,7 @@ class Payee extends Model
             'payee.amount' => 'nullable|integer',
             'payee.start' => 'nullable|integer|min:1|max:31',
             'payee.end' => 'nullable|integer|min:1|max:31',
-            'payee.active' => 'nullable|boolean',
+            'payee.auto' => 'nullable|boolean',
         ];
 
         // Set rules for the months
@@ -81,17 +81,5 @@ class Payee extends Model
     public function entries()
     {
         return $this->hasMany(Entry::class);
-    }
-
-    public function noMonthsSelected()
-    {
-        $selected = 0;
-
-        foreach(array_keys(config('app.months')) as $month)
-        {
-            $selected+= $this->$month;
-        }
-
-        return !(bool)$selected;
     }
 }

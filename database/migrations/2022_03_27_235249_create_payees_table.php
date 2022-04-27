@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('amount')->nullable();
             $table->unsignedTinyInteger('start')->nullable();
             $table->unsignedTinyInteger('end')->nullable();
-            $table->boolean('active')->default(false);
+            $table->boolean('auto')->default(false);
             foreach(config('app.months') as $key => $value)
             {
                 $table->boolean($key)->default(false);

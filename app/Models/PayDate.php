@@ -92,11 +92,11 @@ class PayDate extends Model
                         'reconciled' => false,
                     ];
 
-                    if($payee->noMonthsSelected())
+                    if(!$payee->auto)
                     {
                         $entry['scheduled'] = false;
                     }
-                    elseif(!$payee->noMonthsSelected() && ($payee->$startMonth || $payee->endMonth))
+                    elseif($payee->auto && ($payee->$startMonth || $payee->endMonth))
                     {
                         $entry['scheduled'] = true;
                     }

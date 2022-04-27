@@ -58,7 +58,7 @@ class Entry extends Component
     {
         $this->validate();
         $this->entry->save();
-        PayDate::getCurrent()->recalculateCurrent();
+        $this->entry->payDate->recalculateCurrent();
         $this->clearForm();
         $this->emit('refreshEntries');
         $this->emit('refreshAmount');
