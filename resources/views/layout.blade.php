@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&family=Fredoka+One&family=Red+Hat+Display:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@700&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('storage/assets/css/app.css') }}" />
         <script src="{{ mix('storage/assets/js/app.js') }}" defer></script>
         @livewireStyles
