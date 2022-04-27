@@ -16,16 +16,18 @@
             Pay Periods
         </x-shared.nav-link>
 
-        <form method="POST" action="{{ route('logout') }}" x-data>
-            @csrf
+        @if(!Illuminate\Support\Str::contains(request()->header('User-Agent'), 'iPhone'))
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
 
-            <x-shared.nav-link
-                route="logout"
-                icon="log-out"
-                @click.prevent="$root.submit();"
-            >
-                Log Out
-            </x-shared.nav-link>
-        </form>
+                <x-shared.nav-link
+                    route="logout"
+                    icon="log-out"
+                    @click.prevent="$root.submit();"
+                >
+                    Log Out
+                </x-shared.nav-link>
+            </form>
+        @endif
     </nav>
 @endauth
