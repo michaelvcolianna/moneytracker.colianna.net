@@ -41,7 +41,7 @@ class Payee extends Component
      * @param  mixed  $value
      * @return void
      */
-    public function updatedPayeeAutoctive($value)
+    public function updatedPayeeAuto($value)
     {
         $this->validateOnly('payee.auto');
 
