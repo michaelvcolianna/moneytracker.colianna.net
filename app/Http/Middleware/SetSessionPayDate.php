@@ -20,7 +20,6 @@ class SetSessionPayDate
         session([
             'paydate' => PayDate::getCurrent(),
         ]);
-        logger('Setting paydate: ' . session('paydate')->start->format('Y-m-d'), request()->all());
 
         return $next($request);
     }
