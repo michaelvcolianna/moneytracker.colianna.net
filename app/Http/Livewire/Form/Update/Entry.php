@@ -60,7 +60,7 @@ class Entry extends Component
         $this->entry->amount = $value;
         $this->entry->save();
 
-        PayDate::getCurrent()->recalculateCurrent();
+        session('paydate')->recalculateCurrent();
 
         $this->emit('refreshAmount');
     }
@@ -105,7 +105,7 @@ class Entry extends Component
     {
         $this->entry->delete();
 
-        PayDate::getCurrent()->recalculateCurrent();
+        $payDate = session('paydate')->recalculateCurrent();
 
         $this->emit('refreshEntries');
         $this->emit('refreshAmount');

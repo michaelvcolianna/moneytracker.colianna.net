@@ -30,7 +30,7 @@ class Amount extends Component
      */
     public function clearForm()
     {
-        $this->payDate = PayDate::getCurrent();
+        $this->payDate = session('paydate');
     }
 
     /**

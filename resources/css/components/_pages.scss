@@ -51,6 +51,11 @@
     &__title
     {
         width: 100%;
+
+        a
+        {
+            color: var(--color-foreground);
+        }
     }
 
     &__amount

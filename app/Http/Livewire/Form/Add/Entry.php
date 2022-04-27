@@ -31,7 +31,7 @@ class Entry extends Component
     public function clearForm()
     {
         $this->entry = new EntryModel;
-        $this->entry->pay_date_id = PayDate::getCurrent()->id;
+        $this->entry->pay_date_id = session('paydate')->id;
     }
 
     /**

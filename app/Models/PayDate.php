@@ -214,4 +214,11 @@ class PayDate extends Model
     {
         return number_format($this->beginning, 0, null, ',');
     }
+
+    public function getUrlAttribute()
+    {
+        return route('dashboard', [
+            'date' => $this->start->format('Y-m-d'),
+        ]);
+    }
 }

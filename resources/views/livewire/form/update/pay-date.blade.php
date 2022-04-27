@@ -1,6 +1,8 @@
 <div class="pay-date" id="{{ $fieldId }}" aria-label="Pay Date">
     <div class="pay-date__title">
-        {{ $payDate->start->format('Y-m-d') }}
+        <a href="{{ $payDate->url }}">
+            {{ $payDate->start->format('Y-m-d') }}
+        </a>
     </div>
 
     <div class="pay-date__amount amount{{ $payDate->css_class }}">

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth', 'paydate'])->group(function() {
     Route::view('/', 'pages.dashboard')->name('dashboard');
     Route::view('/forecast', 'pages.forecast')->name('forecast');
     Route::view('/pay-periods', 'pages.pay-periods')->name('pay-periods');

@@ -17,7 +17,7 @@ class PayDates extends Component
      */
     public function mount()
     {
-        $current = PayDateModel::getCurrent();
+        $current = session('paydate');
         $this->payDates[$current->start->format('Y-m-d')] = $current;
 
         for($n = 1; $n < 10; $n++)

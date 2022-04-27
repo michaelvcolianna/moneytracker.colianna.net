@@ -22,7 +22,7 @@ class Navigation extends Component
      */
     public function mount()
     {
-        $this->payDate = PayDate::getCurrent();
+        $this->payDate = session('paydate');
 
         $this->current = $this->payDate->start->format('F j Y');
         $this->date = $this->payDate->start->format('Y-m-d');
