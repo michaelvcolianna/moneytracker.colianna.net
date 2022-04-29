@@ -1,0 +1,10 @@
+{
+  "name": "Money",
+  "short_name": "Money",
+  "description": "Custom personal budgeting app.",
+  "lang": "en-US",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

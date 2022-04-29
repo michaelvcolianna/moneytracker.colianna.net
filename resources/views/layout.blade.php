@@ -4,6 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ $title }} | Money Tracker</title>
+        <link rel="manifest" href="{{ asset('manifest.json') }}">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Money">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('iphone-retina.png') }}">
+        <link rel="apple-touch-startup-image" href="{{ asset('launch-screen.png') }}">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
