@@ -59,7 +59,7 @@ class Payee extends Component
     {
         $this->validateOnly('payee.amount');
 
-        $this->payee->amount = $value;
+        $this->payee->amount = filled($value) ? $value : null;
         $this->payee->save();
     }
 
