@@ -1,8 +1,3 @@
-@import 'variables';
-@import 'functions';
-@import 'components/elements';
-@import 'components/general';
-@import 'components/form';
-@import 'components/block';
-@import 'components/pages';
-@import 'components/nav';
+:root {
+  --fake-var: 0;
+}
