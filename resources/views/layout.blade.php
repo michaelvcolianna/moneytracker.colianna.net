@@ -9,28 +9,14 @@
     </head>
 
     <body>
-        @auth
-            <header>
-                <a href="/">MoneyTracker</a>
+        <x-shared.header />
 
-                <nav>
-                    <a href="#">Entries</a>
-                    <a href="#">Forecast</a>
-                    <a href="#">Payees</a>
-                </nav>
-            </header>
-        @endauth
+        <main>
+            {{ $slot }}
+        </main>
 
-        {{ $slot }}
+        <x-shared.footer />
 
-        @auth
-            <footer>
-                <form method="POST" action="{{ route('logout') }}" x-data x-ref="logout">
-                    @csrf
-
-                    <a href="#" @click.prevent="$refs.logout.submit()">Logout</a>
-                </form>
-            </footer>
-        @endauth
+        <div hidden id="label-external">Opens an external website</div>
     </body>
 </html>

@@ -19,6 +19,14 @@ Route::middleware('auth')->group(function() {
         return view('pages.entries');
     })->name('entries');
 
+    Route::get('/forecast', function() {
+        return view('pages.forecast');
+    })->name('forecast');
+
+    Route::get('/payees', function() {
+        return view('pages.payees');
+    })->name('payees');
+
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
