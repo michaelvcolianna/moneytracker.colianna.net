@@ -1,3 +1,3 @@
 <x-layout>
-    money
+    entries
 </x-layout>

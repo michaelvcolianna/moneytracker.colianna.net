@@ -1,5 +1,5 @@
-import Alpine from 'alpinejs'
 import './bootstrap'
+import Alpine from 'alpinejs'
 
 window.Alpine = Alpine
 
