@@ -6,6 +6,9 @@ use Livewire\Component;
 
 class Entries extends Component
 {
+    /** @var \App\Models\Payday */
+    protected $payday;
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +16,7 @@ class Entries extends Component
      */
     public function mount()
     {
-        //
+        $this->payday = session('payday');
     }
 
     /**
@@ -23,6 +26,8 @@ class Entries extends Component
      */
     public function render()
     {
-        return view('pages.entries');
+        return view('pages.entries', [
+            'payday' => $this->payday->refresh(),
+        ]);
     }
 }

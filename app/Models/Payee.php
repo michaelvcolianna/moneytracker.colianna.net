@@ -34,7 +34,7 @@ class Payee extends Model
     /**
      * Check if the payee schedules on given months.
      *
-     * @param  $months  array
+     * @param  array  $months
      * @return boolean
      */
     public function schedulesMonths($months = [])

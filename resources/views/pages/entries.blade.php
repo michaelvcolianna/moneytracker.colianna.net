@@ -1,5 +1,15 @@
 <div>
-    <div>payday nav</div>
+    <nav>
+        <x-entries.link :date="$payday->older()">
+            <x-entries.date-label :date="$payday->older()" />
+        </x-entries.link>
 
-    <div>entries list</div>
+        <x-entries.date-label :date="$payday->start_date" />
+
+        <x-entries.link :date="$payday->newer()">
+            <x-entries.date-label :date="$payday->newer()" />
+        </x-entries.link>
+    </nav>
+
+    <div>@dump($payday)</div>
 </div>

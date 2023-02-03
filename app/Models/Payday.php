@@ -157,4 +157,41 @@ class Payday extends Model
         $this->current_amount = $this->beginning_amount - $subtract;
         $this->save();
     }
+
+    /**
+     * Get a formatted start date.
+     *
+     * @param  string  $format
+     * @return string
+     */
+    public function start($format = 'Y-m-d')
+    {
+        return $this->start_date->format($format);
+    }
+
+    /**
+     * Get the following payday with optional formatting.
+     *
+     * @param  string  $format
+     * @return \Illuminate\Support\Carbon|string
+     */
+    public function newer($format = null)
+    {
+        $newer = $this->end_date->copy()->addDay();
+
+        return $format ? $newer->format($format) : $newer;
+    }
+
+    /**
+     * Get the previous payday with optional formatting.
+     *
+     * @param  string  $format
+     * @return \Illuminate\Support\Carbon|string
+     */
+    public function older($format = null)
+    {
+        $older = $this->start_date->copy()->subDays(config('app.frequency'));
+
+        return $format ? $older->format($format) : $older;
+    }
 }
