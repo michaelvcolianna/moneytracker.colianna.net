@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Livewire\Entries;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function() {
-    Route::get('/entries', function() {
-        return view('pages.entries');
-    })->name('entries');
+    Route::get('/entries', Entries::class)->name('entries');
 
     Route::get('/forecast', function() {
         return view('pages.forecast');

@@ -1,3 +1,5 @@
-<x-layout>
-    entries
-</x-layout>
+<div>
+    <div>payday nav</div>
+
+    <div>entries list</div>
+</div>
