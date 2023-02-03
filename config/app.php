@@ -223,19 +223,23 @@ return [
 
     'amount' => env('APP_AMOUNT', 1000),
 
+    'start' => env('APP_START', '01/06/2023'),
+
+    'frequency' => env('APP_FREQUENCY', 14),
+
     'months' => [
-        'jan' => 'January',
-        'feb' => 'February',
-        'mar' => 'March',
-        'apr' => 'April',
-        'may' => 'May',
-        'jun' => 'June',
-        'jul' => 'July',
-        'aug' => 'August',
-        'sep' => 'September',
-        'oct' => 'October',
-        'nov' => 'November',
-        'dec' => 'December',
+        1 => 'January',
+        2 => 'February',
+        3 => 'March',
+        4 => 'April',
+        5 => 'May',
+        6 => 'June',
+        7 => 'July',
+        8 => 'August',
+        9 => 'September',
+        10 => 'October',
+        11 => 'November',
+        12 => 'December',
     ],
 
 ];

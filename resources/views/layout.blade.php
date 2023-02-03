@@ -8,6 +8,6 @@
     </head>
 
     <body>
-        money
+        {{ $slot }}
     </body>
 </html>
