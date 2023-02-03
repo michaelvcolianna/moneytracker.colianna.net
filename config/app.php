@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'MoneyTracker',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://moneytracker.colianna.net'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/New_York',
 
     /*
     |--------------------------------------------------------------------------
@@ -211,5 +211,31 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Config
+    |--------------------------------------------------------------------------
+    |
+    | Any custom environment variables here.
+    |
+    */
+
+    'amount' => env('APP_AMOUNT', 1000),
+
+    'months' => [
+        'jan' => 'January',
+        'feb' => 'February',
+        'mar' => 'March',
+        'apr' => 'April',
+        'may' => 'May',
+        'jun' => 'June',
+        'jul' => 'July',
+        'aug' => 'August',
+        'sep' => 'September',
+        'oct' => 'October',
+        'nov' => 'November',
+        'dec' => 'December',
+    ],
 
 ];
