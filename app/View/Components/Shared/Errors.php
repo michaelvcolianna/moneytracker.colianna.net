@@ -1,11 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Shared;
 
-use App\Models\Payday;
 use Illuminate\View\Component;
 
-class Layout extends Component
+class Errors extends Component
 {
     /**
      * Get the view / contents that represent the component.
@@ -14,6 +13,6 @@ class Layout extends Component
      */
     public function render()
     {
-        return view('layout');
+        return view('shared.errors');
     }
 }

@@ -6,6 +6,7 @@
         <title>MoneyTracker</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
+        @livewireStyles
     </head>
 
     <body>
@@ -18,5 +19,7 @@
         <x-shared.footer />
 
         <div hidden id="label-external">Opens an external website</div>
+
+        @livewireScripts
     </body>
 </html>

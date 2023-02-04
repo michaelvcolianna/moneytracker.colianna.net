@@ -194,4 +194,14 @@ class Payday extends Model
 
         return $format ? $older->format($format) : $older;
     }
+
+    /**
+     * Get the formatted current amount.
+     *
+     * @return string
+     */
+    public function prettyCurrent()
+    {
+        return number_format($this->current_amount, 0, null, ',');
+    }
 }
