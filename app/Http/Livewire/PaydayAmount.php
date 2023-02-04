@@ -51,7 +51,7 @@ class PaydayAmount extends Component
      */
     public function render()
     {
-        return view('entries.payday-amount');
+        return view('payday.amount');
     }
 
     /**

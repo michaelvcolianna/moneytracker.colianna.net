@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Livewire\Entries;
+use App\Http\Livewire\Forecast;
 use App\Models\Payday;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'payday'])->group(function() {
     Route::get('/entries', Entries::class)->name('entries');
 
-    Route::get('/forecast', function() {
-        return view('pages.forecast');
-    })->name('forecast');
+    Route::get('/forecast', Forecast::class)->name('forecast');
 
     Route::get('/payees', function() {
         return view('pages.payees');

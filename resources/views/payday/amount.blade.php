@@ -1,7 +1,7 @@
 <div>
     <x-shared.errors />
 
-    <div>${{ session('payday')->prettyCurrent() }}</div>
+    <div>${{ session('payday')->prettyCurrentAmount() }}</div>
 
     <div>
         <label for="beginning_amount">Beginning Amount</label>

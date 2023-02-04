@@ -60,8 +60,6 @@ class SingleEntry extends Component
     /**
      * Act on an updated value.
      *
-     * @param  string  $name
-     * @param  mixed  $value
      * @return void
      */
     public function updated()

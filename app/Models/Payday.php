@@ -200,7 +200,7 @@ class Payday extends Model
      *
      * @return string
      */
-    public function prettyCurrent()
+    public function prettyCurrentAmount()
     {
         return number_format($this->current_amount, 0, null, ',');
     }
