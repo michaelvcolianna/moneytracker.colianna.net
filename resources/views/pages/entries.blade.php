@@ -82,7 +82,7 @@
     <div>
         @if(session('payday')->entries->isNotEmpty())
             <ul>
-                @foreach(session('payday')->entries as $entry)
+                @foreach(session('payday')->sortedEntries() as $entry)
                     <livewire:single-entry
                         key="entry-{{ $entry->id }}"
                         :entry="$entry"

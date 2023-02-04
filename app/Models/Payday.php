@@ -204,4 +204,14 @@ class Payday extends Model
     {
         return number_format($this->current_amount, 0, null, ',');
     }
+
+    /**
+     * Get entries in alphabetical order.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function sortedEntries()
+    {
+        return $this->entries()->orderBy('payee')->get();
+    }
 }

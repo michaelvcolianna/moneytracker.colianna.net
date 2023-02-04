@@ -62,6 +62,7 @@ class PaydayAmount extends Component
     public function paydayUpdated()
     {
         session('payday')->refresh();
+        session('payday')->recalculate();
         $this->beginning_amount = session('payday')->beginning_amount;
     }
 

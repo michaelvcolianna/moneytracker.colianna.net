@@ -103,6 +103,8 @@ class Entries extends Component
 
         $this->clearFields();
 
+        session('payday')->recalculate();
+
         $this->emit('paydayUpdated');
     }
 }
