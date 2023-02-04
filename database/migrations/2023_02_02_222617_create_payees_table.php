@@ -21,7 +21,9 @@ return new class extends Migration
             $table->unsignedTinyInteger('earliest_day')->nullable();
             $table->unsignedTinyInteger('latest_day')->nullable();
             $table->boolean('auto_schedule')->default(false);
-            $table->json('schedule_months')->nullable();
+            $table->json('schedule_months')->default(
+                json_encode(array_fill_keys(range(1, 12), true))
+            );
         });
     }
 
