@@ -1,5 +1,5 @@
 <header>
-    <x-shared.nav-link route="home" label="MoneyTracker" />
+    <a href="/">MoneyTracker</a>
 
     @auth
         <nav>
