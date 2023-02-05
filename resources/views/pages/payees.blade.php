@@ -2,12 +2,12 @@
     <div>Payees</div>
 
     <div x-data="{ showingForm: @entangle('showingForm') }">
-        <button type="button" @click="
+        <a href="#add" @click.prevent="
             showingForm = !showingForm
             $nextTick(() => $refs.name.focus())
         ">
-            Add new entry
-        </button>
+            Add new payee
+        </a>
 
         <div x-cloak x-show="showingForm" @click.outside="showingForm = false">
             <x-shared.errors />
@@ -73,9 +73,9 @@
                         @endforeach
                     </div>
 
-                    <button type="button" wire:click="toggleAllMonths">
+                    <a href="#months" wire:click.prevent="toggleAllMonths">
                         Select/Deselect All
-                    </button>
+                    </a>
                 </div>
 
                 <div>

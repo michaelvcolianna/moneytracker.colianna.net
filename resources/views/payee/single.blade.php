@@ -61,24 +61,24 @@
             @endforeach
         </div>
 
-        <button type="button" wire:click="toggleAllMonths">
+        <a href="#months" wire:click.prevent="toggleAllMonths">
             Select/Deselect All
-        </button>
+        </a>
     </div>
 
     <div x-data="{ confirmingDelete: @entangle('confirmingDelete') }">
-        <button type="button" @click="confirmingDelete = !confirmingDelete">
+        <a href="#delete" @click.prevent="confirmingDelete = !confirmingDelete">
             Delete Payee
-        </button>
+        </a>
 
         <div
             x-cloak
             x-show="confirmingDelete"
             @click.outside="confirmingDelete = false"
         >
-            <button type="button" wire:click="deletePayee">
+            <a href="#confirm" wire:click.prevent="deletePayee">
                 Confirm Delete
-            </button>
+            </a>
         </div>
     </div>
 </li>

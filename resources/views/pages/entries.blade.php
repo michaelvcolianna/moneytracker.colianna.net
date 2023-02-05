@@ -14,12 +14,12 @@
     <livewire:payday-amount />
 
     <div x-data="{ showingForm: @entangle('showingForm') }">
-        <button type="button" @click="
+        <a href="#add" @click.prevent="
             showingForm = !showingForm
             $nextTick(() => $refs.payee.focus())
         ">
             Add new entry
-        </button>
+        </a>
 
         <div x-cloak x-show="showingForm" @click.outside="showingForm = false">
             <x-shared.errors />

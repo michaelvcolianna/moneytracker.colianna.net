@@ -46,7 +46,7 @@
     </div>
 
     <div x-data="{ confirmingDelete: @entangle('confirmingDelete') }">
-        <button type="button" @click="confirmingDelete = !confirmingDelete">
+        <a href="#delete" @click.prevent="confirmingDelete = !confirmingDelete">
             Delete Entry
         </button>
 
@@ -55,9 +55,9 @@
             x-show="confirmingDelete"
             @click.outside="confirmingDelete = false"
         >
-            <button type="button" wire:click="deleteEntry">
+            <a href="#confirm" wire:click.prevent="deleteEntry">
                 Confirm Delete
-            </button>
+            </a>
         </div>
     </div>
 </li>

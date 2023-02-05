@@ -1,5 +1,7 @@
-<header>
-    <a href="/">MoneyTracker</a>
+<header @class(['auth' => auth()->check()])>
+    <div class="branding">
+        <a href="/">MoneyTracker</a>
+    </div>
 
     @auth
         <nav>

@@ -221,6 +221,8 @@ return [
     |
     */
 
+    'fonts' => 'https://fonts.bunny.net/css?family=albert-sans:300,600,900',
+
     'amount' => env('APP_AMOUNT', 1000),
 
     'start' => env('APP_START', '01/06/2023'),

@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MoneyTracker</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="{{ config('app.fonts') }}" rel="stylesheet" />
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
         @livewireStyles
         <style>[x-cloak] { display: none !important; }</style>

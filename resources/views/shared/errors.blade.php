@@ -1,6 +1,6 @@
 @if($errors->any())
     <div role="alert">
-        <div>There were errors. Please check:</div>
+        <div class="headline">There were errors. Please check:</div>
 
         <ul>
             @foreach($errors->all() as $error)
