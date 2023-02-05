@@ -21,7 +21,7 @@
             Add new entry
         </button>
 
-        <div x-show="showingForm" @click.outside="showingForm = false">
+        <div x-cloak x-show="showingForm" @click.outside="showingForm = false">
             <x-shared.errors />
 
             <form wire:submit.prevent="addEntry">

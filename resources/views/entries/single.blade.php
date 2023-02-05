@@ -51,6 +51,7 @@
         </button>
 
         <div
+            x-cloak
             x-show="confirmingDelete"
             @click.outside="confirmingDelete = false"
         >

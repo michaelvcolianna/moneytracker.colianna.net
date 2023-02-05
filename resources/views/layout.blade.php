@@ -7,6 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
         @livewireStyles
+        <style>[x-cloak] { display: none !important; }</style>
     </head>
 
     <body>
