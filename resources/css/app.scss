@@ -31,6 +31,8 @@ $scarpa: #525260;
   --columns-entries-li: 1fr;
   --columns-entry-form: 1fr;
   --columns-payees-li: 1fr;
+  --display-delete-payee: grid;
+  --height-months-button: 3rem;
   --margin-entry-label: 0;
   --max-width-inner: 1440px;
   --padding-entry-label: 0.5rem 0;
@@ -45,6 +47,8 @@ $scarpa: #525260;
     --columns-entries-li: 0.4fr 0.15fr 0.2fr 0.25fr;
     --columns-entry-form: 1fr 1fr 1fr;
     --columns-payees-li: 1fr 1fr 1fr;
+    --display-delete-payee: flex;
+    --height-months-button: 2rem;
     --margin-entry-label: 1rem;
     --padding-entry-label: 0 0 1rem 0;
   }
@@ -723,6 +727,10 @@ div[role="alert"] {
   .months {
     grid-column: var(--column-months);
     padding: 0 0.15rem;
+
+    .button {
+      height: var(--height-months-button);
+    }
   }
 
   .checkboxes {
@@ -761,7 +769,7 @@ div[role="alert"] {
   }
 
   .delete-payee {
-    display: grid;
+    display: var(--display-delete-payee);
     gap: 1rem;
 
     .confirm {
