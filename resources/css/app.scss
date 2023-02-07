@@ -21,6 +21,33 @@ $scarpa: #525260;
   --color-success: #{$killarney};
   --color-success-darker: #{color.scale($killarney, $lightness: -45%)};
   --transition-base: 300ms ease-in-out;
+
+  --align-auto: auto;
+  --align-entry-checkboxes: flex-start;
+  --align-entry-delete: flex-start;
+  --bg-separator: var(--color-accent-decorative);
+  --column-auto: auto;
+  --column-months: auto;
+  --columns-entries-li: 1fr;
+  --columns-entry-form: 1fr;
+  --columns-payees-li: 1fr;
+  --margin-entry-label: 0;
+  --max-width-inner: 1440px;
+  --padding-entry-label: 0.5rem 0;
+
+  @media (min-width: 1024px) {
+    --align-auto: flex-end;
+    --align-entry-checkboxes: flex-end;
+    --align-entry-delete: flex-end;
+    --bg-separator: transparent;
+    --column-auto: 1 / span 4;
+    --column-months: 1 / span 4;
+    --columns-entries-li: 0.4fr 0.15fr 0.2fr 0.25fr;
+    --columns-entry-form: 1fr 1fr 1fr;
+    --columns-payees-li: 1fr 1fr 1fr;
+    --margin-entry-label: 1rem;
+    --padding-entry-label: 0 0 1rem 0;
+  }
 }
 
 * {
@@ -363,6 +390,9 @@ div[role="alert"] {
 }
 
 .add-entry {
+  margin: auto;
+  max-width: var(--max-width-inner);
+
   .button {
     align-items: center;
     display: inline-flex;
@@ -389,6 +419,7 @@ div[role="alert"] {
     form {
       display: grid;
       gap: 1rem;
+      grid-template-columns: var(--columns-entry-form);
       padding: 1rem 0;
     }
   }
@@ -410,6 +441,7 @@ div[role="alert"] {
   }
 
   .checkboxes {
+    align-items: var(--align-entry-checkboxes);
     display: flex;
     gap: 1rem;
     justify-content: space-between;
@@ -419,7 +451,7 @@ div[role="alert"] {
       align-items: center;
       display: flex;
       gap: 1rem;
-      padding: 0.5rem 0;
+      padding: var(--padding-entry-label);
     }
   }
 }
@@ -435,12 +467,14 @@ div[role="alert"] {
   .header {
     font-weight: 900;
     letter-spacing: 0.1rem;
+    margin: auto;
+    max-width: var(--max-width-inner);
     padding: 1rem 0 2rem 0;
     position: relative;
     text-transform: uppercase;
 
     &::after {
-      background-color: var(--color-accent-decorative);
+      background-color: var(--bg-separator);
       bottom: 0.85rem;
       content: '';
       height: 1px;
@@ -454,18 +488,20 @@ div[role="alert"] {
     display: grid;
     gap: 2rem;
     list-style: none;
-    margin: 0;
+    margin: auto;
+    max-width: var(--max-width-inner);
     padding: 0;
   }
 
   li {
     display: grid;
     gap: 1rem;
+    grid-template-columns: var(--columns-entries-li);
     position: relative;
 
     &:not(:first-child) {
       &::before {
-        background-color: var(--color-accent-decorative);
+        background-color: var(--bg-separator);
         content: '';
         height: 1px;
         left: -1rem;
@@ -477,17 +513,20 @@ div[role="alert"] {
   }
 
   .checkboxes {
+    align-items: var(--align-entry-checkboxes);
     display: flex;
     justify-content: space-between;
 
     label {
       align-items: center;
       display: flex;
+      margin-bottom: var(--margin-entry-label);
       gap: 1rem;
     }
   }
 
   .delete-entry {
+    align-items: var(--align-entry-delete);
     display: flex;
     justify-content: space-between;
 
@@ -507,6 +546,9 @@ div[role="alert"] {
 }
 
 .forecast {
+  margin: auto;
+  max-width: 600px;
+
   .header {
     display: flex;
     font-weight: 900;
@@ -553,6 +595,9 @@ div[role="alert"] {
 }
 
 .add-payee {
+  margin: auto;
+  max-width: var(--max-width-inner);
+
   .form {
     max-height: 0;
     overflow: hidden;
@@ -611,12 +656,14 @@ div[role="alert"] {
   .header {
     font-weight: 900;
     letter-spacing: 0.1rem;
+    margin: auto;
+    max-width: var(--max-width-inner);
     padding: 1rem 0 2rem 0;
     position: relative;
     text-transform: uppercase;
 
     &::after {
-      background-color: var(--color-accent-decorative);
+      background-color: var(--bg-separator);
       bottom: 0.85rem;
       content: '';
       height: 1px;
@@ -630,18 +677,20 @@ div[role="alert"] {
     display: grid;
     gap: 2rem;
     list-style: none;
-    margin: 0;
+    margin: auto;
+    max-width: var(--max-width-inner);
     padding: 0;
   }
 
   li {
     display: grid;
     gap: 1rem;
+    grid-template-columns: var(--columns-payees-li);
     position: relative;
 
     &:not(:first-child) {
       &::before {
-        background-color: var(--color-accent-decorative);
+        background-color: var(--bg-separator);
         content: '';
         height: 1px;
         left: -1rem;
@@ -659,14 +708,20 @@ div[role="alert"] {
   }
 
   .auto {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
-    height: 2rem;
-    padding: 0 0.15rem;
+    align-self: var(--align-auto);
+    grid-column: var(--column-auto);
+
+    label {
+      align-items: center;
+      display: flex;
+      gap: 1rem;
+      height: 2rem;
+      padding: 0 0.15rem;
+    }
   }
 
   .months {
+    grid-column: var(--column-months);
     padding: 0 0.15rem;
   }
 

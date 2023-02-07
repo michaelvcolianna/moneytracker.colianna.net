@@ -44,8 +44,8 @@
         </div>
     </div>
 
-    <div>
-        <label class="auto">
+    <div class="auto">
+        <label>
             <input
                 id="payee.auto_schedule"
                 type="checkbox"

@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="buttons">
                     <button class="primary" type="submit">Add Entry</button>
 
                     <button type="reset" wire:click="clearFields">Clear</button>
