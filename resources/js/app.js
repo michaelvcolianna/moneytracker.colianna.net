@@ -15,7 +15,6 @@ document.onkeyup = (event) => {
     event ??= window.event
 
     if(key === 'escape' || key === 'esc') {
-      console.log('we working?')
       Livewire.emit('escapeKeyPressed')
     }
   }

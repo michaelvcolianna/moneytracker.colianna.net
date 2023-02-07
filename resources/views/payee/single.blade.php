@@ -74,13 +74,15 @@
         :class="confirmingDelete && 'expanded'"
         x-data="{ confirmingDelete: @entangle('confirmingDelete') }"
     >
-        <button
-            type="button"
-            :class="confirmingDelete && 'ghost'"
-            @click.prevent="confirmingDelete = !confirmingDelete"
-        >
-            Delete Payee
-        </button>
+        <div class="remove">
+            <button
+                type="button"
+                :class="confirmingDelete && 'ghost'"
+                @click.prevent="confirmingDelete = !confirmingDelete"
+            >
+                Delete Payee
+            </button>
+        </div>
 
         <div
             class="confirm"

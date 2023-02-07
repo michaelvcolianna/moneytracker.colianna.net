@@ -63,7 +63,10 @@ class Payees extends Component
      *
      * @var array
      */
-    protected $listeners = ['payeesUpdated' => '$refresh'];
+    protected $listeners = [
+        'payeesUpdated' => '$refresh',
+        'escapeKeyPressed'
+    ];
 
     /**
      * Create a new component instance.
@@ -133,5 +136,15 @@ class Payees extends Component
         $this->clearFields();
 
         $this->emit('payeesUpdated');
+    }
+
+    /**
+     * Handle escape key.
+     *
+     * @return void
+     */
+    public function escapeKeyPressed()
+    {
+        $this->showingForm = false;
     }
 }

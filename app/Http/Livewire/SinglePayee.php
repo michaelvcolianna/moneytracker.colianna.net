@@ -57,6 +57,13 @@ class SinglePayee extends Component
     }
 
     /**
+     * Events the component listens for.
+     *
+     * @var array
+     */
+    protected $listeners = ['escapeKeyPressed'];
+
+    /**
      * Create a new component instance.
      *
      * @param  \App\Models\Payee  $payee
@@ -118,5 +125,15 @@ class SinglePayee extends Component
         $this->payee->delete();
 
         $this->emit('payeesUpdated');
+    }
+
+    /**
+     * Handle escape key.
+     *
+     * @return void
+     */
+    public function escapeKeyPressed()
+    {
+        $this->confirmingDelete = false;
     }
 }

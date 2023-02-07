@@ -706,8 +706,8 @@ div[role="alert"] {
   }
 
   .delete-payee {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    gap: 1rem;
 
     .confirm {
       opacity: 0;
