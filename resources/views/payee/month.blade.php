@@ -1,5 +1,5 @@
 <div>
-    <label>
+    <label class="month">
         <input
             id="{{ $model }}"
             type="checkbox"

@@ -12,7 +12,7 @@ class Payees extends Component
     public $new;
 
     /** @var boolean */
-    public $showingForm;
+    public $showingForm = false;
 
     /**
      * Validation rules for making a new entry.

@@ -214,4 +214,24 @@ class Payday extends Model
     {
         return $this->entries()->orderBy('payee')->get();
     }
+
+    /**
+     * Make the class for the current amount's threshold.
+     *
+     * @return string
+     */
+    public function threshold()
+    {
+        if($this->current_amount < 0)
+        {
+            return 'negative';
+        }
+
+        if($this->current_amount >= config('app.positive'))
+        {
+            return 'positive';
+        }
+
+        return null;
+    }
 }

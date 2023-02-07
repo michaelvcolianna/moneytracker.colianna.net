@@ -10,7 +10,7 @@ class SinglePayee extends Component
     public $payee;
 
     /** @var boolean */
-    public $confirmingDelete;
+    public $confirmingDelete = false;
 
     /**
      * Validation rules for making a new entry.

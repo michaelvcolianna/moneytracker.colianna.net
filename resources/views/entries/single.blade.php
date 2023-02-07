@@ -21,43 +21,56 @@
         >
     </div>
 
-    <div>
-        <label>
-            <input
-                id="entry.scheduled"
-                type="checkbox"
-                wire:model="entry.scheduled"
-            >
+    <div class="checkboxes">
+        <div>
+            <label>
+                <input
+                    id="entry.scheduled"
+                    type="checkbox"
+                    wire:model="entry.scheduled"
+                >
 
-            <span>Scheduled</span>
-        </label>
+                <span>Scheduled</span>
+            </label>
+        </div>
+
+        <div>
+            <label>
+                <input
+                    id="entry.reconciled"
+                    type="checkbox"
+                    wire:model="entry.reconciled"
+                >
+
+                <span>Reconciled</span>
+            </label>
+        </div>
     </div>
 
-    <div>
-        <label>
-            <input
-                id="entry.reconciled"
-                type="checkbox"
-                wire:model="entry.reconciled"
-            >
-
-            <span>Reconciled</span>
-        </label>
-    </div>
-
-    <div x-data="{ confirmingDelete: @entangle('confirmingDelete') }">
-        <a href="#delete" @click.prevent="confirmingDelete = !confirmingDelete">
+    <div
+        class="delete-entry"
+        :class="confirmingDelete && 'expanded'"
+        x-data="{ confirmingDelete: @entangle('confirmingDelete') }"
+    >
+        <button
+            :class="confirmingDelete && 'ghost'"
+            type="button"
+            @click.prevent="confirmingDelete = !confirmingDelete"
+        >
             Delete Entry
         </button>
 
         <div
-            x-cloak
-            x-show="confirmingDelete"
+            class="confirm"
             @click.outside="confirmingDelete = false"
         >
-            <a href="#confirm" wire:click.prevent="deleteEntry">
-                Confirm Delete
-            </a>
+            <button
+                class="danger"
+                type="button"
+                wire:click.prevent="deleteEntry"
+            >
+                Confirm
+            </button>
         </div>
     </div>
 </li>

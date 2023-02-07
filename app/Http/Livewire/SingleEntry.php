@@ -10,7 +10,7 @@ class SingleEntry extends Component
     public $entry;
 
     /** @var boolean */
-    public $confirmingDelete;
+    public $confirmingDelete = false;
 
     /**
      * Validation rules for making a new entry.
@@ -35,6 +35,13 @@ class SingleEntry extends Component
         'entry.scheduled' => 'scheduled option',
         'entry.reconciled' => 'reconciled option',
     ];
+
+    /**
+     * Events the component listens for.
+     *
+     * @var array
+     */
+    protected $listeners = ['escapeKeyPressed'];
 
     /**
      * Create a new component instance.
@@ -94,5 +101,15 @@ class SingleEntry extends Component
         session('payday')->recalculate();
 
         $this->emit('paydayUpdated');
+    }
+
+    /**
+     * Handle escape key.
+     *
+     * @return void
+     */
+    public function escapeKeyPressed()
+    {
+        $this->confirmingDelete = false;
     }
 }

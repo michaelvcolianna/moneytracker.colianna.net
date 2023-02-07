@@ -1,7 +1,11 @@
-<div>
+<div class="payday-amount">
     <x-shared.errors />
 
-    <div>${{ session('payday')->prettyCurrentAmount() }}</div>
+    <div @class([session('payday')->threshold()])>
+        <span class="label">Current Amount</span>
+
+        <span>${{ session('payday')->prettyCurrentAmount() }}</span>
+    </div>
 
     <div>
         <label for="beginning_amount">Beginning Amount</label>

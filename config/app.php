@@ -229,6 +229,8 @@ return [
 
     'frequency' => env('APP_FREQUENCY', 14),
 
+    'positive' => env('APP_POSITIVE', 1000),
+
     'months' => [
         1 => 'January',
         2 => 'February',

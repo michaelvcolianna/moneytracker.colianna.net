@@ -1,5 +1,5 @@
-<div>
-    <div>
+<div class="forecast">
+    <div class="header">
         <span>Forecast</span>
         <span>(Next 10 Paydays)</span>
     </div>

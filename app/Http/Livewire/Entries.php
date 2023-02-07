@@ -11,7 +11,7 @@ class Entries extends Component
     public $new;
 
     /** @var boolean */
-    public $showingForm;
+    public $showingForm = false;
 
     /**
      * Validation rules for making a new entry.
@@ -42,7 +42,7 @@ class Entries extends Component
      *
      * @var array
      */
-    protected $listeners = ['paydayUpdated'];
+    protected $listeners = ['paydayUpdated', 'escapeKeyPressed'];
 
     /**
      * Create a new component instance.
@@ -106,5 +106,15 @@ class Entries extends Component
         session('payday')->recalculate();
 
         $this->emit('paydayUpdated');
+    }
+
+    /**
+     * Handle escape key.
+     *
+     * @return void
+     */
+    public function escapeKeyPressed()
+    {
+        $this->showingForm = false;
     }
 }

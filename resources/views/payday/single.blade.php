@@ -1,12 +1,12 @@
 <li>
     <x-shared.errors />
 
-    <div>
-        <span>{{ $payday->start() }}</span>
-        <span>${{ $payday->prettyCurrentAmount() }}</span>
+    <div class="amount current">
+        <span class="label">{{ $payday->start() }}</span>
+        <span @class([$payday->threshold()])>${{ $payday->prettyCurrentAmount() }}</span>
     </div>
 
-    <div>
+    <div class="amount beginning">
         <label for="payday.beginning_amount">Beginning Amount</label>
 
         <input
