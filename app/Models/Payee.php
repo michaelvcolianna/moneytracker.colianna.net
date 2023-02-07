@@ -2,21 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
 
 class Payee extends Model
 {
-    /**
-     * The model's default values for attributes.
-     *
-     * @note Months are set in boot method.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'auto' => true,
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -24,62 +14,41 @@ class Payee extends Model
      */
     protected $fillable = [
         'name',
-        'amount',
-        'start',
-        'end',
-        'auto',
+        'schedule_amount',
+        'earliest_day',
+        'latest_day',
+        'auto_schedule',
+        'schedule_months',
     ];
 
     /**
-     * Create a new instance of the model.
+     * The attributes that should be cast.
      *
-     * @param  array  $attributes
-     * @return void
+     * @var array
      */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        // Set defaults for months
-        foreach(config('app.months') as $key => $value)
-        {
-            $this->attributes[$key] = true;
-        }
-
-        // Set months as fillable
-        $this->mergeFillable(array_keys(config('app.months')));
-    }
+    protected $casts = [
+        'auto_schedule' => 'boolean',
+        'schedule_months' => AsArrayObject::class,
+    ];
 
     /**
-     * Provides the validation rules.
+     * Check if the payee schedules on given months.
      *
-     * @param  string  $preface
-     * @return array
+     * @param  array  $months
+     * @return boolean
      */
-    public static function validationRules($preface = null)
+    public function schedulesMonths($months = [])
     {
-        $rules = [
-            'payee.name' => 'required',
-            'payee.amount' => 'nullable|integer',
-            'payee.start' => 'nullable|integer|min:1|max:31',
-            'payee.end' => 'nullable|integer|min:1|max:31',
-            'payee.auto' => 'nullable|boolean',
-        ];
+        $schedules = false;
 
-        // Set rules for the months
-        foreach(config('app.months') as $key => $value)
+        foreach($months as $month)
         {
-            $rules['payee.' . $key] = 'nullable|boolean';
+            if($this->schedule_months[$month])
+            {
+                $schedules = true;
+            }
         }
 
-        return $rules;
-    }
-
-    /**
-     * Get the entries for the payee.
-     */
-    public function entries()
-    {
-        return $this->hasMany(Entry::class);
+        return $schedules;
     }
 }

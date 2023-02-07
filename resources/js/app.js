@@ -1,7 +1,21 @@
-require('./bootstrap');
+import './bootstrap'
+import Alpine from 'alpinejs'
 
-import Alpine from 'alpinejs';
+window.Alpine = Alpine
 
-window.Alpine = Alpine;
+Alpine.start()
 
-Alpine.start();
+/**
+ * Key listeners.
+ */
+document.onkeyup = (event) => {
+  if(typeof event.key === 'string') {
+    let key = event.key.toLowerCase()
+
+    event ??= window.event
+
+    if(key === 'escape' || key === 'esc') {
+      Livewire.emit('escapeKeyPressed')
+    }
+  }
+}

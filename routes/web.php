@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Livewire\Entries;
+use App\Http\Livewire\Forecast;
+use App\Http\Livewire\Payees;
+use App\Models\Payday;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,31 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth', 'paydate'])->group(function() {
-    Route::view('/', 'pages.dashboard')->name('dashboard');
-    Route::view('/forecast', 'pages.forecast')->name('forecast');
-    Route::view('/pay-periods', 'pages.pay-periods')->name('pay-periods');
-    Route::view('/payees', 'pages.payees')->name('payees');
+Route::middleware(['auth', 'payday'])->group(function() {
+    Route::get('/entries', Entries::class)->name('entries');
+
+    Route::get('/forecast', Forecast::class)->name('forecast');
+
+    Route::get('/payees', Payees::class)->name('payees');
+
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-Route::get('/svg', function() {
-    $name = 'components.svg.' . request()->query('name');
+Route::middleware('guest')->group(function() {
+    Route::redirect('/', '/login');
 
-    abort_unless(view()->exists($name), 404);
-
-    $queryFill = request()->query('fill', 'currentColor');
-    $fill = ctype_xdigit($queryFill)
-        ? '#' . $queryFill
-        : $queryFill
-        ;
-
-    $icon = view('components.shared.icon', [
-        'name' => $name,
-        'fill' => $fill,
-        'height' => request()->query('height', 16),
-        'width' => request()->query('width', 16),
-        'attributes' => null,
-    ])->render();
-
-    return response($icon)->header('Content-Type', 'image/svg+xml');
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 });

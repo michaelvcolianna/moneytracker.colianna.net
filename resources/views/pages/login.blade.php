@@ -1,21 +1,44 @@
-<x-layout title="Log In">
-    <form class="form" method="POST" action="{{ route('login') }}">
+<x-layout>
+    <form class="login" method="POST" action="{{ route('login') }}">
         @csrf
 
-        <x-form.field.input id="email" type="text">
-            Email Address
-        </x-form.field.input>
+        <x-shared.errors />
 
-        <x-form.field.input id="password" type="password">
-            Password
-        </x-form.field.input>
+        <div class="field">
+            <label for="email">Email</label>
 
-        <x-form.field.boolean id="remember">
-            Remember Me
-        </x-form.field.boolean>
+            <input
+                id="email"
+                type="email"
+                name="email"
+                value="{{ old('email') }}"
+                required
+                autofocus
+                autocomplete="email"
+            >
+        </div>
 
-        <x-form.field.button icon="log-in" class="button button--primary">
-            Log In
-        </x-form.field.button>
+        <div class="field">
+            <label for="password">Password</label>
+
+            <input
+                id="password"
+                type="password"
+                name="password"
+                required
+                autocomplete="current-password"
+            >
+        </div>
+
+        <div class="field checkbox">
+            <label for="remember">
+                <input id="remember" type="checkbox" name="remember">
+                <span>Remember me</span>
+            </label>
+        </div>
+
+        <div class="field button">
+            <button class="primary" type="submit">Log in</button>
+        </div>
     </form>
 </x-layout>

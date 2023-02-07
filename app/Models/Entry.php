@@ -7,24 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Entry extends Model
 {
     /**
-     * The model's default values for attributes.
-     *
-     * @note Months are set in boot method.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'scheduled' => false,
-        'reconciled' => false,
-    ];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'pay_date_id',
+        'payday_id',
         'amount',
         'payee',
         'scheduled',
@@ -32,27 +20,20 @@ class Entry extends Model
     ];
 
     /**
-     * Provides the validation rules.
+     * The attributes that should be cast.
      *
-     * @param  string  $preface
-     * @return array
+     * @var array
      */
-    public static function validationRules($preface = null)
-    {
-        return [
-            'entry.pay_date_id' => 'required|exists:App\Models\PayDate,id',
-            'entry.amount' => 'required|integer',
-            'entry.payee' => 'required|string',
-            'entry.scheduled' => 'nullable|boolean',
-            'entry.reconciled' => 'nullable|boolean',
-        ];
-    }
+    protected $casts = [
+        'scheduled' => 'boolean',
+        'reconciled' => 'boolean',
+    ];
 
     /**
-     * Get the pay date this entry belongs to.
+     * Get the payday the entry is under.
      */
-    public function payDate()
+    public function payday()
     {
-        return $this->belongsTo(PayDate::class);
+        return $this->belongsTo(Payday::class);
     }
 }

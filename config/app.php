@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'MoneyTracker',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://moneytracker.colianna.net'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/New_York',
 
     /*
     |--------------------------------------------------------------------------
@@ -127,6 +127,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Maintenance Mode Driver
+    |--------------------------------------------------------------------------
+    |
+    | These configuration options determine the driver used to determine and
+    | manage Laravel's "maintenance mode" status. The "cache" driver will
+    | allow maintenance mode to be controlled across multiple machines.
+    |
+    | Supported drivers: "file", "cache"
+    |
+    */
+
+    'maintenance' => [
+        'driver' => 'file',
+        // 'store'  => 'redis',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
@@ -176,7 +194,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
 
     ],
 
@@ -192,9 +209,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
+        // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -205,19 +221,29 @@ return [
     |
     */
 
+    'fonts' => 'https://fonts.bunny.net/css?family=albert-sans:300,600,900',
+
+    'amount' => env('APP_AMOUNT', 1000),
+
+    'start' => env('APP_START', '01/06/2023'),
+
+    'frequency' => env('APP_FREQUENCY', 14),
+
+    'positive' => env('APP_POSITIVE', 1000),
+
     'months' => [
-        'jan' => 'January',
-        'feb' => 'February',
-        'mar' => 'March',
-        'apr' => 'April',
-        'may' => 'May',
-        'jun' => 'June',
-        'jul' => 'July',
-        'aug' => 'August',
-        'sep' => 'September',
-        'oct' => 'October',
-        'nov' => 'November',
-        'dec' => 'December',
+        1 => 'January',
+        2 => 'February',
+        3 => 'March',
+        4 => 'April',
+        5 => 'May',
+        6 => 'June',
+        7 => 'July',
+        8 => 'August',
+        9 => 'September',
+        10 => 'October',
+        11 => 'November',
+        12 => 'December',
     ],
 
 ];
