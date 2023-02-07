@@ -43,6 +43,7 @@
                         id="new.payee"
                         type="text"
                         wire:model.defer="new.payee"
+                        list="payees-list"
                         x-ref="payee"
                     >
                 </div>
@@ -108,4 +109,10 @@
             <div class="empty">No entries for this payday.</div>
         @endif
     </div>
+
+    <datalist id="payees-list">
+        @foreach(App\Models\Payee::all() as $payee)
+            <option value="{{ $payee->name }}" />
+        @endforeach
+    </datalist>
 </div>

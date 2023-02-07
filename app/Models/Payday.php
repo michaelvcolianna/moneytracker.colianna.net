@@ -234,4 +234,16 @@ class Payday extends Model
 
         return null;
     }
+
+    /**
+     * Make the URL for the payday.
+     *
+     * @return string
+     */
+    public function url()
+    {
+        return route('entries', [
+            'date' => $this->start(),
+        ]);
+    }
 }

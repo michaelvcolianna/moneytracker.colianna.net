@@ -580,8 +580,14 @@ div[role="alert"] {
   }
 
   .amount {
+    color: var(--color-foreground);
     display: grid;
     gap: 0.25rem;
+    text-decoration: none;
+
+    .label {
+      text-decoration: underline;
+    }
   }
 
   .current {

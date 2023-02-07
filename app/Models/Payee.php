@@ -43,7 +43,7 @@ class Payee extends Model
 
         foreach($months as $month)
         {
-            if($this->months[$month])
+            if($this->schedule_months[$month])
             {
                 $schedules = true;
             }
