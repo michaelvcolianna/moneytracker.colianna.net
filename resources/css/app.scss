@@ -461,13 +461,6 @@ div[role="alert"] {
 }
 
 .entries-list {
-  .empty {
-    color: var(--color-accent);
-    font-size: 2rem;
-    font-style: italic;
-    padding: 2vh 0;
-  }
-
   .header {
     font-weight: 900;
     letter-spacing: 0.1rem;
@@ -650,13 +643,6 @@ div[role="alert"] {
     }
   }
 
-  .empty {
-    color: var(--color-accent);
-    font-size: 2rem;
-    font-style: italic;
-    padding: 2vh 0;
-  }
-
   .header {
     font-weight: 900;
     letter-spacing: 0.1rem;
@@ -785,4 +771,13 @@ div[role="alert"] {
       }
     }
   }
+}
+
+.empty {
+  color: var(--color-accent);
+  font-size: 2rem;
+  font-style: italic;
+  margin: auto;
+  max-width: var(--max-width-inner);
+  padding: 2vh 0;
 }
