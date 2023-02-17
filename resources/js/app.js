@@ -22,7 +22,15 @@ document.onkeyup = (event) => {
     }
 
     // // A key to expand add new item
-    if(key === 'a' && add && !adder.classList.contains('expanded')) {
+    if(
+      key === 'a'
+      &&
+      add
+      &&
+      !adder.classList.contains('expanded')
+      &&
+      document.activeElement.tagName.toLowerCase() !== 'input'
+    ) {
       add.dispatchEvent(new Event('click'))
     }
   }
