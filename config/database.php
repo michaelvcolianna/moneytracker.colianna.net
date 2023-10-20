@@ -49,7 +49,9 @@ return [
             'host' => 'localhost',
             'port' => '3306',
             'database' => 'moneytracker',
-            'username' => env('APP_ENV', 'local') == 'local' ? 'sa' : '',
+            'username' => env('APP_ENV', 'local') == 'local'
+                ? 'sa'
+                : env('DB_USERNAME'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => '',
             'charset' => 'utf8mb4',
