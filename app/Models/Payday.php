@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\BaseModel as Model;
 use Exception;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
@@ -146,7 +146,7 @@ class Payday extends Model
     /**
      * Get the following payday with optional formatting.
      */
-    public function newer(string $format = null): Carbon|string
+    public function newer(string $format = null): Payday|string
     {
         $newer = static::byDate($this->end_date->addDay());
 
@@ -156,11 +156,21 @@ class Payday extends Model
     /**
      * Get the previous payday with optional formatting.
      */
-    public function older(string $format = null): Carbon|string
+    public function older(string $format = null): Payday|string
     {
         $older = static::byDate($this->start_date->subDay());
 
         return $format ? $older->start_date->format($format) : $older;
+    }
+
+    /**
+     * Get the formatted current amount.
+     *
+     * @return string
+     */
+    public function prettyCurrentAmount()
+    {
+        return number_format($this->current_amount, 0, null, ',');
     }
 
     /**
@@ -171,6 +181,17 @@ class Payday extends Model
         return $this->entries()
             ->orderBy('payee')->get()
             ->sortBy('payee', SORT_NATURAL|SORT_FLAG_CASE);
+    }
+
+    /**
+     * Make the class for the current amount's threshold.
+     */
+    public function threshold(): string|null
+    {
+        return $this->current_amount < 0
+            ? 'negative'
+            : ($this->current_amount >= 1000 ? 'positive' : null)
+            ;
     }
 
     /**

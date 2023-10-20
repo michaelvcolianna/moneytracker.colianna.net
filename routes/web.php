@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthenticatedSessionController;
-use App\Http\Livewire\Entries;
-use App\Http\Livewire\Forecast;
-use App\Http\Livewire\Payees;
+use App\Livewire\Entries;
+use App\Livewire\Forecast;
+use App\Livewire\Payees;
 use App\Models\Payday;
 use Illuminate\Support\Facades\Route;
 
