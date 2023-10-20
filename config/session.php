@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => 'file',
 
     /*
     |--------------------------------------------------------------------------
@@ -126,10 +126,7 @@ return [
     |
     */
 
-    'cookie' => env(
-        'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
-    ),
+    'cookie' => '_moneytracker__session_',
 
     /*
     |--------------------------------------------------------------------------
