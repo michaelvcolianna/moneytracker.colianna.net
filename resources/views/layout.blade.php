@@ -22,8 +22,6 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=albert-sans:300,600,900" rel="stylesheet" />
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
-        @livewireStyles
-        <style>[x-cloak] { display: none !important; }</style>
     </head>
 
     <body>
@@ -36,7 +34,5 @@
         <x-shared.footer />
 
         <div hidden id="label-external">Opens an external website</div>
-
-        @livewireScripts
     </body>
 </html>
