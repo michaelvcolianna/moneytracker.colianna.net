@@ -34,8 +34,6 @@ class Payday extends Model
      */
     protected $dateFormat = 'Y-m-d';
 
-    # --- Relationships
-
     /**
      * Get the entries under the payday.
      */
@@ -43,8 +41,6 @@ class Payday extends Model
     {
         return $this->hasMany(Entry::class);
     }
-
-    # --- Custom methods
 
     /**
      * Get the specified payday or fall back to the current one.
@@ -122,7 +118,7 @@ class Payday extends Model
     /**
      * Figure out how much is left after entries.
      */
-    public function recalculate()
+    public function recalculate(): void
     {
         $subtract = 0;
 
@@ -165,10 +161,8 @@ class Payday extends Model
 
     /**
      * Get the formatted current amount.
-     *
-     * @return string
      */
-    public function prettyCurrentAmount()
+    public function prettyCurrentAmount(): string
     {
         return number_format($this->current_amount, 0, null, ',');
     }

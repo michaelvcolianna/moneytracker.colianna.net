@@ -78,7 +78,7 @@ class SinglePayee extends Component
     /**
      * Create a new component instance.
      */
-    public function mount(Payee $payee)
+    public function mount(Payee $payee): void
     {
         $this->payee = $payee;
         $this->updatePayeeValues();
@@ -95,7 +95,7 @@ class SinglePayee extends Component
     /**
      * Update the payee's values.
      */
-    public function updatePayeeValues()
+    public function updatePayeeValues(): void
     {
         $this->name = $this->payee->name;
         $this->schedule_amount = $this->payee->schedule_amount;
@@ -108,7 +108,7 @@ class SinglePayee extends Component
     /**
      * Toggle months on/off.
      */
-    public function toggleAllMonths()
+    public function toggleAllMonths(): void
     {
         $this->payee->schedule_months = array_fill_keys(
             range(1, 12),
@@ -124,7 +124,7 @@ class SinglePayee extends Component
     /**
      * Act on an updated value.
      */
-    public function updated()
+    public function updated(): void
     {
         $this->validate();
 
@@ -153,7 +153,7 @@ class SinglePayee extends Component
      * Handle escape key.
      */
     #[On('escapeKeyPressed')]
-    public function escapeKeyPressed()
+    public function escapeKeyPressed(): void
     {
         $this->confirmingDelete = false;
     }

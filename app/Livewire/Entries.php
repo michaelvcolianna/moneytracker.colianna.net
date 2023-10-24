@@ -32,7 +32,7 @@ class Entries extends Component
     /**
      * Create a new component instance.
      */
-    public function mount()
+    public function mount(): void
     {
         $this->paydayUpdated();
     }
@@ -49,7 +49,7 @@ class Entries extends Component
      * Refresh the current payday.
      */
     #[On('paydayUpdated')]
-    public function paydayUpdated()
+    public function paydayUpdated(): void
     {
         session('payday')->refresh();
     }
@@ -57,7 +57,7 @@ class Entries extends Component
     /**
      * Clear the fields.
      */
-    public function clearFields()
+    public function clearFields(): void
     {
         $this->reset();
     }
@@ -65,7 +65,7 @@ class Entries extends Component
     /**
      * Add an entry for the payday.
      */
-    public function addEntry()
+    public function addEntry(): void
     {
         $this->validate();
 
@@ -88,7 +88,7 @@ class Entries extends Component
      * Handle escape key.
      */
     #[On('escapeKeyPressed')]
-    public function escapeKeyPressed()
+    public function escapeKeyPressed(): void
     {
         $this->showingForm = false;
     }

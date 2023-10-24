@@ -6,10 +6,7 @@
 
     <ul>
         @foreach($paydays as $payday)
-            <livewire:single-payday
-                key="payday-{{ $payday->id }}"
-                :payday="$payday"
-            />
+            <livewire:single-payday key="payday-{{ $payday->id }}" :payday="$payday" />
         @endforeach
     </ul>
 </div>

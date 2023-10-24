@@ -20,7 +20,7 @@ class SinglePayday extends Component
     /**
      * Create a new component instance.
      */
-    public function mount(Payday $payday)
+    public function mount(Payday $payday): void
     {
         $this->payday = $payday;
         $this->updateBeginningAmount();
@@ -37,7 +37,7 @@ class SinglePayday extends Component
     /**
      * Update the beginning amount.
      */
-    public function updateBeginningAmount()
+    public function updateBeginningAmount(): void
     {
         $this->beginning_amount = $this->payday->beginning_amount;
     }
@@ -45,7 +45,7 @@ class SinglePayday extends Component
     /**
      * Act on an updated value.
      */
-    public function updated()
+    public function updated(): void
     {
         $this->validate();
 

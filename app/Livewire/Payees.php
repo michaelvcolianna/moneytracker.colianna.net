@@ -76,7 +76,7 @@ class Payees extends Component
     /**
      * Create a new component instance.
      */
-    public function mount()
+    public function mount(): void
     {
         $this->clearFields();
     }
@@ -94,7 +94,7 @@ class Payees extends Component
     /**
      * Toggle months on/off.
      */
-    public function toggleAllMonths()
+    public function toggleAllMonths(): void
     {
         $this->schedule_months = array_fill_keys(
             range(1, 12),
@@ -105,7 +105,7 @@ class Payees extends Component
     /**
      * Clear the fields.
      */
-    public function clearFields()
+    public function clearFields(): void
     {
         $this->reset();
 
@@ -115,7 +115,7 @@ class Payees extends Component
     /**
      * Add a payee.
      */
-    public function addPayee()
+    public function addPayee(): void
     {
         $this->validate();
 
@@ -137,7 +137,7 @@ class Payees extends Component
      * Refresh the component.
      */
     #[On('payeesUpdated')]
-    public function payeesUpdated()
+    public function payeesUpdated(): void
     {
         $this->clearFields();
     }
@@ -146,7 +146,7 @@ class Payees extends Component
      * Handle escape key.
      */
     #[On('escapeKeyPressed')]
-    public function escapeKeyPressed()
+    public function escapeKeyPressed(): void
     {
         $this->showingForm = false;
     }

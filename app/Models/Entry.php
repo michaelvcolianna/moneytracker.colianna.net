@@ -26,8 +26,6 @@ class Entry extends Model
         'reconciled' => 'boolean',
     ];
 
-    # --- Relationships
-
     /**
      * Get the payday the entry is under.
      */

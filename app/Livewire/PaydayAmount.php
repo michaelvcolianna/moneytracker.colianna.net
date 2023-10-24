@@ -17,7 +17,7 @@ class PaydayAmount extends Component
     /**
      * Create a new component instance.
      */
-    public function mount()
+    public function mount(): void
     {
         $this->paydayUpdated();
     }
@@ -34,7 +34,7 @@ class PaydayAmount extends Component
      * Refresh the current payday.
      */
     #[On('paydayUpdated')]
-    public function paydayUpdated()
+    public function paydayUpdated(): void
     {
         session('payday')->refresh();
         session('payday')->recalculate();
@@ -44,7 +44,7 @@ class PaydayAmount extends Component
     /**
      * Act on an updated value.
      */
-    public function updatedBeginningAmount(mixed $value)
+    public function updatedBeginningAmount(mixed $value): void
     {
         $this->validateOnly('beginning_amount');
 

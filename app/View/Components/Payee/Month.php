@@ -24,7 +24,7 @@ class Month extends Component
     {
         $this->model = 'schedule_months.'.$number;
         $this->name = $this->month($number);
-        $this->prefix = $prefix;
+        $this->prefix = $prefix ? sprintf('.%s', $prefix) : '';
     }
 
     /**

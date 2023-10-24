@@ -37,7 +37,7 @@ class SingleEntry extends Component
      * Create a new component instance.
      * @return void
      */
-    public function mount(Entry $entry)
+    public function mount(Entry $entry): void
     {
         $this->entry = $entry;
         $this->updateEntryValues();
@@ -54,7 +54,7 @@ class SingleEntry extends Component
     /**
      * Update the entry's values.
      */
-    public function updateEntryValues()
+    public function updateEntryValues(): void
     {
         $this->payee = $this->entry->payee;
         $this->amount = $this->entry->amount;
@@ -65,7 +65,7 @@ class SingleEntry extends Component
     /**
      * Act on an updated value.
      */
-    public function updated()
+    public function updated(): void
     {
         $this->validate();
 
@@ -83,7 +83,7 @@ class SingleEntry extends Component
     /**
      * Delete an entry.
      */
-    public function deleteEntry()
+    public function deleteEntry(): void
     {
         $this->entry->delete();
 
@@ -93,7 +93,7 @@ class SingleEntry extends Component
     /**
      * Handle changes to the entry.
      */
-    public function cleanup()
+    public function cleanup(): void
     {
         session('payday')->refresh();
         session('payday')->recalculate();
@@ -105,7 +105,7 @@ class SingleEntry extends Component
      * Handle escape key.
      */
     #[On('escapeKeyPressed')]
-    public function escapeKeyPressed()
+    public function escapeKeyPressed(): void
     {
         $this->confirmingDelete = false;
     }

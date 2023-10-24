@@ -9,8 +9,6 @@ document.onkeyup = (event) => {
     let add = document.querySelector('a[href="#add"]')
     let key = event.key.toLowerCase()
 
-    event ??= window.event
-
     // Escape key to collapse expandables
     if(key === 'escape' || key === 'esc') {
       Livewire.dispatch('escapeKeyPressed')

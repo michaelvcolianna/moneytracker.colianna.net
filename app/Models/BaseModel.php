@@ -14,7 +14,7 @@ class BaseModel extends Model
     /**
      * Pass boot overrides up to the Eloquent model.
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
     }
