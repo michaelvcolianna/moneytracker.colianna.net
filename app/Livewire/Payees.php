@@ -3,40 +3,51 @@
 namespace App\Livewire;
 
 use App\Models\Payee;
+use App\Rules\Months;
 use App\Traits\CreatesMonthNames;
 use Closure;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Payees extends Component
 {
     use CreatesMonthNames;
 
-    /** @var array */
-    public $new;
+    /** @var string */
+    #[Rule('required')]
+    public $name;
+
+    /** @var integer|string */
+    #[Rule('nullable|integer')]
+    public $schedule_amount;
+
+    /** @var integer|string */
+    #[Rule('nullable|integer')]
+    public $earliest_day;
+
+    /** @var integer|string */
+    #[Rule('nullable|integer')]
+    public $latest_day;
+
+    /** @var boolean */
+    #[Rule('nullable|boolean')]
+    public $auto_schedule;
+
+    /** @var boolean[] */
+    #[Rule([
+        'schedule_months' => [
+            'required',
+            new Months,
+        ],
+        'schedule_months.*' => 'nullable|boolean',
+    ])]
+    public $schedule_months;
 
     /** @var boolean */
     public $showingForm = false;
-
-    /**
-     * Validation rules for making a new entry.
-     */
-    protected function rules(): array
-    {
-        // Array rule with keys specified
-        $schedule_months = 'required|array:'.implode(',', range(1, 12));
-
-        return [
-            'new.name' => 'required',
-            'new.schedule_amount' => 'nullable|integer',
-            'new.earliest_day' => 'nullable|integer',
-            'new.latest_day' => 'nullable|integer',
-            'new.auto_schedule' => 'nullable|boolean',
-            'new.schedule_months' => $schedule_months,
-            'new.schedule_months.*' => 'nullable|boolean',
-        ];
-    }
 
     /**
      * Validation attribute names.
@@ -46,29 +57,21 @@ class Payees extends Component
         // Build explicit attributes for each month
         foreach(range(1, 12) as $number)
         {
-            $months['payee.schedule_months.'.$number] = sprintf(
+            $months['schedule_months.'.$number] = sprintf(
                 '%s checkbox',
                 $this->month($number)
             );
         }
 
         return array_merge([
-            'new.name' => 'name',
-            'new.schedule_amount' => 'schedule amount',
-            'new.earliest_day' => 'earliest day',
-            'new.latest_day' => 'latest day',
-            'new.auto_schedule' => 'auto schedule option',
-            'new.schedule_months' => 'schedule months',
+            'name' => 'name',
+            'schedule_amount' => 'schedule amount',
+            'earliest_day' => 'earliest day',
+            'latest_day' => 'latest day',
+            'auto_schedule' => 'auto schedule option',
+            'schedule_months' => 'schedule months',
         ], $months);
     }
-
-    /**
-     * Events the component listens for.
-     */
-    protected $listeners = [
-        'payeesUpdated' => '$refresh',
-        'escapeKeyPressed'
-    ];
 
     /**
      * Create a new component instance.
@@ -93,9 +96,9 @@ class Payees extends Component
      */
     public function toggleAllMonths()
     {
-        $this->new['schedule_months'] = array_fill_keys(
+        $this->schedule_months = array_fill_keys(
             range(1, 12),
-            array_sum($this->new['schedule_months']) > 0 ? false : true
+            array_sum($this->schedule_months) > 0 ? false : true
         );
     }
 
@@ -104,9 +107,9 @@ class Payees extends Component
      */
     public function clearFields()
     {
-        $this->reset(['new', 'showingForm']);
+        $this->reset();
 
-        $this->new['schedule_months'] = array_fill_keys(range(1, 12), true);
+        $this->schedule_months = array_fill_keys(range(1, 12), true);
     }
 
     /**
@@ -117,12 +120,12 @@ class Payees extends Component
         $this->validate();
 
         Payee::create([
-            'name' => $this->new['name'],
-            'schedule_amount' => $this->new['schedule_amount'] ?? null,
-            'earliest_day' => $this->new['earliest_day'] ?? null,
-            'latest_day' => $this->new['latest_day'] ?? null,
-            'auto_schedule' => $this->new['auto_schedule'] ?? false,
-            'schedule_months' => $this->new['schedule_months'],
+            'name' => $this->name,
+            'schedule_amount' => $this->schedule_amount ?? null,
+            'earliest_day' => $this->earliest_day ?? null,
+            'latest_day' => $this->latest_day ?? null,
+            'auto_schedule' => $this->auto_schedule ?? false,
+            'schedule_months' => $this->schedule_months,
         ]);
 
         $this->clearFields();
@@ -131,8 +134,18 @@ class Payees extends Component
     }
 
     /**
+     * Refresh the component.
+     */
+    #[On('payeesUpdated')]
+    public function payeesUpdated()
+    {
+        $this->clearFields();
+    }
+
+    /**
      * Handle escape key.
      */
+    #[On('escapeKeyPressed')]
     public function escapeKeyPressed()
     {
         $this->showingForm = false;

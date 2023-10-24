@@ -15,14 +15,16 @@ class Month extends Component
     /** @var string */
     public $model;
     public $name;
+    public $prefix;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $prefix, int $number)
+    public function __construct(int $number, string $prefix = null)
     {
-        $this->model = $prefix.'.schedule_months.'.$number;
+        $this->model = 'schedule_months.'.$number;
         $this->name = $this->month($number);
+        $this->prefix = $prefix;
     }
 
     /**

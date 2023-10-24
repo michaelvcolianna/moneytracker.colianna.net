@@ -2,22 +2,22 @@
     <x-shared.errors />
 
     <div>
-        <label for="entry.payee">Payee</label>
+        <label for="payee.{{ $entry->id }}">Payee</label>
 
         <input
-            id="entry.payee"
+            id="payee.{{ $entry->id }}"
             type="text"
-            wire:model.live.debounce.300ms="entry.payee"
+            wire:model.live.debounce.300ms="payee"
         >
     </div>
 
     <div>
-        <label for="entry.amount">Amount</label>
+        <label for="amount.{{ $entry->id }}">Amount</label>
 
         <input
-            id="entry.amount"
+            id="amount.{{ $entry->id }}"
             type="text"
-            wire:model.live.debounce.300ms="entry.amount"
+            wire:model.live.debounce.300ms="amount"
         >
     </div>
 
@@ -25,9 +25,9 @@
         <div>
             <label>
                 <input
-                    id="entry.scheduled"
+                    id="scheduled.{{ $entry->id }}"
                     type="checkbox"
-                    wire:model.live="entry.scheduled"
+                    wire:model.live="scheduled"
                 >
 
                 <span>Scheduled</span>
@@ -37,9 +37,9 @@
         <div>
             <label>
                 <input
-                    id="entry.reconciled"
+                    id="reconciled.{{ $entry->id }}"
                     type="checkbox"
-                    wire:model.live="entry.reconciled"
+                    wire:model.live="reconciled"
                 >
 
                 <span>Reconciled</span>
@@ -49,14 +49,13 @@
 
     <div
         class="delete-entry"
-        :class="confirmingDelete && 'expanded'"
-        x-data="{ confirmingDelete: @entangle('confirmingDelete') }"
-        @click.outside="confirmingDelete = false"
+        :class="$wire.confirmingDelete && 'expanded'"
+        @click.outside="$wire.confirmingDelete = false"
     >
         <button
-            :class="confirmingDelete && 'ghost'"
+            :class="$wire.confirmingDelete && 'ghost'"
             type="button"
-            @click.prevent="confirmingDelete = !confirmingDelete"
+            @click.prevent="$wire.$toggle('confirmingDelete')"
         >
             Delete Entry
         </button>

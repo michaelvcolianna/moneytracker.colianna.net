@@ -4,31 +4,15 @@ namespace App\Livewire;
 
 use Closure;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class PaydayAmount extends Component
 {
     /** @var integer|string */
+    #[Rule('required|integer', as: 'beginning amount')]
     public $beginning_amount;
-
-    /**
-     * Validation rules for updating the amount.
-     */
-    protected $rules = [
-        'beginning_amount' => 'required|integer',
-    ];
-
-    /**
-     * Validation attribute names.
-     */
-    protected $validationAttributes = [
-        'beginning_amount' => 'beginning amount',
-    ];
-
-    /**
-     * Events the component listens for.
-     */
-    protected $listeners = ['paydayUpdated'];
 
     /**
      * Create a new component instance.
@@ -49,6 +33,7 @@ class PaydayAmount extends Component
     /**
      * Refresh the current payday.
      */
+    #[On('paydayUpdated')]
     public function paydayUpdated()
     {
         session('payday')->refresh();

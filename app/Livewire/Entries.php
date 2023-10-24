@@ -4,49 +4,30 @@ namespace App\Livewire;
 
 use App\Models\Entry;
 use Closure;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Rule;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Entries extends Component
 {
-    /** @var array */
-    public $new = [
-        'payee',
-        'amount',
-        'scheduled',
-        'reconciled',
-    ];
+    /** @var string */
+    #[Rule('required', as: 'payee')]
+    public $payee;
+
+    /** @var integer|string */
+    #[Rule('required|integer', as: 'entry amount')]
+    public $amount;
+
+    /** @var boolean */
+    #[Rule('nullable|boolean', as: 'scheduled option')]
+    public $scheduled;
+
+    #[Rule('nullable|boolean', as: 'reconciled option')]
+    public $reconciled;
 
     /** @var boolean */
     public $showingForm = false;
-
-    /**
-     * Validation rules for making a new entry.
-     */
-    protected $rules = [
-        'new.payee' => 'required',
-        'new.amount' => 'required|integer',
-        'new.scheduled' => 'nullable|boolean',
-        'new.reconciled' => 'nullable|boolean',
-    ];
-
-    /**
-     * Validation attribute names.
-     */
-    protected $validationAttributes = [
-        'new.payee' => 'payee',
-        'new.amount' => 'entry amount',
-        'new.scheduled' => 'scheduled option',
-        'new.reconciled' => 'reconciled option',
-    ];
-
-    /**
-     * Events the component listens for.
-     */
-    protected $listeners = [
-        'paydayUpdated',
-        'escapeKeyPressed'
-    ];
 
     /**
      * Create a new component instance.
@@ -67,6 +48,7 @@ class Entries extends Component
     /**
      * Refresh the current payday.
      */
+    #[On('paydayUpdated')]
     public function paydayUpdated()
     {
         session('payday')->refresh();
@@ -77,7 +59,7 @@ class Entries extends Component
      */
     public function clearFields()
     {
-        $this->reset(['new', 'showingForm']);
+        $this->reset();
     }
 
     /**
@@ -89,10 +71,10 @@ class Entries extends Component
 
         Entry::create([
             'payday_id' => session('payday')->id,
-            'amount' => $this->new['amount'],
-            'payee' => $this->new['payee'],
-            'scheduled' => $this->new['scheduled'] ?? false,
-            'reconciled' => $this->new['reconciled'] ?? false,
+            'amount' => $this->amount,
+            'payee' => $this->payee,
+            'scheduled' => $this->scheduled ?? false,
+            'reconciled' => $this->reconciled ?? false,
         ]);
 
         $this->clearFields();
@@ -105,6 +87,7 @@ class Entries extends Component
     /**
      * Handle escape key.
      */
+    #[On('escapeKeyPressed')]
     public function escapeKeyPressed()
     {
         $this->showingForm = false;

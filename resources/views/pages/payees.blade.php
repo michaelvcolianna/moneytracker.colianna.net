@@ -1,12 +1,11 @@
 <div class="payees-list">
     <div
         class="add-payee"
-        :class="showingForm && 'expanded'"
-        x-data="{ showingForm: @entangle('showingForm') }"
+        :class="$wire.showingForm && 'expanded'"
         @click.outside="showingForm = false"
     >
         <a class="button" href="#add" @click.prevent="
-            showingForm = !showingForm
+            $wire.$toggle('showingForm')
             $nextTick(() => $refs.name.focus())
         ">
             <svg class="expand" aria-hidden="true" height="1rem" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z"/></svg>
@@ -19,44 +18,44 @@
 
             <form wire:submit.prevent="addPayee">
                 <div>
-                    <label for="new.name">Name</label>
+                    <label for="name">Name</label>
 
                     <input
-                        id="new.name"
+                        id="name"
                         type="text"
-                        wire:model="new.name"
+                        wire:model="name"
                         x-ref="name"
                     >
                 </div>
 
                 <div>
-                    <label for="new.schedule_amount">Schedule Amount</label>
+                    <label for="schedule_amount">Schedule Amount</label>
 
                     <input
-                        id="new.schedule_amount"
+                        id="schedule_amount"
                         type="text"
-                        wire:model="new.schedule_amount"
+                        wire:model="schedule_amount"
                     >
                 </div>
 
                 <div class="days">
                     <div>
-                        <label for="new.earliest_day">Earliest Day</label>
+                        <label for="earliest_day">Earliest Day</label>
 
                         <input
-                            id="new.earliest_day"
+                            id="earliest_day"
                             type="text"
-                            wire:model="new.earliest_day"
+                            wire:model="earliest_day"
                         >
                     </div>
 
                     <div>
-                        <label for="new.latest_day">Latest Day</label>
+                        <label for="latest_day">Latest Day</label>
 
                         <input
-                            id="new.latest_day"
+                            id="latest_day"
                             type="text"
-                            wire:model="new.latest_day"
+                            wire:model="latest_day"
                         >
                     </div>
                 </div>
@@ -64,9 +63,9 @@
                 <div class="auto">
                     <label>
                         <input
-                            id="new.auto_schedule"
+                            id="auto_schedule"
                             type="checkbox"
-                            wire:model="new.auto_schedule"
+                            wire:model="auto_schedule"
                         >
 
                         <span>Auto-schedule amount on months:</span>
@@ -76,7 +75,7 @@
                 <div class="months">
                     <div class="checkboxes">
                         @foreach(range(1, 12) as $number)
-                            <x-payee.month prefix="new" :number="$number" />
+                            <x-payee.month :number="$number" />
                         @endforeach
                     </div>
 

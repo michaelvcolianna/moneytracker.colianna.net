@@ -2,44 +2,44 @@
     <x-shared.errors />
 
     <div>
-        <label for="payee.name">Name</label>
+        <label for="name">Name</label>
 
         <input
-            id="payee.name"
+            id="name.{{ $payee->id }}"
             type="text"
-            wire:model.live="payee.name"
+            wire:model.live="name"
             x-ref="name"
         >
     </div>
 
     <div>
-        <label for="payee.schedule_amount">Schedule Amount</label>
+        <label for="schedule_amount">Schedule Amount</label>
 
         <input
-            id="payee.schedule_amount"
+            id="schedule_amount.{{ $payee->id }}"
             type="text"
-            wire:model.live="payee.schedule_amount"
+            wire:model.live="schedule_amount"
         >
     </div>
 
     <div class="days">
         <div>
-            <label for="payee.earliest_day">Earliest Day</label>
+            <label for="earliest_day">Earliest Day</label>
 
             <input
-                id="payee.earliest_day"
+                id="earliest_day.{{ $payee->id }}"
                 type="text"
-                wire:model.live="payee.earliest_day"
+                wire:model.live="earliest_day"
             >
         </div>
 
         <div>
-            <label for="payee.latest_day">Latest Day</label>
+            <label for="latest_day">Latest Day</label>
 
             <input
-                id="payee.latest_day"
+                id="latest_day.{{ $payee->id }}"
                 type="text"
-                wire:model.live="payee.latest_day"
+                wire:model.live="latest_day"
             >
         </div>
     </div>
@@ -47,9 +47,9 @@
     <div class="auto">
         <label>
             <input
-                id="payee.auto_schedule"
+                id="auto_schedule.{{ $payee->id }}"
                 type="checkbox"
-                wire:model.live="payee.auto_schedule"
+                wire:model.live="auto_schedule"
             >
 
             <span>Auto-schedule amount on months:</span>
@@ -59,7 +59,7 @@
     <div class="months">
         <div class="checkboxes">
             @foreach(range(1, 12) as $number)
-                <x-payee.month prefix="payee" :number="$number" />
+                <x-payee.month :prefix="$payee->id" :number="$number" />
             @endforeach
         </div>
 

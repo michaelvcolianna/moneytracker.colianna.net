@@ -1,7 +1,7 @@
 <div>
     <label class="month">
         <input
-            id="{{ $model }}"
+            id="{{ $model }}{{ $prefix ? sprintf('.%s', $prefix) : ''}}"
             type="checkbox"
             wire:model.live="{{ $model }}"
         >
