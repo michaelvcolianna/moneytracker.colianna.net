@@ -2,33 +2,35 @@
 
 namespace App\View\Components\Payee;
 
+use App\Traits\CreatesMonthNames;
+use Closure;
+use DateTime;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Month extends Component
 {
+    use CreatesMonthNames;
+
     /** @var string */
     public $model;
     public $name;
+    public $prefix;
 
     /**
      * Create a new component instance.
-     *
-     * @param  string  $prefix
-     * @param  integer  $number
-     * @return void
      */
-    public function __construct($prefix, $number)
+    public function __construct(int $number, string $prefix = null)
     {
-        $this->model = $prefix.'.schedule_months.'.$number;
-        $this->name = config('app.months.'.$number);
+        $this->model = 'schedule_months.'.$number;
+        $this->name = $this->month($number);
+        $this->prefix = $prefix ? sprintf('.%s', $prefix) : '';
     }
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         return view('payee.month');
     }

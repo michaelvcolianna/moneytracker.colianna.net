@@ -7,12 +7,8 @@
     </a>
 
     <div class="amount beginning">
-        <label for="payday.beginning_amount">Beginning Amount</label>
+        <label for="beginning_amount">Beginning Amount</label>
 
-        <input
-            id="payday.beginning_amount"
-            type="text"
-            wire:model.debounce.300ms="payday.beginning_amount"
-        />
+        <input id="beginning_amount.{{ $payday->id }}" type="text" wire:model.live.debounce.300ms="beginning_amount" />
     </div>
 </li>

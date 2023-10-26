@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -9,17 +10,15 @@ class PayeeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::table('payees')->insert([
-            'name' => 'ACCC',
-            'schedule_amount' => 500,
+            'name' => 'Adobe',
+            'schedule_amount' => 30,
             'earliest_day' => 15,
-            'latest_day' => null,
-            'auto_schedule' => true,
+            'latest_day' => 17,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -27,15 +26,23 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 140,
             'earliest_day' => 12,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":true,"9":false,"10":false,"11":false,"12":false}',
+        ]);
+        DB::table('payees')->insert([
+            'name' => 'American Eagle',
+            'schedule_amount' => 350,
+            'earliest_day' => 13,
+            'latest_day' => 15,
+            'auto_schedule' => 0,
+            'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
             'name' => 'Apple',
             'schedule_amount' => 10,
             'earliest_day' => 1,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -43,7 +50,7 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 500,
             'earliest_day' => 30,
             'latest_day' => null,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -51,55 +58,23 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 60,
             'earliest_day' => 29,
             'latest_day' => null,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":false,"2":false,"3":false,"4":true,"5":false,"6":false,"7":false,"8":false,"9":false,"10":false,"11":false,"12":false}',
-        ]);
-        DB::table('payees')->insert([
-            'name' => 'Boiler Loan',
-            'schedule_amount' => 200,
-            'earliest_day' => 1,
-            'latest_day' => null,
-            'auto_schedule' => false,
-            'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
             'name' => 'Disney',
             'schedule_amount' => 20,
-            'earliest_day' => 16,
-            'latest_day' => 21,
-            'auto_schedule' => true,
+            'earliest_day' => 24,
+            'latest_day' => null,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
-        ]);
-        DB::table('payees')->insert([
-            'name' => 'Dollar Shave Club',
-            'schedule_amount' => 10,
-            'earliest_day' => 2,
-            'latest_day' => null,
-            'auto_schedule' => true,
-            'schedule_months' => '{"1":false,"2":false,"3":true,"4":false,"5":false,"6":false,"7":true,"8":false,"9":false,"10":true,"11":false,"12":false}',
-        ]);
-        DB::table('payees')->insert([
-            'name' => 'Down Payment Assist',
-            'schedule_amount' => 70,
-            'earliest_day' => 1,
-            'latest_day' => null,
-            'auto_schedule' => false,
-            'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
-        ]);
-        DB::table('payees')->insert([
-            'name' => 'FIYAH',
-            'schedule_amount' => 20,
-            'earliest_day' => 14,
-            'latest_day' => null,
-            'auto_schedule' => false,
-            'schedule_months' => '{"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":false,"9":false,"10":true,"11":false,"12":false}',
         ]);
         DB::table('payees')->insert([
             'name' => 'Geico',
-            'schedule_amount' => 110,
+            'schedule_amount' => 130,
             'earliest_day' => 20,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -107,15 +82,15 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 80,
             'earliest_day' => 27,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
             'name' => 'HBO',
-            'schedule_amount' => 20,
-            'earliest_day' => 25,
+            'schedule_amount' => 30,
+            'earliest_day' => 13,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -123,7 +98,7 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 100,
             'earliest_day' => 8,
             'latest_day' => null,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -131,23 +106,15 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 20,
             'earliest_day' => 11,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
-        ]);
-        DB::table('payees')->insert([
-            'name' => 'Inkarnate',
-            'schedule_amount' => 30,
-            'earliest_day' => 22,
-            'latest_day' => null,
-            'auto_schedule' => true,
-            'schedule_months' => '{"1":false,"2":false,"3":false,"4":false,"5":true,"6":false,"7":false,"8":false,"9":false,"10":false,"11":false,"12":false}',
         ]);
         DB::table('payees')->insert([
             'name' => 'Macy\'s',
             'schedule_amount' => 100,
             'earliest_day' => 9,
             'latest_day' => null,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -155,7 +122,7 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 1560,
             'earliest_day' => 1,
             'latest_day' => null,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -163,7 +130,7 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 30,
             'earliest_day' => 1,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -171,23 +138,23 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 20,
             'earliest_day' => 1,
             'latest_day' => null,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
-            'name' => 'QueryTracker',
-            'schedule_amount' => 30,
-            'earliest_day' => 19,
-            'latest_day' => null,
-            'auto_schedule' => true,
-            'schedule_months' => '{"1":false,"2":false,"3":false,"4":true,"5":false,"6":false,"7":false,"8":false,"9":false,"10":false,"11":false,"12":false}',
+            'name' => 'Peacock',
+            'schedule_amount' => 10,
+            'earliest_day' => 24,
+            'latest_day' => 26,
+            'auto_schedule' => 1,
+            'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
             'name' => 'Sewer',
             'schedule_amount' => 100,
             'earliest_day' => 18,
             'latest_day' => 24,
-            'auto_schedule' => true,
+            'auto_schedule' => 1,
             'schedule_months' => '{"1":false,"2":false,"3":true,"4":false,"5":false,"6":true,"7":false,"8":false,"9":true,"10":false,"11":false,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -195,7 +162,7 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 200,
             'earliest_day' => 15,
             'latest_day' => 20,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
@@ -203,23 +170,23 @@ class PayeeSeeder extends Seeder
             'schedule_amount' => 200,
             'earliest_day' => 6,
             'latest_day' => 9,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
             'name' => 'Verizon',
-            'schedule_amount' => 190,
+            'schedule_amount' => 260,
             'earliest_day' => 7,
             'latest_day' => null,
-            'auto_schedule' => false,
-            'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
+            'auto_schedule' => 0,
+            'schedule_months' => '{"1":true,"2":true,"3":false,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
         DB::table('payees')->insert([
             'name' => 'Water',
-            'schedule_amount' => 40,
+            'schedule_amount' => 50,
             'earliest_day' => 3,
             'latest_day' => 10,
-            'auto_schedule' => false,
+            'auto_schedule' => 0,
             'schedule_months' => '{"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"10":true,"11":true,"12":true}',
         ]);
     }

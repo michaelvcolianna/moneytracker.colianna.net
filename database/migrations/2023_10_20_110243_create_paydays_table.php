@@ -8,16 +8,13 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('paydays', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->integer('start_date');
-            $table->integer('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->unsignedInteger('beginning_amount');
             $table->integer('current_amount');
         });
@@ -25,10 +22,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('paydays');
     }

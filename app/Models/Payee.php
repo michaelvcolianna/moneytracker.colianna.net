@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\BaseModel as Model;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use Illuminate\Database\Eloquent\Model;
 
 class Payee extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array
      */
     protected $fillable = [
         'name',
@@ -23,8 +21,6 @@ class Payee extends Model
 
     /**
      * The attributes that should be cast.
-     *
-     * @var array
      */
     protected $casts = [
         'auto_schedule' => 'boolean',
@@ -32,23 +28,23 @@ class Payee extends Model
     ];
 
     /**
-     * Check if the payee schedules on given months.
-     *
-     * @param  array  $months
-     * @return boolean
+     * Override the model's boot method.
      */
-    public function schedulesMonths($months = [])
+    public static function boot(): void
     {
-        $schedules = false;
+        parent::boot();
 
-        foreach($months as $month)
-        {
-            if($this->schedule_months[$month])
-            {
-                $schedules = true;
-            }
-        }
+        // Set default for schedule months.
+        static::creating(function($payee) {
+            $payee->schedule_months = array_fill_keys(range(1, 12), true);
+        });
+    }
 
-        return $schedules;
+    /**
+     * Check if the payee schedules on a given month.
+     */
+    public function schedulesOnMonth(int $month): bool
+    {
+        return $this->schedule_months[$month];
     }
 }

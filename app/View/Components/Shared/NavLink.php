@@ -2,6 +2,8 @@
 
 namespace App\View\Components\Shared;
 
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class NavLink extends Component
@@ -13,12 +15,8 @@ class NavLink extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @param  string  $route
-     * @param  string  $label
-     * @return void
      */
-    public function __construct($route, $label = null)
+    public function __construct(string $route, string $label = null)
     {
         $this->current = request()->routeIs($route) ? 'page' : null;
         $this->label = $label;
@@ -27,10 +25,8 @@ class NavLink extends Component
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         return function($data)
         {

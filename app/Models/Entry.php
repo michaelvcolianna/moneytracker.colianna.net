@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Entry extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array
      */
     protected $fillable = [
         'payday_id',
@@ -21,8 +20,6 @@ class Entry extends Model
 
     /**
      * The attributes that should be cast.
-     *
-     * @var array
      */
     protected $casts = [
         'scheduled' => 'boolean',
@@ -32,7 +29,7 @@ class Entry extends Model
     /**
      * Get the payday the entry is under.
      */
-    public function payday()
+    public function payday(): BelongsTo
     {
         return $this->belongsTo(Payday::class);
     }

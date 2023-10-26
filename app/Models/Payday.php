@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Payee;
-use App\Models\Entry;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel as Model;
+use Exception;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 class Payday extends Model
 {
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array
      */
     protected $fillable = [
         'start_date',
@@ -23,105 +23,80 @@ class Payday extends Model
 
     /**
      * The attributes that should be cast.
-     *
-     * @var array
      */
     protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
+        'start_date' => 'date',
+        'end_date' => 'date',
     ];
 
     /**
-     * The storage format of the model's date columns.
-     *
-     * @var string
+     * Storage format for date columns.
      */
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d';
 
     /**
      * Get the entries under the payday.
      */
-    public function entries()
+    public function entries(): HasMany
     {
         return $this->hasMany(Entry::class);
     }
 
     /**
      * Get the specified payday or fall back to the current one.
-     *
-     * @param  string  $date
-     * @return \App\Models\Payday
      */
-    public static function byDate($date = null)
+    public static function byDate(string $date = null): Payday
     {
-        // Values for making a new payday
-        $start = new Carbon(config('app.start'));
-        $amount = config('app.amount');
-        $frequency = config('app.frequency');
-
-        // Use the supplied date, or get from the query, or use today
+        // Use the supplied date, get from the query, or use today
         $date ??= request()->query('date', date('Y-m-d'));
 
         try
         {
             $current = new Carbon($date);
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             // In case Carbon can't parse the supplied date
-            // @todo Log $date
             $current = new Carbon;
         }
 
-        // Make the nearest payday date
-        $current->subDays($current->diffInDays($start) % $frequency);
+        // Set the day for the nearest payday date
+        $start = $current->copy();
+        $start->day = $current->day < 15 ? 1 : 15;
 
-        if(!$payday = static::where('start_date', $current->timestamp)->first())
+        // Get the end day
+        $end = $start->copy();
+        $end->day = $start->day == 1 ? 14 : $end->endOfMonth()->day;
+
+        if(!$payday = static::where('start_date', $start)->first())
         {
             $payday = static::create([
-                'start_date' => $current,
-                'end_date' => $current->copy()->addDays(13),
-                'beginning_amount' => $amount,
-                'current_amount' => $amount,
+                'start_date' => $start,
+                'end_date' => $end,
+                'beginning_amount' => 3000,
+                'current_amount' => 3000,
             ]);
 
             // Values for comparison
-            $start_day = $payday->start_date->format('d');
-            $end_day = $payday->end_date->format('d');
-            $months = [
-                'start' => $payday->start_date->format('n'),
-                'end' => $payday->end_date->format('n'),
-            ];
+            $start_day = $payday->start_date->day;
+            $end_day = $payday->end_date->day;
 
             // Query payees with schedule amounts
             $payees = Payee::whereNotNull('schedule_amount');
 
-            if($months['start'] !== $months['end'])
-            {
-                // Build the payees across months
-                $payees->where(function($query) use($start_day, $end_day) {
-                    $query->where('earliest_day', '>=', $start_day)
-                          ->orWhere('earliest_day', '<=', $end_day)
-                          ->orWhere('latest_day', '<=', $end_day)
-                    ;
-                });
-            }
-            else
-            {
-                // Build the payees in single month
-                $payees->where([
-                    ['earliest_day', '>=', $start_day],
-                    ['earliest_day', '<=', $end_day],
-                ])->orWhere([
-                    ['latest_day', '>=', $start_day],
-                    ['latest_day', '<=', $end_day],
-                ]);
-            }
+            // Build the payees
+            $payees->where([
+                ['earliest_day', '>=', $start_day],
+                ['earliest_day', '<=', $end_day],
+            ])->orWhere([
+                ['latest_day', '>=', $start_day],
+                ['latest_day', '<=', $end_day],
+            ]);
 
             // Loop payees and schedule as needed
             foreach($payees->get() as $payee)
             {
-                if($payee->schedulesMonths($months))
+                if($payee->schedulesOnMonth($payday->start_date->month))
                 {
                     Entry::create([
                         'payday_id' => $payday->id,
@@ -141,11 +116,9 @@ class Payday extends Model
     }
 
     /**
-     * Figure out how much is left from the beginning amount after entries.
-     *
-     * @return void
+     * Figure out how much is left after entries.
      */
-    public function recalculate()
+    public function recalculate(): void
     {
         $subtract = 0;
 
@@ -160,90 +133,66 @@ class Payday extends Model
 
     /**
      * Get a formatted start date.
-     *
-     * @param  string  $format
-     * @return string
      */
-    public function start($format = 'Y-m-d')
+    public function start(string $format = 'Y-m-d'): string
     {
         return $this->start_date->format($format);
     }
 
     /**
      * Get the following payday with optional formatting.
-     *
-     * @param  string  $format
-     * @return \Illuminate\Support\Carbon|string
      */
-    public function newer($format = null)
+    public function newer(string $format = null): Payday|string
     {
-        $newer = $this->end_date->copy()->addDay();
+        $newer = static::byDate($this->end_date->addDay());
 
-        return $format ? $newer->format($format) : $newer;
+        return $format ? $newer->start_date->format($format) : $newer;
     }
 
     /**
      * Get the previous payday with optional formatting.
-     *
-     * @param  string  $format
-     * @return \Illuminate\Support\Carbon|string
      */
-    public function older($format = null)
+    public function older(string $format = null): Payday|string
     {
-        $older = $this->start_date->copy()->subDays(config('app.frequency'));
+        $older = static::byDate($this->start_date->subDay());
 
-        return $format ? $older->format($format) : $older;
+        return $format ? $older->start_date->format($format) : $older;
     }
 
     /**
      * Get the formatted current amount.
-     *
-     * @return string
      */
-    public function prettyCurrentAmount()
+    public function prettyCurrentAmount(): string
     {
         return number_format($this->current_amount, 0, null, ',');
     }
 
     /**
-     * Get entries in alphabetical order.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * Get entries in case-insensitive alphabetical order.
      */
-    public function sortedEntries()
+    public function sortedEntries(): Collection
     {
-        return $this->entries()->orderBy('payee')->get();
+        return $this->entries()
+            ->orderBy('payee')->get()
+            ->sortBy('payee', SORT_NATURAL|SORT_FLAG_CASE);
     }
 
     /**
      * Make the class for the current amount's threshold.
-     *
-     * @return string
      */
-    public function threshold()
+    public function threshold(): string|null
     {
-        if($this->current_amount < 0)
-        {
-            return 'negative';
-        }
-
-        if($this->current_amount >= config('app.positive'))
-        {
-            return 'positive';
-        }
-
-        return null;
+        return $this->current_amount < 0
+            ? 'negative'
+            : ($this->current_amount >= 1000 ? 'positive' : null)
+            ;
     }
 
     /**
-     * Make the URL for the payday.
-     *
-     * @return string
+     * Make the payday's URL.
      */
-    public function url()
+    public function url(): string
     {
-        return route('entries', [
-            'date' => $this->start(),
-        ]);
+        return route('entries', ['date' => $this->start()]);
     }
 }

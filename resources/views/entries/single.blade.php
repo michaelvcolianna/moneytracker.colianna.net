@@ -2,75 +2,36 @@
     <x-shared.errors />
 
     <div>
-        <label for="entry.payee">Payee</label>
-
-        <input
-            id="entry.payee"
-            type="text"
-            wire:model.debounce.300ms="entry.payee"
-        >
+        <label for="payee.{{ $entry->id }}">Payee</label>
+        <input id="payee.{{ $entry->id }}" type="text" wire:model.live.debounce.300ms="payee">
     </div>
 
     <div>
-        <label for="entry.amount">Amount</label>
-
-        <input
-            id="entry.amount"
-            type="text"
-            wire:model.debounce.300ms="entry.amount"
-        >
+        <label for="amount.{{ $entry->id }}">Amount</label>
+        <input id="amount.{{ $entry->id }}" type="text" wire:model.live.debounce.300ms="amount">
     </div>
 
     <div class="checkboxes">
         <div>
             <label>
-                <input
-                    id="entry.scheduled"
-                    type="checkbox"
-                    wire:model="entry.scheduled"
-                >
-
+                <input id="scheduled.{{ $entry->id }}" type="checkbox" wire:model.live="scheduled">
                 <span>Scheduled</span>
             </label>
         </div>
 
         <div>
             <label>
-                <input
-                    id="entry.reconciled"
-                    type="checkbox"
-                    wire:model="entry.reconciled"
-                >
-
+                <input id="reconciled.{{ $entry->id }}" type="checkbox" wire:model.live="reconciled">
                 <span>Reconciled</span>
             </label>
         </div>
     </div>
 
-    <div
-        class="delete-entry"
-        :class="confirmingDelete && 'expanded'"
-        x-data="{ confirmingDelete: @entangle('confirmingDelete') }"
-    >
-        <button
-            :class="confirmingDelete && 'ghost'"
-            type="button"
-            @click.prevent="confirmingDelete = !confirmingDelete"
-        >
-            Delete Entry
-        </button>
+    <div class="delete-entry" :class="$wire.confirmingDelete && 'expanded'" @click.outside="$wire.confirmingDelete = false">
+        <button :class="$wire.confirmingDelete && 'ghost'" type="button" @click.prevent="$wire.$toggle('confirmingDelete')">Delete Entry</button>
 
-        <div
-            class="confirm"
-            @click.outside="confirmingDelete = false"
-        >
-            <button
-                class="danger"
-                type="button"
-                wire:click.prevent="deleteEntry"
-            >
-                Confirm
-            </button>
+        <div class="confirm">
+            <button class="danger" type="button" wire:click.prevent="deleteEntry">Confirm</button>
         </div>
     </div>
 </li>

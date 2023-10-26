@@ -6,28 +6,12 @@
 
         <div class="field">
             <label for="email">Email</label>
-
-            <input
-                id="email"
-                type="email"
-                name="email"
-                value="{{ old('email') }}"
-                required
-                autofocus
-                autocomplete="email"
-            >
+            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email">
         </div>
 
         <div class="field">
             <label for="password">Password</label>
-
-            <input
-                id="password"
-                type="password"
-                name="password"
-                required
-                autocomplete="current-password"
-            >
+            <input id="password" type="password" name="password" required autocomplete="current-password">
         </div>
 
         <div class="field checkbox">

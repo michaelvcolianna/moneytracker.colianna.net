@@ -2,6 +2,8 @@
 
 namespace App\View\Components\Shared;
 
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Footer extends Component
@@ -25,10 +27,8 @@ class Footer extends Component
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         return view('shared.footer');
     }

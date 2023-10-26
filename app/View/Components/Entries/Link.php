@@ -2,6 +2,9 @@
 
 namespace App\View\Components\Entries;
 
+use App\Models\Payday;
+use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Link extends Component
@@ -14,23 +17,17 @@ class Link extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @param  \Illuminate\Support\Carbon  $date
-     * @param  string  $label
-     * @return void
      */
-    public function __construct($date, $label = null)
+    public function __construct(Payday $payday, string $label = null)
     {
-        $this->date = $date;
+        $this->date = $payday->start_date;
         $this->label = $label;
     }
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View|Closure|string
     {
         return function($data)
         {
