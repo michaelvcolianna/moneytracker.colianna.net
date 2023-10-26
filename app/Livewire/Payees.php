@@ -121,9 +121,9 @@ class Payees extends Component
 
         Payee::create([
             'name' => $this->name,
-            'schedule_amount' => $this->schedule_amount ?? null,
-            'earliest_day' => $this->earliest_day ?? null,
-            'latest_day' => $this->latest_day ?? null,
+            'schedule_amount' => filled($this->schedule_amount) ? $this->schedule_amount : null,
+            'earliest_day' => filled($this->earliest_day) ? $this->earliest_day : null,
+            'latest_day' => filled($this->latest_day) ? $this->latest_day : null,
             'auto_schedule' => $this->auto_schedule ?? false,
             'schedule_months' => $this->schedule_months,
         ]);
