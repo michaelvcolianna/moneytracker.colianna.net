@@ -7,26 +7,24 @@
         </a>
 
         <div class="form">
-            <x-shared.errors />
-
             <form wire:submit.prevent="addPayee">
-                <div>
+                <div @class(['error' => $errors->has('name')])>
                     <label for="name">Name</label>
                     <input id="name" type="text" wire:model="name" x-ref="name">
                 </div>
 
-                <div>
+                <div @class(['error' => $errors->has('schedule_amount')])>
                     <label for="schedule_amount">Schedule Amount</label>
                     <input id="schedule_amount" type="text" wire:model="schedule_amount">
                 </div>
 
                 <div class="days">
-                    <div>
+                    <div @class(['error' => $errors->has('earliest_day')])>
                         <label for="earliest_day">Earliest Day</label>
                         <input id="earliest_day" type="text" wire:model="earliest_day">
                     </div>
 
-                    <div>
+                    <div @class(['error' => $errors->has('latest_day')])>
                         <label for="latest_day">Latest Day</label>
                         <input id="latest_day" type="text" wire:model="latest_day">
                     </div>

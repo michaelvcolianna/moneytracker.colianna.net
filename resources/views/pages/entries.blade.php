@@ -23,15 +23,13 @@
         </a>
 
         <div class="form">
-            <x-shared.errors />
-
             <form wire:submit.prevent="addEntry">
-                <div>
+                <div @class(['error' => $errors->has('payee')])>
                     <label for="payee">Payee</label>
                     <input id="payee" type="text" wire:model="payee" list="payees-list" x-ref="payee">
                 </div>
 
-                <div>
+                <div @class(['error' => $errors->has('amount')])>
                     <label for="amount">Amount</label>
                     <input id="amount" type="text" wire:model="amount">
                 </div>

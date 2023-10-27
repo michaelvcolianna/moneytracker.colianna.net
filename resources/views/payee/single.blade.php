@@ -1,23 +1,21 @@
 <li>
-    <x-shared.errors />
-
-    <div>
+    <div @class(['error' => $errors->has('name')])>
         <label for="name">Name</label>
         <input id="name.{{ $payee->id }}" type="text" wire:model.live="name" x-ref="name" >
     </div>
 
-    <div>
+    <div @class(['error' => $errors->has('schedule_amount')])>
         <label for="schedule_amount">Schedule Amount</label>
         <input id="schedule_amount.{{ $payee->id }}" type="text" wire:model.live="schedule_amount">
     </div>
 
     <div class="days">
-        <div>
+        <div @class(['error' => $errors->has('earliest_day')])>
             <label for="earliest_day">Earliest Day</label>
             <input id="earliest_day.{{ $payee->id }}" type="text" wire:model.live="earliest_day">
         </div>
 
-        <div>
+        <div @class(['error' => $errors->has('latest_day')])>
             <label for="latest_day">Latest Day</label>
             <input id="latest_day.{{ $payee->id }}" type="text" wire:model.live="latest_day">
         </div>
