@@ -7,6 +7,13 @@ $matisse: #16568d;
 $killarney: #235c2d;
 $scarpa: #525260;
 
+$squeeze: #f2f7fa;
+$bunker: #050609;
+$viking: #64d8cf;
+$porsche: #e9a972;
+$orchid: #dca3d2;
+$bud: #adad9f;
+
 :root {
   --color-accent: #{$scarpa};
   --color-accent-darker: #{color.scale($scarpa, $lightness: -45%)};
@@ -20,6 +27,22 @@ $scarpa: #525260;
   --color-links-darker: #{color.scale($matisse, $lightness: -45%)};
   --color-success: #{$killarney};
   --color-success-darker: #{color.scale($killarney, $lightness: -45%)};
+
+  &.dark {
+    --color-accent: #{$bud};
+    --color-accent-darker: #{color.scale($bud, $lightness: -45%)};
+    --color-accent-decorative: #{color.scale($bud, $lightness: 75%)};
+    --color-background: #{$bunker};
+    --color-danger: #{$viking};
+    --color-danger-darker: #{color.scale($viking, $lightness: -45%)};
+    --color-foreground: #{$squeeze};
+    --color-foreground-lighter: #{color.scale($squeeze, $lightness: 10%)};
+    --color-links: #{$porsche};
+    --color-links-darker: #{color.scale($porsche, $lightness: -45%)};
+    --color-success: #{$orchid};
+    --color-success-darker: #{color.scale($orchid, $lightness: -45%)};
+  }
+
   --transition-base: 300ms ease-in-out;
 
   --align-auto: auto;
@@ -167,6 +190,7 @@ input {
   &:not([type="checkbox"]) {
     background-color: var(--color-background);
     border-radius: 3px;
+    color: var(--color-foreground);
     height: 3rem;
     padding: 0 0.75rem;
     width: 100%;
@@ -252,7 +276,7 @@ header {
     &:focus,
     &:hover,
     &:visited {
-      color: black;
+      color: var(--color-foreground);
     }
   }
 }
