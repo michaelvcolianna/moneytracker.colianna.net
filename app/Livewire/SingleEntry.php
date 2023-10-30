@@ -95,8 +95,8 @@ class SingleEntry extends Component
      */
     public function cleanup(): void
     {
-        session('payday')->refresh();
-        session('payday')->recalculate();
+        auth()->user()->payday()->refresh();
+        auth()->user()->payday()->recalculate();
 
         $this->dispatch('paydayUpdated');
     }

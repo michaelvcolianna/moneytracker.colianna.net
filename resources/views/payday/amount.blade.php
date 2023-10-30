@@ -1,7 +1,7 @@
 <div @class(['payday-amount', 'error' => $errors->has('beginning_amount')])>
-    <div @class([session('payday')->threshold()])>
+    <div @class([auth()->user()->payday()->threshold()])>
         <span class="label">Current Amount</span>
-        <span>${{ session('payday')->prettyCurrentAmount() }}</span>
+        <span>${{ auth()->user()->payday()->prettyCurrentAmount() }}</span>
     </div>
 
     <div>

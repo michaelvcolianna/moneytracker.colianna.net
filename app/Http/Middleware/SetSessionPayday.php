@@ -14,9 +14,8 @@ class SetSessionPayday
      */
     public function handle(Request $request, Closure $next): Response
     {
-        session([
-            'payday' => Payday::byDate(),
-        ]);
+        auth()->user()->payday_id = Payday::byDate()->id;
+        auth()->user()->save();
 
         return $next($request);
     }
