@@ -70,7 +70,7 @@ class Entries extends Component
         $this->validate();
 
         Entry::create([
-            'payday_id' => auth()->user()->payday->id,
+            'payday_id' => auth()->user()->payday()->id,
             'amount' => $this->amount,
             'payee' => $this->payee,
             'scheduled' => $this->scheduled ?? false,
