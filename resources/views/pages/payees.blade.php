@@ -58,15 +58,27 @@
         </div>
     </div>
 
-    <div class="header">List of payees</div>
+    <div class="header">Active payees</div>
 
-    @if($payees->isNotEmpty())
+    @if($activePayees->isNotEmpty())
         <ul>
-            @foreach($payees as $payee)
+            @foreach($activePayees as $payee)
                 <livewire:single-payee key="payee-{{ $payee->id }}" :payee="$payee" />
             @endforeach
         </ul>
     @else
-        <div class="empty">No payees.</div>
+        <div class="empty">No active payees.</div>
+    @endif
+
+    <div class="header archived">Archived payees</div>
+
+    @if($archivedPayees->isNotEmpty())
+        <ul>
+            @foreach($archivedPayees as $payee)
+                <livewire:single-payee key="payee-{{ $payee->id }}" :payee="$payee" />
+            @endforeach
+        </ul>
+    @else
+        <div class="empty">No archived payees.</div>
     @endif
 </div>

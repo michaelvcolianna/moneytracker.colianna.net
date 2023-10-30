@@ -718,6 +718,10 @@ div[role="alert"] {
       position: absolute;
       right: -1rem;
     }
+
+    &.archived {
+      margin-top: 2rem;
+    }
   }
 
   ul {
