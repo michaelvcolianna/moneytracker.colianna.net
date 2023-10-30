@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'payday_id',
+        'dark',
     ];
 
     /**
@@ -42,6 +43,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'dark' => 'boolean',
     ];
 
     /**
@@ -60,5 +62,14 @@ class User extends Authenticatable
         }
 
         return Payday::find($this->payday_id);
+    }
+
+    /**
+     * Switch the color theme.
+     */
+    public function switchTheme(): void
+    {
+        $this->dark = !$this->dark;
+        $this->save();
     }
 }
