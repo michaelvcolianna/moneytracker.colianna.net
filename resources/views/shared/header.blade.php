@@ -1,6 +1,7 @@
 <header @class(['auth' => auth()->check()])>
     <div class="branding">
         <a href="/">MoneyTracker</a>
+        <livewire:theme-switcher />
     </div>
 
     @auth
