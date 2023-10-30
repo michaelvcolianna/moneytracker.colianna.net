@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Payday;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,8 +52,13 @@ class User extends Authenticatable
     /**
      * Get the payday for the user.
      */
-    public function payday(): HasOne
+    public function payday(): Payday
     {
-        return $this->hasOne(Payday::class);
+        if(!$this->payday_id)
+        {
+            $this->payday_id = Payday::byDate()->id;
+        }
+
+        return Payday::find($this->payday_id);
     }
 }
