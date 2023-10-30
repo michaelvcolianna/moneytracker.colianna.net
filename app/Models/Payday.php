@@ -86,7 +86,7 @@ class Payday extends Model
             $payees = Payee::whereNotNull('schedule_amount');
 
             // Build the payees
-            $payees->where([
+            $payees->withoutTrashed()->where([
                 ['earliest_day', '>=', $start_day],
                 ['earliest_day', '<=', $end_day],
             ])->orWhere([
