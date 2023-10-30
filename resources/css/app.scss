@@ -184,6 +184,23 @@ button {
       color: var(--color-foreground);
     }
   }
+
+  &.theme {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    height: auto;
+    padding: 0 0.75rem;
+
+    &.dark {
+      background-color: var(--color-background);
+      color: var(--color-accent);
+    }
+
+    &:hover {
+      background-color: var(--color-accent-darker);
+      color: var(--color-background);
+    }
+  }
 }
 
 input {
@@ -271,7 +288,9 @@ header {
 }
 
 .branding {
-  text-align: center;
+  display: inline-flex;
+  gap: 1rem;
+  justify-content: center;
 
   a {
     font-size: 1.65rem;
