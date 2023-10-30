@@ -11,7 +11,9 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('iphone-retina.png') }}">
         <link rel="apple-touch-startup-image" href="{{ asset('launch-screen.png') }}">
         <meta name="apple-mobile-web-app-status-bar-style" content="default">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @if(request()->route()->getName() == 'login')
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+        @endif
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=albert-sans:300,600,900" rel="stylesheet" />
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
