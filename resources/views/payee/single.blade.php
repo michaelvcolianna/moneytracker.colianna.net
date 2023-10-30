@@ -40,4 +40,12 @@
             <span>Select/Deselect All</span>
         </a>
     </div>
+
+    <div class="archive-payee" :class="$wire.confirmingChange && 'expanded'" @click.outside="$wire.confirmingChange = false">
+        <button :class="$wire.confirmingChange && 'ghost'" type="button" @click.prevent="$wire.$toggle('confirmingChange')">{{ $payee->trashed() ? 'Restore' : 'Archive' }} Payee</button>
+
+        <div class="confirm">
+            <button class="danger" type="button" wire:click.prevent="{{ $payee->trashed() ? 'restore' : 'archive' }}Payee">Confirm</button>
+        </div>
+    </div>
 </li>
