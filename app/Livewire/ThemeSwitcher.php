@@ -17,7 +17,7 @@ class ThemeSwitcher extends Component
      */
     public function mount(): void
     {
-        $this->dark = session()->has('dark');
+        $this->dark = auth()->user()->dark;
     }
 
     /**
@@ -33,14 +33,7 @@ class ThemeSwitcher extends Component
      */
     public function switchTheme(): Redirector
     {
-        if(session()->has('dark'))
-        {
-            session()->forget('dark');
-        }
-        else
-        {
-            session(['dark' => true]);
-        }
+        auth()->user()->switchTheme();
 
         return redirect(request()->header('Referer'));
     }
