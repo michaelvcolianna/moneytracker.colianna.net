@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\Features\SupportRedirects\Redirector;
 
 class Payees extends Component
 {
@@ -87,7 +88,8 @@ class Payees extends Component
     public function render(): View|Closure|string
     {
         return view('pages.payees', [
-            'payees' => Payee::orderBy('name')->get(),
+            'activePayees' => Payee::orderBy('name')->get(),
+            'archivedPayees' => Payee::onlyTrashed()->orderBy('name')->get(),
         ]);
     }
 
@@ -137,9 +139,9 @@ class Payees extends Component
      * Refresh the component.
      */
     #[On('payeesUpdated')]
-    public function payeesUpdated(): void
+    public function payeesUpdated(): Redirector
     {
-        $this->clearFields();
+        return redirect(request()->header('Referer'));
     }
 
     /**

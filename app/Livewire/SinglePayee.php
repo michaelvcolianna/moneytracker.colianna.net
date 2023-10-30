@@ -163,9 +163,9 @@ class SinglePayee extends Component
      */
     public function archivePayee(): void
     {
-        $this->entry->delete();
+        $this->payee->delete();
 
-        $this->cleanup();
+        $this->dispatch('payeesUpdated');
     }
 
     /**
@@ -173,8 +173,8 @@ class SinglePayee extends Component
      */
     public function restorePayee(): void
     {
-        $this->entry->restore();
+        $this->payee->restore();
 
-        $this->cleanup();
+        $this->dispatch('payeesUpdated');
     }
 }
