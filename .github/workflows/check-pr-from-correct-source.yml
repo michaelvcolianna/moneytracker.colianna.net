@@ -1,0 +1,17 @@
+on:
+  pull_request:
+    types: ['opened', 'reopened', 'edited', 'synchronize']
+    branches:
+      - main
+jobs:
+  check-pr-from-correct-source:
+    name: Check whether the PR source is correct
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure pull request comes from develop
+        run: echo "Want to merge from ${{ github.base_ref }} to ${{ github.head_ref }}"
+      - name: Are you trying to merge to main from somewhere other than develop?
+        if: github.base_ref == 'main' && github.head_ref != 'develop'
+        run: exit 1
+      - name: 👆 Did check above pass?
+        run: echo 🥳
