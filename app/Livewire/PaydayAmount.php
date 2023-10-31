@@ -48,8 +48,9 @@ class PaydayAmount extends Component
     {
         $this->validateOnly('beginning_amount');
 
-        auth()->user()->payday()->beginning_amount = $value;
-        auth()->user()->payday()->recalculate();
+        auth()->user()->payday()->update([
+            'beginning_amount' => $value,
+        ]);
 
         $this->dispatch('paydayUpdated');
     }
