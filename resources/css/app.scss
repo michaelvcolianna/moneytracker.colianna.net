@@ -1,11 +1,20 @@
 @use "sass:color";
 
+// Base colors
 $asphalt: #0d0805;
 $porcelain: #faf9f6;
+
+// Light colors
 $carmine: #9b2730;
 $matisse: #16568d;
 $killarney: #235c2d;
 $scarpa: #525260;
+
+// Dark colors
+$york: #df818a;
+$picton: #4f9ee3;
+$chateau: #41af55;
+$santas: #9999a8;
 
 :root {
   --color-accent: #{$scarpa};
@@ -20,6 +29,22 @@ $scarpa: #525260;
   --color-links-darker: #{color.scale($matisse, $lightness: -45%)};
   --color-success: #{$killarney};
   --color-success-darker: #{color.scale($killarney, $lightness: -45%)};
+
+  &.dark {
+    --color-accent: #{$santas};
+    --color-accent-darker: #{color.scale($santas, $lightness: -45%)};
+    --color-accent-decorative: #{color.scale($santas, $lightness: 75%)};
+    --color-background: #{$asphalt};
+    --color-danger: #{$york};
+    --color-danger-darker: #{color.scale($york, $lightness: -45%)};
+    --color-foreground: #{$porcelain};
+    --color-foreground-lighter: #{color.scale($porcelain, $lightness: 10%)};
+    --color-links: #{$picton};
+    --color-links-darker: #{color.scale($picton, $lightness: -45%)};
+    --color-success: #{$chateau};
+    --color-success-darker: #{color.scale($chateau, $lightness: -45%)};
+  }
+
   --transition-base: 300ms ease-in-out;
 
   --align-auto: auto;
@@ -31,7 +56,6 @@ $scarpa: #525260;
   --columns-entries-li: 1fr;
   --columns-entry-form: 1fr;
   --columns-payees-li: 1fr;
-  --display-delete-payee: grid;
   --height-months-button: 3rem;
   --margin-entry-label: 0;
   --max-width-inner: 1440px;
@@ -47,7 +71,6 @@ $scarpa: #525260;
     --columns-entries-li: 0.4fr 0.15fr 0.2fr 0.25fr;
     --columns-entry-form: 1fr 1fr 1fr;
     --columns-payees-li: 1fr 1fr 1fr;
-    --display-delete-payee: flex;
     --height-months-button: 2rem;
     --margin-entry-label: 1rem;
     --padding-entry-label: 0 0 1rem 0;
@@ -159,6 +182,23 @@ button {
       color: var(--color-foreground);
     }
   }
+
+  &.theme {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    height: auto;
+    padding: 0 0.75rem;
+
+    &.dark {
+      background-color: var(--color-background);
+      color: var(--color-accent);
+    }
+
+    &:hover {
+      background-color: var(--color-accent-darker);
+      color: var(--color-background);
+    }
+  }
 }
 
 input {
@@ -167,6 +207,7 @@ input {
   &:not([type="checkbox"]) {
     background-color: var(--color-background);
     border-radius: 3px;
+    color: var(--color-foreground);
     height: 3rem;
     padding: 0 0.75rem;
     width: 100%;
@@ -225,6 +266,11 @@ header {
       text-decoration: none;
       text-transform: uppercase;
 
+      &:focus,
+      &:hover {
+        border-color: var(--color-links-darker);
+      }
+
       &[aria-current="page"] {
         background-color: var(--color-links);
         color: var(--color-background);
@@ -240,7 +286,9 @@ header {
 }
 
 .branding {
-  text-align: center;
+  display: inline-flex;
+  gap: 1rem;
+  justify-content: center;
 
   a {
     font-size: 1.65rem;
@@ -252,7 +300,7 @@ header {
     &:focus,
     &:hover,
     &:visited {
-      color: black;
+      color: var(--color-foreground);
     }
   }
 }
@@ -670,6 +718,10 @@ div[role="alert"] {
       position: absolute;
       right: -1rem;
     }
+
+    &.archived {
+      margin-top: 2rem;
+    }
   }
 
   ul {
@@ -763,9 +815,11 @@ div[role="alert"] {
     }
   }
 
-  .delete-payee {
-    display: var(--display-delete-payee);
-    gap: 1rem;
+  .archive-payee {
+    align-items: var(--align-entry-delete);
+    display: flex;
+    justify-content: space-between;
+    width: 20em;
 
     .confirm {
       opacity: 0;
@@ -789,4 +843,14 @@ div[role="alert"] {
   margin: auto;
   max-width: var(--max-width-inner);
   padding: 2vh 0;
+}
+
+.error {
+  label {
+    color: var(--color-danger);
+  }
+
+  input {
+    border-color: var(--color-danger);
+  }
 }

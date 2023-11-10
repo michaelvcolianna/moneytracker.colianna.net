@@ -70,11 +70,12 @@ class Payday extends Model
 
         if(!$payday = static::where('start_date', $start)->first())
         {
+            $amount = $start->day == 1 ? 3700 : 3000;
             $payday = static::create([
                 'start_date' => $start,
                 'end_date' => $end,
-                'beginning_amount' => 3000,
-                'current_amount' => 3000,
+                'beginning_amount' => $amount,
+                'current_amount' => $amount,
             ]);
 
             // Values for comparison
@@ -85,7 +86,7 @@ class Payday extends Model
             $payees = Payee::whereNotNull('schedule_amount');
 
             // Build the payees
-            $payees->where([
+            $payees->withoutTrashed()->where([
                 ['earliest_day', '>=', $start_day],
                 ['earliest_day', '<=', $end_day],
             ])->orWhere([

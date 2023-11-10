@@ -36,9 +36,9 @@ class PaydayAmount extends Component
     #[On('paydayUpdated')]
     public function paydayUpdated(): void
     {
-        session('payday')->refresh();
-        session('payday')->recalculate();
-        $this->beginning_amount = session('payday')->beginning_amount;
+        auth()->user()->payday()->refresh();
+        auth()->user()->payday()->recalculate();
+        $this->beginning_amount = auth()->user()->payday()->beginning_amount;
     }
 
     /**
@@ -48,8 +48,9 @@ class PaydayAmount extends Component
     {
         $this->validateOnly('beginning_amount');
 
-        session('payday')->beginning_amount = $value;
-        session('payday')->recalculate();
+        auth()->user()->payday()->update([
+            'beginning_amount' => $value,
+        ]);
 
         $this->dispatch('paydayUpdated');
     }

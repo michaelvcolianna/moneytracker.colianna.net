@@ -49,7 +49,7 @@ class SinglePayee extends Component
     public $payee;
 
     /** @var boolean */
-    public $confirmingDelete = false;
+    public $confirmingChange = false;
 
     /**
      * Validation attribute names.
@@ -155,6 +155,26 @@ class SinglePayee extends Component
     #[On('escapeKeyPressed')]
     public function escapeKeyPressed(): void
     {
-        $this->confirmingDelete = false;
+        $this->confirmingChange = false;
+    }
+
+    /**
+     * Archive a payee.
+     */
+    public function archivePayee(): void
+    {
+        $this->payee->delete();
+
+        $this->dispatch('payeesUpdated');
+    }
+
+    /**
+     * Restore a payee.
+     */
+    public function restorePayee(): void
+    {
+        $this->payee->restore();
+
+        $this->dispatch('payeesUpdated');
     }
 }

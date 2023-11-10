@@ -1,12 +1,10 @@
 <li>
-    <x-shared.errors />
-
-    <div>
+    <div @class(['error' => $errors->has('payee')])>
         <label for="payee.{{ $entry->id }}">Payee</label>
         <input id="payee.{{ $entry->id }}" type="text" wire:model.live.debounce.300ms="payee">
     </div>
 
-    <div>
+    <div @class(['error' => $errors->has('amount')])>
         <label for="amount.{{ $entry->id }}">Amount</label>
         <input id="amount.{{ $entry->id }}" type="text" wire:model.live.debounce.300ms="amount">
     </div>

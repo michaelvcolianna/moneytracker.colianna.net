@@ -2,8 +2,6 @@
     <form class="login" method="POST" action="{{ route('login') }}">
         @csrf
 
-        <x-shared.errors />
-
         <div class="field">
             <label for="email">Email</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email">

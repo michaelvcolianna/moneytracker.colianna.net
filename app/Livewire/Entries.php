@@ -51,7 +51,7 @@ class Entries extends Component
     #[On('paydayUpdated')]
     public function paydayUpdated(): void
     {
-        session('payday')->refresh();
+        auth()->user()->payday()->refresh();
     }
 
     /**
@@ -70,7 +70,7 @@ class Entries extends Component
         $this->validate();
 
         Entry::create([
-            'payday_id' => session('payday')->id,
+            'payday_id' => auth()->user()->payday()->id,
             'amount' => $this->amount,
             'payee' => $this->payee,
             'scheduled' => $this->scheduled ?? false,
@@ -79,7 +79,7 @@ class Entries extends Component
 
         $this->clearFields();
 
-        session('payday')->recalculate();
+        auth()->user()->payday()->recalculate();
 
         $this->dispatch('paydayUpdated');
     }

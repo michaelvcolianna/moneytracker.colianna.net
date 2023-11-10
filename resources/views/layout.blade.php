@@ -1,25 +1,19 @@
 <!docctype html>
-<<<<<<< Updated upstream
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-=======
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => auth()?->user()?->dark])>
->>>>>>> Stashed changes
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MoneyTracker</title>
         <link rel="manifest" href="{{ asset('manifest.json') }}">
-<<<<<<< Updated upstream
-        <meta name="theme-color" content="#faf9f6">
-=======
         <meta name="theme-color" content="#{{ auth()?->user()?->dark ? '0d0805' : 'faf9f6' }}">
->>>>>>> Stashed changes
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-title" content="Money">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('iphone-retina.png') }}">
         <link rel="apple-touch-startup-image" href="{{ asset('launch-screen.png') }}">
         <meta name="apple-mobile-web-app-status-bar-style" content="default">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @if(request()->route()->getName() == 'login')
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+        @endif
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=albert-sans:300,600,900" rel="stylesheet" />
         @vite(['resources/css/app.scss', 'resources/js/app.js'])

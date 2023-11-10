@@ -14,7 +14,7 @@ class Forecast extends Component
      */
     public function render(): View|Closure|string
     {
-        $current = session('payday');
+        $current = auth()->user()->payday();
 
         $paydays = [];
 

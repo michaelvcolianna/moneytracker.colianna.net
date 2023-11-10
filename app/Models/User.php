@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Payday;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -20,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'payday_id',
+        'dark',
     ];
 
     /**
@@ -40,9 +43,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'dark' => 'boolean',
     ];
+
     /**
      * Don't timestamp.
      */
     public $timestamps = false;
+
+    /**
+     * Get the payday for the user.
+     */
+    public function payday(): Payday
+    {
+        if(!$this->payday_id)
+        {
+            $this->payday_id = Payday::byDate()->id;
+        }
+
+        return Payday::find($this->payday_id);
+    }
+
+    /**
+     * Switch the color theme.
+     */
+    public function switchTheme(): void
+    {
+        $this->dark = !$this->dark;
+        $this->save();
+    }
 }

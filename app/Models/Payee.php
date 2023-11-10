@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Models\BaseModel as Model;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payee extends Model
 {
+    use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      */
