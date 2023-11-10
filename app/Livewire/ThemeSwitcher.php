@@ -17,7 +17,7 @@ class ThemeSwitcher extends Component
      */
     public function mount(): void
     {
-        $this->dark = auth()->user()->dark;
+        $this->dark = auth()?->user()?->dark;
     }
 
     /**
